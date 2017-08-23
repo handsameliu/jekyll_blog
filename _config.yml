@@ -6,7 +6,7 @@ email: 841489295@qq.com
 description: "工作五年的初级程序员，自认为拥有小小的帅气，请多指教"
 keyword: ""
 url: ""              # your host, for absolute URL
-baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/jekyll_blog"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
