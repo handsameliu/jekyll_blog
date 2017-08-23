@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>mongoose基础使用方法 - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-js-version.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                        <a class="tag" href="/tags/#mongodb" title="mongodb">mongodb</a>
+                        
+                        <a class="tag" href="/tags/#mongoose" title="mongoose">mongoose</a>
+                        
+                    </div>
+                    <h1>mongoose基础使用方法</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by handsameliu on July 5, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="mongoose基础知识">mongoose基础知识</h2>
+
+<blockquote>
+  <p>参考 http://cnodejs.org/topic/504b4924e2b84515770103dd  版本可能略旧，但是讲的比较细入门是不错的
+参考 http://www.nodeclass.com/api/mongoose.html	
+参考 http://mongoosejs.com/docs/api.html</p>
+</blockquote>
+
+<!-- more -->
+
+<h3 id="名词解释">名词解释</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">名称</th>
+      <th style="text-align: left">含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Schema</td>
+      <td style="text-align: left">一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Model</td>
+      <td style="text-align: left">由Schema发布生成的模型，具有抽象属性和行为的数据库操作对</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Entity</td>
+      <td style="text-align: left">由Model创建的实体，他的操作也会影响数据库</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>注意</strong>:</p>
+
+<p>命名规范：本学习文档采用<code class="highlighter-rouge">严格命名方式</code>来区别不同对象，例如：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonSchema</span><span class="p">;</span>   <span class="c1">//Person的文本属性</span>
+<span class="kd">var</span> <span class="nx">PersonModel</span><span class="p">;</span>    <span class="c1">//Person的数据库模型</span>
+<span class="kd">var</span> <span class="nx">PersonEntity</span><span class="p">;</span>   <span class="c1">//Person实体</span>
+</code></pre>
+</div>
+
+<h4 id="schemamodelentity的关系请牢记schema生成modelmodel创造entitymodel和entity都可对数据库操作造成影响但model比entity更具操作性">Schema、Model、Entity的关系请牢记，Schema生成Model，Model创造Entity，Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性</h4>
+
+<h3 id="开始使用">开始使用</h3>
+
+<blockquote>
+  <p>1.首先要安装mongodb和nodejs</p>
+</blockquote>
+
+<blockquote>
+  <p>2.项目中只能创建一个数据库链接（不同环境下可以使用不同的环境变量来切换数据库）</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>    <span class="c1">//引用mongoose模块</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span><span class="s1">'test'</span><span class="p">);</span> <span class="c1">//创建一个数据库连接</span>
+<span class="c1">// createConnection有两个参数，参数1是数据库的网络地址，参数2是数据库的名称</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>3.打开本机localhost的test数据库时，我们可以监测是否有异常</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span><span class="s1">'连接错误:'</span><span class="p">));</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">'open'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="c1">//一次打开记录</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>注意</strong>:</p>
+
+<p>成功开启数据库后，就可以执行数据库相应操作，假设以下代码都在回调中处理</p>
+
+<blockquote>
+  <p>4.定义Schema</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span><span class="nb">String</span>   <span class="c1">//定义一个属性name，类型为String</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>5.将该Schema发布为Model</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+<span class="c1">//如果该Model已经发布，则可以直接通过名字索引到，如下：</span>
+<span class="c1">//var PersonModel = db.model('Person');</span>
+<span class="c1">//如果没有发布，上一段代码将会异常</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>6.用Model创建Entity</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">personEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PersonModel</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="s1">'Krouky'</span><span class="p">});</span>
+<span class="c1">//打印这个实体的名字看看</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personEntity</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// 结果为 Krouky</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>7.我们可以为此Schema创建方法(实际开发过程中可以将一些原生简单的方法封装到这里，日后直接调用)</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//为Schema模型追加speak方法</span>
+<span class="nx">PersonSchema</span><span class="p">.</span><span class="nx">methos</span><span class="p">.</span><span class="nx">speak</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'我的名字叫'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">personEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PersonModel</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="s1">'Krouky'</span><span class="p">});</span>
+<span class="nx">personEntity</span><span class="p">.</span><span class="nx">speak</span><span class="p">();</span><span class="c1">//我的名字叫Krouky</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>8.Entity是具有具体的数据库操作CRUD的</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>personEntity.save();  //执行完成后，数据库就有该数据了
+</code></pre>
+</div>
+
+<blockquote>
+  <p>9.如果要执行查询，需要依赖Model，当然Entity也是可以做到的(具体的mongoose方法在我的另一篇常用方法介绍里)</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">PersonModel</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">persons</span><span class="p">){</span>
+	<span class="c1">//查询到的所有person</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>注意</strong></p>
+
+<ol>
+  <li>
+    <p>具体的如何配置Schema、Model以及Model和Entity的相关操作，我们会在后面进行</p>
+  </li>
+  <li>
+    <p>Model和Entity都有能影响数据库的操作，但仍有区别，后面我们也会做解释</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="schema纯洁的数据库原型">Schema——纯洁的数据库原型</h3>
+
+<p><strong>什么是Schema？</strong></p>
+
+<blockquote>
+  <p>和作者有些分歧，我认为就是一个数据库模型，数据属性的模型。</p>
+</blockquote>
+
+<p><strong>如何定义Schema?</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">BlogSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">title</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span>
+	<span class="na">author</span><span class="p">:</span><span class="nb">String</span>
+	<span class="c1">//new Schema()中传入一个JSON对象，该对象形如 xxx:yyyy ,</span>
+	<span class="o">/</span><span class="nx">xxx</span><span class="err">是一个字符串，定义了属性，</span><span class="nx">yyy</span><span class="err">是一个</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Type</span><span class="err">，定义了属性类型</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>什么是Schema.Type？</strong></p>
+
+<p><code class="highlighter-rouge">Schema.Type</code>是由<code class="highlighter-rouge">Mongoose</code>内定的一些数据类型，基本数据类型都在其中，他也内置了一些<code class="highlighter-rouge">Mongoose</code>特有的<code class="highlighter-rouge">Schema.Type</code>。当然，你也可以自定义Schema.Type，只有满足Schema.Type的类型才能定义在Schema内。</p>
+
+<p><strong>Schema.Types详解</strong></p>
+
+<p><code class="highlighter-rouge">NodeJS</code>中的基本数据类型都属于<code class="highlighter-rouge">Schema.Type</code>，另外<code class="highlighter-rouge">Mongoose</code>还定义了自己的类型</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//举例：</span>
+<span class="kd">var</span> <span class="nx">ExampleSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">name</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span>
+	<span class="na">binary</span><span class="p">:</span><span class="nx">Buffer</span><span class="p">,</span>
+	<span class="na">living</span><span class="p">:</span><span class="nb">Boolean</span><span class="p">,</span>
+	<span class="na">updated</span><span class="p">:</span><span class="nb">Date</span><span class="p">,</span>
+	<span class="na">age</span><span class="p">:</span><span class="nb">Number</span><span class="p">,</span>
+	<span class="na">mixed</span><span class="p">:</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">Mixed</span><span class="p">,</span> <span class="c1">//该混合类型等同于nested</span>
+	<span class="na">_id</span><span class="p">:</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>  <span class="c1">//主键</span>
+	<span class="na">_fk</span><span class="p">:</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>  <span class="c1">//外键</span>
+	<span class="na">array</span><span class="p">:[],</span>
+	<span class="na">arrOfString</span><span class="p">:[</span><span class="nb">String</span><span class="p">],</span>
+	<span class="na">arrOfNumber</span><span class="p">:[</span><span class="nb">Number</span><span class="p">],</span>
+	<span class="na">arrOfDate</span><span class="p">:[</span><span class="nb">Date</span><span class="p">],</span>
+	<span class="na">arrOfBuffer</span><span class="p">:[</span><span class="nx">Buffer</span><span class="p">],</span>
+	<span class="na">arrOfBoolean</span><span class="p">:[</span><span class="nb">Boolean</span><span class="p">],</span>
+	<span class="na">arrOfMixed</span><span class="p">:[</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">Mixed</span><span class="p">],</span>
+	<span class="na">arrOfObjectId</span><span class="p">:[</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">]</span>
+	<span class="na">nested</span><span class="p">:{</span>
+	<span class="na">stuff</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>关于Buffer</strong></p>
+
+<p><code class="highlighter-rouge">Buffer</code>和<code class="highlighter-rouge">ArrayBuffer</code>是Nodejs两种隐藏的对象，相关内容请查看<code class="highlighter-rouge">NodeJS-API</code>(个人理解：二进制数据，存储方式类似于C中的指针)</p>
+
+<p><strong>关于Mixed</strong></p>
+
+<p><code class="highlighter-rouge">Schema.Types.Mixed</code>是<code class="highlighter-rouge">Mongoose</code>定义个混合类型，该混合类型如果未定义具体形式。因此,如果定义具体内容，就直接使用<code class="highlighter-rouge"><span class="p">{}</span></code>来定义，以下两句等价</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">AnySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">any</span><span class="p">:{}});</span>
+<span class="kd">var</span> <span class="nx">AnySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">any</span><span class="p">:</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">Mixed</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>混合类型因为没有特定约束，因此可以任意修改，一旦修改了原型，则必须调用<code class="highlighter-rouge">markModified()</code></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">person</span><span class="p">.</span><span class="nx">anything</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,{</span><span class="na">y</span><span class="p">:</span><span class="s1">'change'</span><span class="p">}]}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">markModified</span><span class="p">(</span><span class="s1">'anything'</span><span class="p">);</span><span class="c1">//传入anything，表示该属性类型发生变化</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>   <span class="c1">// 保存的方法</span>
+</code></pre>
+</div>
+
+<p><strong>关于ObjectId</strong></p>
+
+<p>主键，一种特殊而且非常重要的类型，每个Schema都会默认配置这个属性（无需自己配置），属性名为_id，除非自己定义，方可覆盖（所有数据库中都有主键，可以把mongodb玩成类似关系型数据库）</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ObjectId</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">StudentSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({});</span>				<span class="c1">//默认会有_id:ObjectId</span>
+<span class="kd">var</span> <span class="nx">TeacherSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">id</span><span class="p">:</span><span class="nx">ObjectId</span><span class="p">});</span>	<span class="c1">//只有id:ObjectId</span>
+</code></pre>
+</div>
+
+<p>该类型的值由系统自己生成，从某种意义上几乎不会重复，生成过程比较复杂，有兴趣的朋友可以查看源码。</p>
+
+<p><strong>关于Array</strong></p>
+
+<p><code class="highlighter-rouge">Array</code>在JavaScript编程语言中并不叫数组，而是<code class="highlighter-rouge">集合</code>，因此里面可以存入不同的值，以下代码等价：(原作者认为不是数组，但我认为就是数组，也许我学的没有原作者好吧)</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ExampleSchema1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">array</span><span class="p">:[]});</span>
+<span class="kd">var</span> <span class="nx">ExampleSchema2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">array</span><span class="p">:</span><span class="nb">Array</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">ExampleSchema3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">array</span><span class="p">:[</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">Mixed</span><span class="p">]});</span>
+<span class="kd">var</span> <span class="nx">ExampleSchema4</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">array</span><span class="p">:[{}]});</span>
+</code></pre>
+</div>
+
+<p><strong>附言</strong></p>
+
+<p>Schema不仅定义了<code class="highlighter-rouge">文档结构</code>和<code class="highlighter-rouge">使用性能</code>，还可以有<code class="highlighter-rouge">扩展插件</code>、<code class="highlighter-rouge">实例方法</code>、<code class="highlighter-rouge">静态方法</code>、<code class="highlighter-rouge">复合索引</code>、<code class="highlighter-rouge">文档生命周期钩子</code></p>
+
+<p>Schema可以定义插件，并且插件具有良好的<code class="highlighter-rouge">可拔插性</code>，请有兴趣的读者继续往后阅读或者查阅官方资料。</p>
+
+<h3 id="schema的扩展">Schema的扩展</h3>
+
+<p><strong>实例方法</strong></p>
+
+<p>有的时候，我们创造的<code class="highlighter-rouge">Schema</code>不仅要为后面的<code class="highlighter-rouge">Model</code>和<code class="highlighter-rouge">Entity</code>提供公共的属性，还要提供<code class="highlighter-rouge">公共的方法</code>。</p>
+
+<p>下面例子比快速通道的例子更加高级，可以进行高级扩展：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span><span class="na">type</span><span class="p">:</span><span class="nb">String</span><span class="p">});</span>
+<span class="c1">//查询类似数据</span>
+<span class="nx">PersonSchema</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">findSimilarTypes</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="na">type</span><span class="p">:</span><span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="p">},</span><span class="nx">cb</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>使用如下：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">krouky</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PersonSchema</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="s1">'krouky'</span><span class="p">,</span><span class="na">type</span><span class="p">:</span><span class="s1">'前端工程师'</span><span class="p">});</span>
+<span class="nx">krouky</span><span class="p">.</span><span class="nx">findSimilarTypes</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">persons</span><span class="p">){</span>
+  <span class="c1">//persons中就能查询到其他前端工程师</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>静态方法</strong></p>
+
+<p>静态方法在<code class="highlighter-rouge">Model</code>层就能使用，如下：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">PersonSchema</span><span class="p">.</span><span class="nx">statics</span><span class="p">.</span><span class="nx">findByName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">cb</span><span class="p">){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="s1">'i'</span><span class="p">),</span><span class="nx">cb</span><span class="p">});</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+	<span class="nx">PersonModel</span><span class="p">.</span><span class="nx">findByName</span><span class="p">(</span><span class="s1">'krouky'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">persons</span><span class="p">){</span>
+	<span class="c1">//找到所有名字叫krouky的人</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>索引</strong></p>
+
+<p>索引或者复合索引能让搜索更加高效，默认索引就是主键索引ObjectId，属性名为_id， 索引会作为一个专题来讲解</p>
+
+<p><strong>虚拟属性</strong></p>
+
+<p>Schema中如果定义了虚拟属性，那么该属性将不写入数据库，例如：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">name</span><span class="p">:{</span>
+		<span class="na">first</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span>
+		<span class="na">last</span><span class="p">:</span><span class="nb">String</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">krouky</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PersonModel</span><span class="p">({</span>
+	<span class="na">name</span><span class="p">:{</span><span class="na">first</span><span class="p">:</span><span class="s1">'krouky'</span><span class="p">,</span><span class="na">last</span><span class="p">:</span><span class="s1">'han'</span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>如果每次想使用全名就得这样</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>console.log(krouky.name.first + ' ' + krouky.name.last);
+</code></pre>
+</div>
+
+<p>显然这是很麻烦的，我们可以定义<code class="highlighter-rouge">虚拟属性</code>：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">PersonSchema</span><span class="p">.</span><span class="nx">virtual</span><span class="p">(</span><span class="s1">'name.full'</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">first</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">last</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>那么就能用krouky.name.full来调用全名了，反之如果知道full，也可以反向解析first和last属性</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">PersonSchema</span><span class="p">.</span><span class="nx">virtual</span><span class="p">(</span><span class="s1">'name.full'</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">split</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">);</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">first</span> <span class="o">=</span> <span class="nx">split</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">last</span> <span class="o">=</span> <span class="nx">split</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">PersonModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Person'</span><span class="p">,</span><span class="nx">PersonSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">krouky</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PersonModel</span><span class="p">({});</span>
+<span class="nx">krouky</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">full</span> <span class="o">=</span> <span class="s1">'krouky han'</span><span class="p">;</span>	<span class="c1">//会被自动分解</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">krouky</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">first</span><span class="p">);</span>		<span class="c1">//krouky</span>
+</code></pre>
+</div>
+
+<p><strong>配置项</strong></p>
+
+<p>在使用<code class="highlighter-rouge">new Schema(config)</code>时，我们可以追加一个参数<code class="highlighter-rouge">options</code>来配置<code class="highlighter-rouge">Schema</code>的配置，形如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var ExampleSchema = new Schema(config,options);
+</code></pre>
+</div>
+
+<p>或者使用</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var ExampleSchema = new Schema(config);
+ExampleSchema.set(option,value);
+</code></pre>
+</div>
+
+<p>可供配置项有：<code class="highlighter-rouge">safe</code>、<code class="highlighter-rouge">strict</code>、<code class="highlighter-rouge">capped</code>、<code class="highlighter-rouge">versionKey</code>、<code class="highlighter-rouge">autoIndex</code></p>
+
+<p><strong>safe——安全属性（默认安全）</strong></p>
+
+<p>一般可做如下配置：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{safe:true});
+</code></pre>
+</div>
+
+<p>当然我们也可以这样</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{safe:{j:1,w:2,wtimeout:10000}});
+</code></pre>
+</div>
+
+<p>j表示做1份日志，w表示做2个副本（尚不明确），超时时间10秒</p>
+
+<p><strong>strict——严格配置（默认启用）</strong></p>
+
+<p>确保<code class="highlighter-rouge">Entity</code>的值存入数据库前会被自动验证，如果你没有充足的理由，请不要停用，例子：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ThingSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">a</span><span class="p">:</span><span class="nb">String</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">ThingModel</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Thing'</span><span class="p">,</span><span class="nx">SchemaSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">thing</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Thing</span><span class="p">({</span><span class="na">iAmNotInTheThingSchema</span><span class="p">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="nx">thing</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span><span class="c1">//iAmNotInTheThingSchema这个属性将无法被存储</span>
+</code></pre>
+</div>
+
+<p>如果取消严格选项，<code class="highlighter-rouge">iAmNotInTheThingSchema</code>将会被存入数据库</p>
+
+<p>该选项也可以在构造实例时使用，例如：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ThingModel</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Thing'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">thing1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThingModel</span><span class="p">(</span><span class="nx">doc</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>  <span class="c1">//启用严格</span>
+<span class="kd">var</span> <span class="nx">thing2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThingModel</span><span class="p">(</span><span class="nx">doc</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span> <span class="c1">//禁用严格</span>
+</code></pre>
+</div>
+
+<p><strong>注意</strong>:</p>
+
+<p><code class="highlighter-rouge">strict</code>也可以设置为<code class="highlighter-rouge">throw</code>，表示出现问题将会抛出错误</p>
+
+<p><strong>shardKey</strong></p>
+
+<p>需要<code class="highlighter-rouge">mongodb</code>做分布式，才会使用该属性</p>
+
+<p><strong>capped——上限设置</strong></p>
+
+<p>如果有数据库的批量操作，该属性能限制一次操作的量，例如：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{capped:1024});  //一次操作上线1024条数据
+</code></pre>
+</div>
+
+<p>当然该参数也可是JSON对象，包含size、max、autiIndexId属性</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{capped:{size:1024,max:100,autoIndexId:true}});
+</code></pre>
+</div>
+
+<p><strong>versionKey——版本锁</strong></p>
+
+<p>版本锁是Mongoose默认配置（__v属性）的，如果你想自己定制，如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{versionKey:'__someElse'});
+</code></pre>
+</div>
+
+<p>此时存入数据库的版本锁就不是__v属性，而是__someElse，相当于是给版本锁取名字。</p>
+
+<p>具体怎么存入都是由Mongoose和MongoDB自己决定，当然，这个属性你也可以去除</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>new Schema({...},{versionKey:false});
+</code></pre>
+</div>
+
+<p>除非你知道你在做什么，并且你知道这样做的后果</p>
+
+<p><strong>autoIndex——自动索引</strong></p>
+
+<p>该内容将在索引章节单独讲解</p>
+
+<h3 id="documents">Documents</h3>
+
+<p><code class="highlighter-rouge">Document</code>是与<code class="highlighter-rouge">MongoDB</code>文档一一对应的模型，Document可<code class="highlighter-rouge">等同于</code>Entity，具有属性和操作性.</p>
+
+<p><strong>注意</strong>：</p>
+
+<p><code class="highlighter-rouge">Document</code>的<code class="highlighter-rouge">CRUD</code>都必须经过严格验证的，参看 <strong>2.5.2 Schema的strict严格配置</strong></p>
+
+<p>具体 <code class="highlighter-rouge">增删改查</code> 方法可以查看另一篇mongoose常用方法文章。</p>
+
+<p><strong>Sub Docs</strong></p>
+
+<p>如同<code class="highlighter-rouge">SQL</code>数据库中2张表有主外关系，Mongoose将2个<code class="highlighter-rouge">Document</code>的嵌套叫做<code class="highlighter-rouge">Sub-Docs</code>（子文档）</p>
+
+<p>简单的说就是一个<code class="highlighter-rouge">Document嵌套</code>另外一个<code class="highlighter-rouge">Document</code>或者<code class="highlighter-rouge">Documents</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ChildSchema1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="nb">String</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">ChildSchema2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="nb">String</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">ParentSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">children1</span><span class="p">:</span><span class="nx">ChildSchema1</span><span class="p">,</span>   <span class="c1">//嵌套Document</span>
+	<span class="na">children2</span><span class="p">:[</span><span class="nx">ChildSchema2</span><span class="p">]</span>  <span class="c1">//嵌套Documents</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Sub-Docs</code>享受和<code class="highlighter-rouge">Documents</code>一样的操作，但是<code class="highlighter-rouge">Sub-Docs</code>的操作都由<code class="highlighter-rouge">父类</code>去执行</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ParentModel</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Parent'</span><span class="p">,</span><span class="nx">parentSchema</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ParentModel</span><span class="p">({</span>
+	<span class="na">children2</span><span class="p">:[{</span><span class="na">name</span><span class="p">:</span><span class="s1">'c1'</span><span class="p">},{</span><span class="na">name</span><span class="p">:</span><span class="s1">'c2'</span><span class="p">}]</span>
+<span class="p">});</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">children2</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'d'</span><span class="p">;</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">parent</code>在执行保存时，由于包含<code class="highlighter-rouge">children2</code>，他是一个<code class="highlighter-rouge">数据库模型对象</code>，因此会先保存chilren2[0]和chilren2[1]。</p>
+
+<p>如果子文档在更新时出现错误，将直接报在父类文档中，可以这样处理：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">ChildrenSchema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s1">'save'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="s1">'x'</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="k">return</span> <span class="nx">next</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'#err:not-x'</span><span class="p">));</span>
+	<span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ParentModel</span><span class="p">({</span><span class="na">children1</span><span class="p">:{</span><span class="na">name</span><span class="p">:</span><span class="s1">'not-x'</span><span class="p">}});</span>
+<span class="nx">parent</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="c1">//#err:not-x</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>查询子文档</strong></p>
+
+<p>如果<code class="highlighter-rouge">children</code>是<code class="highlighter-rouge">parent</code>的子文档，可以通过如下方法查询到children</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> var child = parent.children.id(id);
+</code></pre>
+</div>
+
+<p><strong>Sub-Docs 新增、删除、更新</strong></p>
+
+<p>子文档是父文档的一个属性，因此按照属性的操作即可，不同的是在新增父类的时候，子文档是会被先加入进去的。</p>
+
+<p>如果<code class="highlighter-rouge">ChildrenSchema</code>是临时的一个子文档，不作为数据库映射集合，可以这样：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ParentSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">children</span><span class="p">:{</span>
+		<span class="na">name</span><span class="p">:</span><span class="nb">String</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+<span class="c1">//其实就是匿名混合模式</span>
+</code></pre>
+</div>
+
+<h3 id="model">Model</h3>
+
+<p><strong>什么是Model</strong></p>
+
+<p><code class="highlighter-rouge">Model</code>模型，是经过<code class="highlighter-rouge">Schema</code> <code class="highlighter-rouge">构造</code>来的，除了Schema定义的数据库骨架以外，还具有数据库行为模型，他相当于管理数据库属性、行为的类</p>
+
+<p><strong>如何创建Model</strong></p>
+
+<p>你必须通过Schema来创建，如下：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//先创建Schema</span>
+<span class="kd">var</span> <span class="nx">TankSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">name</span><span class="p">:</span><span class="s1">'String'</span><span class="p">,</span>
+	<span class="na">size</span><span class="p">:</span><span class="s1">'String'</span> 
+<span class="p">});</span>
+<span class="c1">//通过Schema创建Model</span>
+<span class="kd">var</span> <span class="nx">TankModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Tank'</span><span class="p">,</span><span class="nx">TankSchema</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>如何操作Model</strong></p>
+
+<p>该模型就能直接拿来操作，具体查看API，例如：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tank</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'something'</span><span class="p">,</span><span class="na">size</span><span class="p">:</span><span class="s1">'small'</span><span class="p">};</span>
+<span class="nx">TankModel</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">tank</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><strong>注意</strong></p>
+
+<p>你可以使用<code class="highlighter-rouge">Model</code>来创建<code class="highlighter-rouge">Entity</code>，Entity实体是一个特有Model具体对象，但是他并<code class="highlighter-rouge">不具备Model的方法</code>，只能用自己的方法。</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//通过Model创建Entity</span>
+<span class="kd">var</span> <span class="nx">tankEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TankModel</span><span class="p">(</span><span class="s1">'someother'</span><span class="p">,</span><span class="s1">'size:big'</span><span class="p">);</span>
+<span class="nx">tankEntity</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p><strong>Query</strong> (具体查看另一篇常用方法文章)</p>
+
+<p>查询是数据库中运用最多也是最麻烦的地方，这里对Query解读的并不完善，仅仅是自己的一点领悟而已。(与原作者不同，幸好之前我干过java接触过oracle和sqlserver。。。)</p>
+
+<p><strong>Validation</strong></p>
+
+<p>数据的存储是需要验证的，不是什么数据都能往数据库里丢或者显示到客户端的，数据的验证需要记住以下规则：</p>
+
+<blockquote>
+  <ul>
+    <li>验证始终定义在SchemaType中</li>
+    <li>验证是一个内部中间件</li>
+    <li>验证是在一个Document被保存时默认启用的，除非你关闭验证</li>
+    <li>验证是异步递归的，如果你的SubDoc验证失败，Document也将无法保存</li>
+    <li>验证并不关心错误类型，而通过ValidationError这个对象可以访问</li>
+  </ul>
+</blockquote>
+
+<p><strong>验证器</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">属性</th>
+      <th style="text-align: left">作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">required</td>
+      <td style="text-align: left">非空验证</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">min/max</td>
+      <td style="text-align: left">范围验证（边值验证）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">enum/match</td>
+      <td style="text-align: left">枚举验证/匹配验证</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">validate</td>
+      <td style="text-align: left">自定义验证规则</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>以下是综合案例：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">PersonSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+	<span class="na">name</span><span class="p">:{</span>
+		<span class="na">type</span><span class="p">:</span><span class="s1">'String'</span><span class="p">,</span>
+		<span class="na">required</span><span class="p">:</span><span class="kc">true</span> <span class="c1">//姓名非空</span>
+	<span class="p">},</span>
+	<span class="na">age</span><span class="p">:{</span>
+		<span class="na">type</span><span class="p">:</span><span class="s1">'Nunmer'</span><span class="p">,</span>
+		<span class="na">min</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span>       <span class="c1">//年龄最小18</span>
+		<span class="na">max</span><span class="p">:</span><span class="mi">120</span>     <span class="c1">//年龄最大120</span>
+	<span class="p">},</span>
+	<span class="na">city</span><span class="p">:{</span>
+		<span class="na">type</span><span class="p">:</span><span class="s1">'String'</span><span class="p">,</span>
+		<span class="na">enum</span><span class="p">:[</span><span class="s1">'北京'</span><span class="p">,</span><span class="s1">'上海'</span><span class="p">]</span>  <span class="c1">//只能是北京、上海人</span>
+	<span class="p">},</span>
+	<span class="na">other</span><span class="p">:{</span>
+		<span class="na">type</span><span class="p">:</span><span class="s1">'String'</span><span class="p">,</span>
+		<span class="na">validate</span><span class="p">:[</span><span class="nx">validator</span><span class="p">,</span><span class="nx">err</span><span class="p">]</span>  <span class="c1">//validator是一个验证函数，err是验证失败的错误信息</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>验证失败</strong></p>
+
+<p>如果验证失败，则会返回<code class="highlighter-rouge">err信息</code>，err是一个对象该对象属性如下</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">属性</th>
+      <th style="text-align: left">作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">err.errors</td>
+      <td style="text-align: left">错误集合（对象）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.errors.color</td>
+      <td style="text-align: left">错误属性(Schema的color属性)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.errors.color.message</td>
+      <td style="text-align: left">错误属性信息</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.errors.path</td>
+      <td style="text-align: left">错误属性路径</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.errors.type</td>
+      <td style="text-align: left">错误类型</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.name</td>
+      <td style="text-align: left">错误名称</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">err.message</td>
+      <td style="text-align: left">错误消息</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一旦验证失败，<code class="highlighter-rouge">Model</code>和<code class="highlighter-rouge">Entity</code>都将具有和<code class="highlighter-rouge">err</code>一样的<code class="highlighter-rouge">errors属性</code></p>
+
+<h3 id="middleware中间件">Middleware中间件</h3>
+
+<p><strong>什么是中间件</strong></p>
+
+<p>中间件是一种控制函数，类似插件，能控制流程中的<code class="highlighter-rouge">init</code>、<code class="highlighter-rouge">validate</code>、<code class="highlighter-rouge">save</code>、<code class="highlighter-rouge">remove</code>方法</p>
+
+<p><strong>中间件的分类</strong></p>
+
+<p>中间件分为两类:<code class="highlighter-rouge">Serial串行</code>,<code class="highlighter-rouge">Parallel并行</code></p>
+
+<p><strong>Serial串行</strong></p>
+
+<p>串行使用<code class="highlighter-rouge">pre</code>方法，执行下一个方法使用<code class="highlighter-rouge">next</code>调用</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">(...);</span>
+<span class="nx">schema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s1">'save'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+	<span class="c1">//做点什么</span>
+	<span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>Parallel并行</strong></p>
+
+<p>并行提供更具细粒度的操作</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">(...);</span>
+<span class="nx">schema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s1">'save'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">,</span><span class="nx">done</span><span class="p">){</span>
+	<span class="c1">//下一个要执行的中间件并行执行</span>
+	<span class="nx">next</span><span class="p">();</span>
+	<span class="nx">doAsync</span><span class="p">(</span><span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>中间件特点</strong></p>
+
+<p>一旦定义了中间件，就会在<code class="highlighter-rouge">全部中间件执行完后</code>执行其他操作，使用中间件可以<code class="highlighter-rouge">雾化模型</code>，<code class="highlighter-rouge">避免</code>异步操作的层层迭代嵌套</p>
+
+<p><strong>使用范畴</strong></p>
+
+<ul>
+  <li>复杂的验证</li>
+  <li>删除有主外关联的doc</li>
+  <li>异步默认</li>
+  <li>某个特定动作触发异步任务，例如触发自定义事件和通知</li>
+</ul>
+
+<p>例如，可以用来做自定义错误处理</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">schema</span><span class="p">.</span><span class="nx">pre</span><span class="p">(</span><span class="s1">'save'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Eerror</span><span class="p">(</span><span class="s1">'some err'</span><span class="p">);</span>
+	<span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">entity</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="c1">//some err</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/05/mongodb/" data-toggle="tooltip" data-placement="top" title="mongodb使用方法总结">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/05/mongoose%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="mongoose常用方法">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg-road.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>handsameliu</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">一直在路上.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2017/08/23/vuecli-install/">
+        <h2 class="post-title">
+            vue-cli笔记--安装
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Vue2
+        </h3>
+        
+        <div class="post-content-preview">
+            要新开项目了，纠结于使用哪种框架，领导的意思是使用最简单的jquery，而我想要使用时下热门的vue。虽然还没有定调，那就先学学vue吧、
+
+由于之前做过angular以及react的实际开发，所以对于vue这个两者结合，取其精华去其糟粕的框架觉得应该可以无痛对接。事实确实如此。
+
+
+
+什么是vue？
+
+按照官网的说法，vue是一套渐进式框架，与其他重量级框架不同的是，vue才是用的是自底向...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/08/23/vue2-component/">
+        <h2 class="post-title">
+            Vue2组件通信
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Vue2
+        </h3>
+        
+        <div class="post-content-preview">
+            Vue2 组件之间的通信
+
+在父子组件通信中，无论是子级向父级传值，还是父级向子级传值，都是需要一个中间介质作为中转。
+
+当父级向子级传值时需要用到props属性，子级向父级传值时需要用到自定义事件。这个结合了ng和react。相比之下Vue简单易懂。
+
+
+
+父组件向子组件传值
+
+首先来写一个子组件，在子组件的new Vue对象中添加props属性，在属性中以数组的形式写入父级要传输过来的属...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/08/23/jqueryAPI/">
+        <h2 class="post-title">
+            jQuery常用API
+        </h2>
+        
+        <h3 class="post-subtitle">
+            jQuery
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  项目要重构了，来复习一下老版的jquery(项目兼容ie8，或者更低)…
+
+
+基本选择器
+
+
+
+$(document);获取文档对象
+
+$('#id');获取某个id元素
+
+$('.className');获取某个class元素
+
+$('input[name=username]');获取name为username的input元素
+
+$('a:first');获取a标签的第一个
+
+$('...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/08/23/gitIssues/">
+        <h2 class="post-title">
+            git突然无法连接提示公钥或密码错误的坑
+        </h2>
+        
+        <h3 class="post-subtitle">
+            git
+        </h3>
+        
+        <div class="post-content-preview">
+            ssh配置文件莫名其妙的出现了问题，可能由于在电脑上乱试版本管理工具导致的吧。
+
+然后就是各种调，因为当前电脑会链接github和gitlab以及服务器，所以本地的ssh有点多，设置起来也费点时间。
+
+
+
+那么今天遇到的问题就坑了
+
+
+  ssh -T git@github.com		正常连接
+  git pull origin master	提示密码不对无法连接
+  各种查看后发现项目.g...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/testing/">
+        <h2 class="post-title">
+            test markdown
+        </h2>
+        
+        <h3 class="post-subtitle">
+            test markdown 语法
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  注意文档格式，建议utf-8
+
+
+可用的标签
+
+粗体testtesttesttesttesttesttesttesttesttesttesttesttesttest
+
+
+
+
+  粗体子集1
+  粗体子集2
+  
+    粗体子集3
+  
+
+
+
+  hexo next （&lt;!--more--&gt;）一种用于截取一部分文段段落显示查看所有标签，推荐使用。
+
+
+Markdown简介
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/sass-grammar/">
+        <h2 class="post-title">
+            sass
+        </h2>
+        
+        <div class="post-content-preview">
+            sass语法
+
+sass有两种后缀方式：
+
+  1.后缀为sass 不使用大括号和分号，语法要求严格
+  2.后缀为scss 可以使用大括号和分号，语法于css相同
+
+
+
+
+//文件后缀名为sass的语法
+body
+  background: #eee
+  font-size:12px
+p
+  background: #0982c1
+
+//文件后缀名为scss的语法
+body {
+  bac...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/react+redux/">
+        <h2 class="post-title">
+            react+redux
+        </h2>
+        
+        <div class="post-content-preview">
+            同事离职，之前他一人负责微信端的开发。不得不吐槽由于近期物价上涨，找一个价格合理的前端是很难的，这也是他跳槽的原因，因为他在这方面确实做得很不错。
+他留下一个交接文档，沟通几分钟后就没有然后了。自学吧
+
+
+
+
+  项目由react+redux+webpack搭建使用react-weui写页面，后台接口node提供，也需要自己写。所以需要学习的还有很多。
+
+
+
+  根据目录中文件的功能来介绍，...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/mooc-es6/">
+        <h2 class="post-title">
+            mooc-es6
+        </h2>
+        
+        <h3 class="post-subtitle">
+            es6 语法
+        </h3>
+        
+        <div class="post-content-preview">
+            由于最近使用的是react做微信端，所以就深入接触了es6，之前es6语法很少使用,所以看了阮一峰老师和网上的教程深入学习了一下。
+
+
+
+
+  列出了常用到的一些新的语法，感觉和后端越来越像了，而且简单了。
+
+
+
+  http://www.cnblogs.com/Wayou/p/es6_new_features.html   参考
+
+
+箭头函数
+
+首当其冲的就是es6的箭头函数了，它简化了函...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/mongoose%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+        <h2 class="post-title">
+            mongoose常用方法
+        </h2>
+        
+        <div class="post-content-preview">
+            mongoose常用方法
+
+
+  参考 http://www.nodeclass.com/api/mongoose.html	
+参考 http://mongoosejs.com/docs/api.html
+
+
+
+
+Model.find
+
+Model.find(query, fields, options, callback)
+// 共四个参数，但是fields 和 options 都是可选参...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/">
+        <h2 class="post-title">
+            mongoose基础使用方法
+        </h2>
+        
+        <div class="post-content-preview">
+            mongoose基础知识
+
+
+  参考 http://cnodejs.org/topic/504b4924e2b84515770103dd  版本可能略旧，但是讲的比较细入门是不错的
+参考 http://www.nodeclass.com/api/mongoose.html	
+参考 http://mongoosejs.com/docs/api.html
+
+
+
+
+名词解释
+
+
+  
+    
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on July 5, 2017
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+    <li class="next">
+        <a href="/page2">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                                <a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="/img/avatar.jpg" />
+                        
+                        
+                            <p>即将工作五年的初级程序员，自认为拥有小小的帅气，请多指教</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="http://weibo.com/u/2093882590">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/handsameliu">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+    		</div>
+        
+	</div>
+</div>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

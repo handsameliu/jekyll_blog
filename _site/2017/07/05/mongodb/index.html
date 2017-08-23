@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>mongodb使用方法总结 - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/07/05/mongodb/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-js-version.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                        <a class="tag" href="/tags/#mongodb" title="mongodb">mongodb</a>
+                        
+                    </div>
+                    <h1>mongodb使用方法总结</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by handsameliu on July 5, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p>首先正确安装mongodb数据库，启动方式： mongod –dbpath D:\Mongodb\data</p>
+
+<!-- more -->
+
+<blockquote>
+  <p>D:\Mongodb为安装地址</p>
+</blockquote>
+
+<h2 id="mongodb数据库基本用法">MongoDB数据库基本用法</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">show dbs</td>
+      <td style="text-align: left">显示数据库列表</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">show collections</td>
+      <td style="text-align: left">显示当前数据库中的集合（类似关系数据库中的表）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">show users</td>
+      <td style="text-align: left">显示用户</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">use <db name=""></db></td>
+      <td style="text-align: left">切换当前数据库，这和MS-SQL里面的意思一样</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.help()</td>
+      <td style="text-align: left">显示数据库操作命令，里面有很多的命令</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.foo.help()</td>
+      <td style="text-align: left">显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.foo.find()</td>
+      <td style="text-align: left">对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.foo.find( { a : 1 } )</td>
+      <td style="text-align: left">对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>MongoDB没有创建数据库的命令，但有类似的命令。如：如果你想创建一个“myTest”的数据库，先运行use myTest命令，之后就做一些操作（如：db.createCollection(‘user’)）,这样就可以创建一个名叫“myTest”的数据库。</p>
+</blockquote>
+
+<h2 id="数据库常用命令">数据库常用命令</h2>
+
+<h3 id="1help查看命令提示">1、Help查看命令提示</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">db.help()</td>
+      <td style="text-align: left">帮助</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.yourColl.help()</td>
+      <td style="text-align: left">集合中的帮助</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.youColl.find().help()</td>
+      <td style="text-align: left">方法的帮助</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rs.help()</td>
+      <td style="text-align: left">这个到底啥帮助我也没搞懂</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2切换创建数据库">2、切换/创建数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>use yourDB; 当创建一个集合(table)的时候会自动创建当前数据库
+</code></pre>
+</div>
+
+<h3 id="3查询所有数据库">3、查询所有数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>show dbs;
+</code></pre>
+</div>
+
+<h3 id="4删除当前使用数据库">4、删除当前使用数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.dropDatabase();
+</code></pre>
+</div>
+
+<h3 id="5从指定主机上克隆数据库">5、从指定主机上克隆数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库  
+</code></pre>
+</div>
+
+<h3 id="6从指定的机器上复制指定数据库数据到某个数据库">6、从指定的机器上复制指定数据库数据到某个数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.copyDatabase("mydb", "temp", "127.0.0.1");将本机的mydb的数据复制到temp数据库中    db.copyDatabase('atl_db','atl_db','192.168.3.44:27017');   in，out，目标ip地址
+</code></pre>
+</div>
+
+<h3 id="7修复当前数据库">7、修复当前数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.repairDatabase();
+</code></pre>
+</div>
+
+<h3 id="8查看当前使用的数据库">8、查看当前使用的数据库</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.getName();
+db; db和getName方法是一样的效果，都可以查询当前使用的数据库
+</code></pre>
+</div>
+
+<h3 id="9显示当前db状态">9、显示当前db状态</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> db.stats();
+</code></pre>
+</div>
+
+<h3 id="10当前db版本">10、当前db版本</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> db.version();
+</code></pre>
+</div>
+
+<h3 id="11查看当前db的链接机器地址">11、查看当前db的链接机器地址</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> db.getMongo();
+</code></pre>
+</div>
+
+<h2 id="collection聚集集合">Collection聚集集合</h2>
+
+<h3 id="1创建一个聚集集合table">1、创建一个聚集集合（table）</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.createCollection(“collName”, {size: 20, capped: 5, max: 100});
+</code></pre>
+</div>
+
+<h3 id="2得到指定名称的聚集集合table">2、得到指定名称的聚集集合（table）</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.getCollection("account");
+</code></pre>
+</div>
+
+<h3 id="3得到当前db的所有聚集集合">3、得到当前db的所有聚集集合</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.getCollectionNames();
+</code></pre>
+</div>
+
+<h3 id="4显示当前db所有聚集索引的状态">4、显示当前db所有聚集索引的状态</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.printCollectionStats();
+</code></pre>
+</div>
+
+<h2 id="用户相关">用户相关</h2>
+
+<h3 id="1添加一个用户">1、添加一个用户</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.addUser("name");
+db.addUser("userName", "pwd123", true); 添加用户、设置密码、是否只读 ### 2、数据库认证、安全模式
+
+db.auth("userName", "123123");
+</code></pre>
+</div>
+
+<h3 id="3显示当前所有用户">3、显示当前所有用户</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>show users;
+</code></pre>
+</div>
+
+<h3 id="4删除用户">4、删除用户</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.removeUser("userName");
+</code></pre>
+</div>
+
+<h2 id="其他">其他</h2>
+
+<h3 id="1查询之前的错误信息">1、查询之前的错误信息</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.getPrevError();
+</code></pre>
+</div>
+
+<h3 id="2清除错误记录">2、清除错误记录</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.resetError();
+</code></pre>
+</div>
+
+<h2 id="查看聚集集合基本信息">查看聚集集合基本信息</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">db.yourColl.help()</td>
+      <td style="text-align: left">查看当前集合的帮助</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.yourColl.count()</td>
+      <td style="text-align: left">查询当前集合的数据条数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.dataSize()</td>
+      <td style="text-align: left">查看userInfo集合的数据空间大小</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.getDB()</td>
+      <td style="text-align: left">查看userInfo集合的所在的db</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.stats()</td>
+      <td style="text-align: left">查看userInfo集合的状态</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.totalSize()</td>
+      <td style="text-align: left">查看userInfo集合的总大小</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.storageSize()</td>
+      <td style="text-align: left">查看userInfo集合的储存空间大小</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.getShardVersion()</td>
+      <td style="text-align: left">查看userInfo集合的Shard版本信息</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.renameCollection(“users”)</td>
+      <td style="text-align: left">userInfo集合的重命名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">db.userInfo.drop()</td>
+      <td style="text-align: left">删除userInfo集合</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="聚集集合查询">聚集集合查询</h2>
+
+<blockquote>
+  <p>已userInfo表为例</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">功能</th>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">查询所有记录</td>
+      <td style="text-align: left">db.userInfo.find()</td>
+      <td style="text-align: left">相当于：select* from userInfo;默认每页显示20条记录，当显示不下的情况下，可以用it迭代命令查询下一页数据。注意：键入it命令不能带“；”但是你可以设置每页显示数据的大小，用DBQuery.shellBatchSize= 50;这样每页就显示50条记录了。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询去掉后的当前聚集集合中的某列的重复数据</td>
+      <td style="text-align: left">db.userInfo.distinct(“name”)</td>
+      <td style="text-align: left">会过滤掉name中的相同数据，相当于：select distict name from userInfo;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age = 22的记录</td>
+      <td style="text-align: left">db.userInfo.find({“age”: 22})</td>
+      <td style="text-align: left">相当于： select * from userInfo where age = 22;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age &gt; 22的记录</td>
+      <td style="text-align: left">db.userInfo.find({age: {$gt: 22}})</td>
+      <td style="text-align: left">相当于：select * from userInfo where age &gt;22;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age &lt; 22的记录</td>
+      <td style="text-align: left">db.userInfo.find({age: {$lt: 22}})</td>
+      <td style="text-align: left">相当于：select * from userInfo where age &lt;22;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age &gt;= 25的记录</td>
+      <td style="text-align: left">db.userInfo.find({age: {$gte: 25}})</td>
+      <td style="text-align: left">相当于：select * from userInfo where age &gt;= 25;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age &lt;= 25的记录</td>
+      <td style="text-align: left">db.userInfo.find({age: {$lte: 25}})</td>
+      <td style="text-align: left">相当于：select * from userInfo where age &lt;= 25;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询age &gt;= 23 并且 age &lt;= 26</td>
+      <td style="text-align: left">db.userInfo.find({age: {$gte: 23, $lte: 26}})</td>
+      <td style="text-align: left">相当于: select * from userInfo where age&gt;=23 &amp;&amp; age&lt;=26</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询name中包含 mongo的数据</td>
+      <td style="text-align: left">db.userInfo.find({name: /mongo/});</td>
+      <td style="text-align: left">//相当于%%  select * from userInfo where name like ‘%mongo%’;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询name中以mongo开头的</td>
+      <td style="text-align: left">db.userInfo.find({name: /^mongo/})</td>
+      <td style="text-align: left">select * from userInfo where name like ‘mongo%’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询指定列name、age数据</td>
+      <td style="text-align: left">db.userInfo.find({}, {name: 1, age: 1})</td>
+      <td style="text-align: left">相当于：select name, age from userInfo;当然name也可以用true或false,当用ture的情况下河name:1效果一样，如果用false就是排除name，显示name以外的列信息</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询指定列name、age数据, age &gt; 25</td>
+      <td style="text-align: left">db.userInfo.find({age: {$gt: 25}}, {name: 1, age: 1})</td>
+      <td style="text-align: left">相当于：select name, age from userInfo where age &gt;25</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">按照年龄排序</td>
+      <td style="text-align: left">升序：db.userInfo.find().sort({age: 1});</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">降序：db.userInfo.find().sort({age: -1})</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询name = zhangsan, age = 22的数据</td>
+      <td style="text-align: left">db.userInfo.find({name: ‘zhangsan’, age: 22})</td>
+      <td style="text-align: left">相当于：select * from userInfo where name = ‘zhangsan’ and age = ‘22’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询前5条数据</td>
+      <td style="text-align: left">db.userInfo.find().limit(5)</td>
+      <td style="text-align: left">相当于：selecttop 5 * from userInfo</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询10条以后的数据</td>
+      <td style="text-align: left">db.userInfo.find().skip(10);</td>
+      <td style="text-align: left">相当于：select * from userInfo where id not in (selecttop 10 * from userInfo)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询在5-10之间的数据</td>
+      <td style="text-align: left">db.userInfo.find().limit(10).skip(5);</td>
+      <td style="text-align: left">可用于分页，limit是pageSize，skip是第几页*pageSize</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">or与 查询</td>
+      <td style="text-align: left">db.userInfo.find({$or: [{age: 22}, {age: 25}]})</td>
+      <td style="text-align: left">相当于：select * from userInfo where age = 22 or age = 25</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询第一条数据</td>
+      <td style="text-align: left">db.userInfo.findOne()</td>
+      <td style="text-align: left">相当于：selecttop 1 * from userInfo;db.userInfo.find().limit(1);</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">查询某个结果集的记录条数</td>
+      <td style="text-align: left">db.userInfo.find({age: {$gte: 25}}).count()</td>
+      <td style="text-align: left">相当于：select count(*) from userInfo where age &gt;= 20;</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">按照某列进行排序</td>
+      <td style="text-align: left">db.userInfo.find({xxx: {$exists: true}}).count()</td>
+      <td style="text-align: left">相当于：select count(xxx) from userInfo;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="索引">索引</h2>
+
+<h3 id="1创建索引">1、创建索引</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.ensureIndex({name: 1});
+db.userInfo.ensureIndex({name: 1, ts: -1});
+</code></pre>
+</div>
+
+<h3 id="2查询当前聚集集合所有索引">2、查询当前聚集集合所有索引</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.getIndexes();
+</code></pre>
+</div>
+
+<h3 id="3查看总索引记录大小">3、查看总索引记录大小</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.totalIndexSize();
+</code></pre>
+</div>
+
+<h3 id="4读取当前集合的所有index信息">4、读取当前集合的所有index信息</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.reIndex();
+</code></pre>
+</div>
+
+<h3 id="5删除指定索引">5、删除指定索引</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.dropIndex("name_1");
+</code></pre>
+</div>
+
+<h3 id="6删除所有索引索引">6、删除所有索引索引</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.dropIndexes();
+</code></pre>
+</div>
+
+<h2 id="修改添加删除集合数据">修改、添加、删除集合数据</h2>
+
+<h3 id="添加">添加</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.save({name: ‘zhangsan', age: 25, ***: true});
+</code></pre>
+</div>
+
+<p>添加的数据的数据列，没有固定，根据添加的数据为准</p>
+
+<h3 id="删除">删除</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.remove({age: 132});
+</code></pre>
+</div>
+
+<h3 id="修改">修改</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({age: 25}, {$set: {name: 'changeName'}}, false, true);
+</code></pre>
+</div>
+
+<p>相当于：update users set name = ‘changeName’ where age = 25;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}}, false, true);
+</code></pre>
+</div>
+
+<p>相当于：update users set age = age + 50 where name = ‘Lisi’;</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}, $set: {name: 'hoho'}}, false, true);
+</code></pre>
+</div>
+
+<p>相当于：update users set age = age + 50, name = ‘hoho’ where name = ‘Lisi’;</p>
+
+<h3 id="查询修改删除">查询修改删除</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.findAndModify({
+  query: {age: {$gte: 25}}, 
+  sort: {age: -1}, 
+  update: {$set: {name: 'a2'}, $inc: {age: 2}},
+  remove: true
+});
+db.runCommand({ findandmodify : "users", 
+  query: {age: {$gte: 25}}, 
+  sort: {age: -1}, 
+  update: {$set: {name: 'a2'}, $inc: {age: 2}},
+  remove: true
+});
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">参数</th>
+      <th style="text-align: left">详解</th>
+      <th style="text-align: left">默认值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">query</td>
+      <td style="text-align: left">查询过滤条件</td>
+      <td style="text-align: left">{}</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">sort</td>
+      <td style="text-align: left">如果多个文档符合查询过滤条件，将以该参数指定的排列方式选择出排在首位的对象，该对象将被操作</td>
+      <td style="text-align: left">{}</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">remove</td>
+      <td style="text-align: left">若为true，被选中对象将在返回前被删除</td>
+      <td style="text-align: left">N/A</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">update</td>
+      <td style="text-align: left">一个 修改器对象</td>
+      <td style="text-align: left">N/A</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">new</td>
+      <td style="text-align: left">若为true，将返回修改后的对象而不是原始对象。在删除操作中，该参数被忽略。</td>
+      <td style="text-align: left">false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fields</td>
+      <td style="text-align: left">参见Retrieving a Subset of Fields (1.5.0+)</td>
+      <td style="text-align: left">All fields</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">upsert</td>
+      <td style="text-align: left">创建新对象若查询结果为空。 示例 (1.5.4+)</td>
+      <td style="text-align: left">false</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="语句块操作">语句块操作</h2>
+
+<h3 id="1简单hello-world">1、简单Hello World</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>print("Hello World!");
+这种写法调用了print函数，和直接写入"Hello World!"的效果是一样的；
+</code></pre>
+</div>
+
+<h3 id="2将一个对象转换成json">2、将一个对象转换成json</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>tojson(new Object());
+tojson(new Object('a'));
+</code></pre>
+</div>
+
+<h3 id="3循环添加数据">3、循环添加数据</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; for (var i = 0; i &lt; 30; i++) {
+... db.users.save({name: "u_" + i, age: 22 + i, ***: i % 2});
+... };
+这样就循环添加了30条数据，同样也可以省略括号的写法
+&gt; for (var i = 0; i &lt; 30; i++) db.users.save({name: "u_" + i, age: 22 + i, ***: i % 2});
+也是可以的，当你用db.users.find()查询的时候，显示多条数据而无法一页显示的情况下，可以用it查看下一页的信息；
+</code></pre>
+</div>
+
+<h3 id="4find-游标查询">4、find 游标查询</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt;var cursor = db.users.find();
+&gt; while (cursor.hasNext()) { 
+  printjson(cursor.next()); 
+}
+这样就查询所有的users信息，同样可以这样写
+var cursor = db.users.find();
+while (cursor.hasNext()) { printjson(cursor.next); }
+同样可以省略{}号
+</code></pre>
+</div>
+
+<h3 id="5foreach迭代循环">5、forEach迭代循环</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find().forEach(printjson);
+forEach中必须传递一个函数来处理每条迭代的数据信息
+</code></pre>
+</div>
+
+<h3 id="6将find游标当数组处理">6、将find游标当数组处理</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var cursor = db.users.find();
+cursor[4];
+取得下标索引为4的那条数据
+既然可以当做数组处理，那么就可以获得它的长度：cursor.length();或者cursor.count();
+那样我们也可以用循环显示数据
+for (var i = 0, len = c.length(); i &lt; len; i++) printjson(c[i]);
+</code></pre>
+</div>
+
+<h3 id="7将find游标转换成数组">7、将find游标转换成数组</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; var arr = db.users.find().toArray();
+&gt; printjson(arr[2]);
+用toArray方法将其转换为数组
+</code></pre>
+</div>
+
+<h3 id="8定制我们自己的查询结果">8、定制我们自己的查询结果</h3>
+
+<p>只显示age &lt;= 28的并且只显示age这列数据</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);
+db.users.find({age: {$lte: 28}}, {age: true}).forEach(printjson);
+</code></pre>
+</div>
+
+<p>排除age的列</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);
+</code></pre>
+</div>
+
+<h3 id="9foreach传递函数显示信息">9、forEach传递函数显示信息</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.things.find({x:4}).forEach(function(x) {print(tojson(x));});
+</code></pre>
+</div>
+
+<h3 id="10查询时间">10、查询时间</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({createTime:new Date(time)});
+db.users.find({createTime:{$gt:new Date(time),$lt:new Date(time)}}); 
+</code></pre>
+</div>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/05/issues/" data-toggle="tooltip" data-placement="top" title="平时遇到的一些问题总结">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/" data-toggle="tooltip" data-placement="top" title="mongoose基础使用方法">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

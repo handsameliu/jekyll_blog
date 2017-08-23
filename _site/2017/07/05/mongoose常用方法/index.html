@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>mongoose常用方法 - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/07/05/mongoose%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-js-version.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                        <a class="tag" href="/tags/#mongodb" title="mongodb">mongodb</a>
+                        
+                        <a class="tag" href="/tags/#mongoose" title="mongoose">mongoose</a>
+                        
+                    </div>
+                    <h1>mongoose常用方法</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by handsameliu on July 5, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<p>mongoose常用方法</p>
+
+<blockquote>
+  <p>参考 http://www.nodeclass.com/api/mongoose.html	
+参考 http://mongoosejs.com/docs/api.html</p>
+</blockquote>
+
+<!-- more -->
+
+<h3 id="modelfind">Model.find</h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">fields</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+<span class="c1">// 共四个参数，但是fields 和 options 都是可选参数</span>
+<span class="c1">// 参数1忽略,或为空对象则返回所有集合文档</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>一般使用方法</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="s1">'性别'</span><span class="p">:</span> <span class="s1">'0'</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// docs 是查询的结果数组，默认返回单条内所有字段数据 });</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>返回指定键数据的方法（过滤查询）</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="p">[</span><span class="s1">'age'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// docs 此时只包含文档的部分键值</span>
+  <span class="c1">// 参数2页可使用对象  {'name':1,'age':0} 查询文档的返回结果包含name , 不包含age.(_id默认是1)</span>
+<span class="p">})</span>
+
+<span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span><span class="kc">null</span><span class="p">,{</span><span class="na">limit</span><span class="p">:</span><span class="mi">20</span><span class="p">});</span>		<span class="c1">//过滤查询,参数3: 游标操作 limit限制返回结果数量为20个,如不足20个则返回所有.</span>
+
+
+</code></pre>
+</div>
+
+<h3 id="modelfindone">Model.findOne</h3>
+<blockquote>
+  <p>与 Model.find 相同，但只返回查询到的第一个文档对象，</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="s1">'age'</span><span class="p">:</span> <span class="mi">18</span><span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">){</span>
+  <span class="c1">// doc 是单个文档对象</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="modelfindbyid">Model.findById</h3>
+<blockquote>
+  <p>与 findOne 相同，但它接收文档的 _id 作为参数，返回单个文档。_id 可以是字符串或 ObjectId 对象。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">){</span>
+  <span class="c1">// doc 是单个文档</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="modelcount">Model.count</h3>
+<blockquote>
+  <p>返回符合条件的文档数。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">count</span><span class="p">(</span><span class="nx">conditions</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="modelcreate">Model.create</h3>
+<blockquote>
+  <p>在集合中创建一个文档</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.create({'name':'liu','age':18}, callback))
+</code></pre>
+</div>
+
+<h3 id="modelremove">Model.remove</h3>
+<blockquote>
+  <p>删除符合条件的文档。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">conditions</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="modeldistinct">Model.distinct</h3>
+<blockquote>
+  <p>查询符合条件的文档并返回根据键分组的结果。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">conditions</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="modelwhere">Model.where</h3>
+<blockquote>
+  <p>当查询条件比较复杂时使用where语句</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span>
+	<span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'age'</span><span class="p">).</span><span class="nx">gte</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'tags'</span><span class="p">).</span><span class="k">in</span><span class="p">([</span><span class="s1">'movie'</span><span class="p">,</span> <span class="s1">'music'</span><span class="p">,</span> <span class="s1">'art'</span><span class="p">])</span>
+	<span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">,</span> <span class="s1">'tags'</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">asc</span><span class="p">(</span><span class="s1">'age'</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">slaveOk</span><span class="p">()</span>
+	<span class="p">.</span><span class="nx">hint</span><span class="p">({</span> <span class="na">age</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="mi">1</span> <span class="p">})</span>
+	<span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="modelwhere-1">Model.$where</h3>
+<blockquote>
+  <p>有时我们需要在 mongodb 中使用 javascript 表达式进行查询，这时可以用 find({$where : javascript}) 方式，$where 是一种快捷方式，并支持链式调用查询。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">$where</span><span class="p">(</span><span class="s1">'this.firstname === this.lastname'</span><span class="p">).</span><span class="nx">exec</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="modelupdate">Model.update</h3>
+<blockquote>
+  <p>使用 update 子句更新符合指定条件的文档.
+更新数据在发送到数据库服务器之前会改变模型的类型。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">conditions</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'borne'</span> <span class="p">},</span> <span class="nx">update</span> <span class="o">=</span> <span class="p">{</span> <span class="na">$inc</span><span class="p">:</span> <span class="p">{</span> <span class="na">visits</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}},</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">conditions</span><span class="p">,</span> <span class="nx">update</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+<span class="c1">// 参数1:查询条件, 参数2:更新对象,可以使用MondoDB的更新修改器</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>注意：为了向后兼容，所有顶级更新键如果不是原子操作命名的，会统一被按 $set 操作处理，例如：</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'borne'</span> <span class="p">};</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'jason borne'</span> <span class="p">},</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+
+<span class="c1">// 会被这样发送到数据库服务器，可以直接写成这个样子</span>
+
+<span class="nx">Model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">{</span> <span class="na">$set</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'jason borne'</span> <span class="p">}},</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="查询-api">查询 API</h3>
+<blockquote>
+  <p>如果不提供回调函数，所有这些方法都返回 Query 对象，它们都可以被再次修改（比如增加选项、键等），直到调用 exec 方法。</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({});</span>
+
+<span class="nx">query</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'field'</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="nx">query</span><span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nx">query</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="nx">query</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">docs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// called when the `query.complete` or `query.error` are called</span>
+  <span class="c1">// internally</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="修改器和更新器">修改器和更新器</h3>
+
+<h4 id="更新修改器">更新修改器:</h4>
+
+<p><strong>‘$inc’</strong> :增减修改器,只对数字有效.下面的实例: 找到 age=22的文档,修改文档的age值自增1</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$inc':{'age':1} } ); // 执行后: age=23
+</code></pre>
+</div>
+
+<p><strong>‘$set’</strong> :指定一个键的值,这个键不存在就创建它.可以是任何MondoDB支持的类型.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$set':{'age':'haha'} } ); // 执行后: age='haha'
+</code></pre>
+</div>
+
+<p><strong>‘$unset’</strong> :同上取反,删除一个键</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$unset':{'age':'haha'} } ); // 执行后: age键不存在
+</code></pre>
+</div>
+
+<h4 id="数组修改器">数组修改器:</h4>
+
+<p><strong>‘$push’</strong> :给一个键push一个数组成员,键不存在会创建</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$push':{'array':10} } ); // 执行后: 增加一个 array 键,类型为数组, 有一个成员 10
+</code></pre>
+</div>
+
+<p><strong>‘$addToSet’</strong> :向数组中添加一个元素,如果存在就不添加</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$addToSet':{'array':10} } ); // 执行后: array中有10所以不会添加
+</code></pre>
+</div>
+
+<p><strong>‘$each’</strong> :遍历数组, 和 $push 修改器配合可以插入多个值</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$push':{'array':{'$each': [1,2,3,4,5]}} } ); // 执行后: array : [10,1,2,3,4,5]
+</code></pre>
+</div>
+
+<p><strong>‘$pop’</strong> :向数组中尾部删除一个元素</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$pop':{'array':1} } ); // 执行后: array : [10,1,2,3,4] tips: 将1改成-1可以删除数组首部元素
+</code></pre>
+</div>
+
+<p><strong>‘$pull’</strong> :向数组中删除指定元素</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Model.update({'age':22}, {'$pull':{'array':10} } ); // 执行后: array : [1,2,3,4] 匹配到array中的10后将其删除
+</code></pre>
+</div>
+
+<h4 id="条件查询">条件查询:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">条件</th>
+      <th style="text-align: left">功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">$lt</td>
+      <td style="text-align: left">小于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$lte</td>
+      <td style="text-align: left">小于等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$gt</td>
+      <td style="text-align: left">大于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$gte</td>
+      <td style="text-align: left">大于等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$ne</td>
+      <td style="text-align: left">不等于</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"age"</span><span class="p">:{</span> <span class="s2">"$get"</span><span class="p">:</span><span class="mi">18</span> <span class="p">,</span> <span class="s2">"$lte"</span><span class="p">:</span><span class="mi">30</span> <span class="p">}</span> <span class="p">}</span> <span class="p">);</span>
+<span class="c1">// 查询 age 大于等于18并小于等于30的文档</span>
+</code></pre>
+</div>
+
+<h4 id="或查询-or">或查询 OR:</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">条件</th>
+      <th style="text-align: left">功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">$in</td>
+      <td style="text-align: left">一个键对应多个值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$nin</td>
+      <td style="text-align: left">同上取反, 一个键不对应指定值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$or</td>
+      <td style="text-align: left">多个条件匹配, 可以嵌套 $in 使用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$not</td>
+      <td style="text-align: left">同上取反, 查询与特定模式不匹配的文档</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"age"</span><span class="p">:{</span> <span class="s2">"$in"</span><span class="p">:[</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">.</span><span class="s1">'haha'</span><span class="p">]}</span> <span class="p">}</span> <span class="p">);</span>
+<span class="c1">// 查询 age等于20或21或21或'haha'的文档</span>
+
+<span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"$or"</span> <span class="p">:</span> <span class="p">[</span> <span class="p">{</span><span class="s1">'age'</span><span class="p">:</span><span class="mi">18</span><span class="p">}</span> <span class="p">,</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span><span class="s1">'xueyou'</span><span class="p">}</span> <span class="p">]</span> <span class="p">});</span> 
+<span class="c1">// 查询 age等于18 或 name等于'xueyou' 的文档</span>
+</code></pre>
+</div>
+
+<h4 id="类型查询">类型查询:</h4>
+
+<p>null 能匹配自身和不存在的值, 想要匹配键的值 为null, 就要通过 “$exists” 条件判定键值已经存在 “$exists” (表示是否存在的意思)</p>
+
+<blockquote>
+  <p>Model.find(“age” : { “$in” : [null] , “exists” : true } ); 查询 age值为null的文档</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="p">{</span><span class="na">$exists</span><span class="p">:</span> <span class="kc">true</span><span class="p">}},</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span><span class="nx">docs</span><span class="p">){</span>
+  <span class="c1">//查询所有存在name属性的文档</span>
+<span class="p">});</span>
+
+<span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="na">telephone</span><span class="p">:</span> <span class="p">{</span><span class="na">$exists</span><span class="p">:</span> <span class="kc">false</span><span class="p">}},</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span><span class="nx">docs</span><span class="p">){</span>
+  <span class="c1">//查询所有不存在telephone属性的文档</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="正则表达式">正则表达式:</h4>
+
+<p>MongoDb 使用 Prel兼容的正则表达式库来匹配正则表达式</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">find</span><span class="p">(</span> <span class="p">{</span><span class="s2">"name"</span> <span class="p">:</span> <span class="o">/</span><span class="nx">joe</span><span class="o">/</span><span class="nx">i</span> <span class="p">}</span> <span class="p">)</span>
+<span class="err">查询</span><span class="nx">name</span><span class="err">为</span> <span class="nx">joe</span> <span class="err">的文档</span><span class="p">,</span> <span class="err">并忽略大小写</span>
+
+<span class="nx">find</span><span class="p">(</span> <span class="p">{</span><span class="s2">"name"</span> <span class="p">:</span> <span class="o">/</span><span class="nx">joe</span><span class="p">?</span><span class="sr">/i } </span><span class="se">)</span><span class="sr"> 查询匹配各种大小写组</span><span class="err">合
+</span></code></pre>
+</div>
+
+<h4 id="查询数组">查询数组:</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array"</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span> <span class="p">);</span> 
+<span class="c1">// 查询 array(数组类型)键中有10的文档, array : [1,2,3,4,5,10] 会匹配到</span>
+
+<span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array[5]"</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span> <span class="p">);</span> 
+<span class="c1">// 查询 array(数组类型)键中下标5对应的值是10, array : [1,2,3,4,5,10] 会匹配到</span>
+</code></pre>
+</div>
+
+<h4 id="all-匹配数组中多个元素">‘$all’ 匹配数组中多个元素</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array"</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]}</span> <span class="p">);</span> <span class="err">查询</span> <span class="err">匹配</span><span class="nx">array</span><span class="err">数组中</span> <span class="err">既有</span><span class="mi">5</span><span class="err">又有</span><span class="mi">10</span><span class="err">的文档</span>
+</code></pre>
+</div>
+
+<h4 id="size-匹配数组长度">‘$size’ 匹配数组长度</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array"</span><span class="p">:{</span><span class="s2">"$size"</span> <span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">}</span> <span class="p">);</span> <span class="err">查询</span> <span class="err">匹配</span><span class="nx">array</span><span class="err">数组长度为</span><span class="mi">3</span> <span class="err">的文档</span>
+</code></pre>
+</div>
+
+<h4 id="slice-查询子集合返回">‘$slice’ 查询子集合返回</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array"</span><span class="p">:{</span><span class="s2">"$skice"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">}</span> <span class="p">}</span> <span class="p">);</span> 
+<span class="c1">// 查询 匹配array数组的前10个元素</span>
+<span class="nx">Model</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">"array"</span><span class="p">:{</span><span class="s2">"$skice"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">);</span> 
+<span class="c1">// 查询 匹配array数组的第5个到第10个元素</span>
+</code></pre>
+</div>
+
+<h4 id="where">where</h4>
+
+<p>用它可以执行任意javacript语句作为查询的一部分,如果回调函数返回 true 文档就作为结果的一部分返回</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">find</span><span class="p">({</span><span class="s2">"$where"</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="k">for</span><span class="p">(</span> <span class="kd">var</span> <span class="nx">x</span> <span class="k">in</span> <span class="k">this</span> <span class="p">){</span>
+	 <span class="c1">//这个函数中的 this 就是文档</span>
+	<span class="p">}</span>
+	<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+		<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">===</span> <span class="mi">10</span> <span class="p">?</span> <span class="kc">true</span> <span class="p">:</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}})</span>
+
+<span class="c1">// 简化版本</span>
+
+<span class="nx">find</span><span class="p">(</span> <span class="p">{</span><span class="s2">"$where"</span><span class="p">:</span><span class="s2">"this.x + this.y === 10"</span><span class="p">})</span>
+<span class="nx">find</span><span class="p">(</span> <span class="p">{</span><span class="s2">"$where"</span><span class="p">:</span><span class="s2">"function(){return this.x + this.y ===10;}"</span><span class="p">})</span>
+</code></pre>
+</div>
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/" data-toggle="tooltip" data-placement="top" title="mongoose基础使用方法">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/05/mooc-es6/" data-toggle="tooltip" data-placement="top" title="mooc-es6">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

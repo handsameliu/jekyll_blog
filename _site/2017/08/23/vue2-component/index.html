@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Vue2组件通信 - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/08/23/vue2-component/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img//post-bg-vue.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img//post-bg-vue.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                        <a class="tag" href="/tags/#Vue2" title="Vue2">Vue2</a>
+                        
+                    </div>
+                    <h1>Vue2组件通信</h1>
+                    
+                    
+                    <h2 class="subheading">Vue2</h2>
+                    
+                    <span class="meta">Posted by handsameliu on August 23, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="vue2-组件之间的通信">Vue2 组件之间的通信</h2>
+
+<p>在父子组件通信中，无论是子级向父级传值，还是父级向子级传值，都是需要一个中间介质作为中转。</p>
+
+<p>当父级向子级传值时需要用到props属性，子级向父级传值时需要用到自定义事件。这个结合了ng和react。相比之下Vue简单易懂。</p>
+
+<!-- more -->
+
+<h3 id="父组件向子组件传值">父组件向子组件传值</h3>
+
+<p>首先来写一个子组件，在子组件的new Vue对象中添加props属性，在属性中以数组的形式写入父级要传输过来的属性名称。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt;
+        测量数据 
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+        name:'recordIndex',
+        props:['message']
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>写完后就可以写父组件了，需要在组件上绑定一个属性，这个属性就是子组件接收时所用的。然后将想要传递的内容写入到=之后即可。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt; 
+        &lt;recordIndex v-bind:message='我是父级给子级传递的内容'&gt;&lt;/recordIndex&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    import recordIndex from './components/recordIndex'
+    export default {
+        name:'records',
+        components:{recordIndex},
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>这样，一个简单的父级向子级组件传值的功能就做好了。</p>
+
+<blockquote>
+  <p>子组件在props中创建一个属性，用以接收父组件传过来的值
+父组件中注册子组件并在子组件标签中添加子组件props中创建的属性
+把需要传给子组件的值赋给该属性即可</p>
+</blockquote>
+
+<h3 id="子级向父级传值">子级向父级传值</h3>
+
+<p>子级向父级传值就需要用到Vue自带的发射事件了。（ng也有这样的事件，不过只用过一次就被领导否决了，最后采用service和factory的方式进行父子通信）</p>
+
+<p>还是先来看子组件，这个例子时点击发送消息，所以需要在页面中添加一个button按钮并绑定事件，事件内容如下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt;
+        &lt;button v-on:click="sendParentMsg"&gt;点我给父级传值&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+        name:'recordIndex',
+        methods:{
+            sendParentMsg:function(){
+                this.$emit('listenToChild','我这里是子组件发出的信息')
+            }
+        }
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>这里用到了Vue自带的$emit方法，这个方法相当于广播，将内容发送出去。所需要的参数只有两个，一个是父级页面接受消息的方法另一个是想要传递的参数</p>
+
+<p>那么父级组件就需要在页面的子组件标签上定义并绑定一个名为<code class="highlighter-rouge">listenToChild</code>的方法，代码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt;
+        &lt;recordIndex v-on:listenToChild="showChildMsg"&gt;&lt;/recordIndex&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    import recordIndex from './components/recordIndex'
+    export default {
+        name:'records',
+        methods:{
+            showChildMsg(msg){
+                alert(msg)
+            }
+        },
+        components:{recordIndex},
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>绑定事件后，就指定了子级组件的事件名称，然后就需要把事件内容指定为父级组件中自定义的接受方法了，</p>
+
+<p>然后再父级页面中点击子组件按钮即可，如果成功会弹出子组件发出的信息。</p>
+
+<blockquote>
+  <p>子组件中需要手动触发一个自定义事件
+将需要传的值作为$emit的第二个参数，该值将作为实参传给父级响应自定义事件的方法
+在父组件中注册子组件并在子组件标签上绑定对自定义事件的监听</p>
+</blockquote>
+
+<h3 id="同级组件之间的通信">同级组件之间的通信</h3>
+
+<p>同级组件可以用中央事件总线的方式通信，原理就是使用一个全局的中间介质。需要使用到的方法有$emit发送，$on接收，$off结束监听。</p>
+
+<p>首先需要定义一个中间介质。</p>
+
+<p>可以在当前文件夹中定义，名为eventBus的js文件。文件内只创建一个Vue实例，它就承担起了组件之间通信的桥梁，也就是中央事件总线。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import Vue from 'vue';
+export default new Vue;
+</code></pre>
+</div>
+
+<p>在a.js文件中建议写一个事件，这样可以清晰的控制。
+在页面中引入之前定义好的介质文件eventBus.js。
+事件方法中使用介质eventBus.$emit事件，将同级文件接收的自定义事件sendMsg和内容发射出去。
+PS:$emit实例方法触发当前实例(这里的当前实例就是eventBus)上的事件,附加参数都会传给监听器回调。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template&gt;
+	&lt;div class="timeline-demo"&gt;
+		&lt;button type="primary" v-on:click='sendMsg'&gt;给其他组件传值&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/template&gt;
+
+
+&lt;script&gt;
+    import eventBus from './eventBus'
+    export default {
+        name:'recordTimeLine',
+        methods:{
+            sendMsg(){
+                var _this = this;
+                eventBus.$emit('childMsg','my name is username')
+            }
+        }
+    }
+&lt;/script&gt;
+&lt;style lang="less"&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>在b.js文件中也需要在mounted中写一个用于接收的监听事件,用来监听a页面发射出的childMsg事件。
+<code class="highlighter-rouge">$on</code>：第一个参数是a页面$emit发射的第一个参数，第二个参数是一个回调方法，用于接收并操作$emit传递的参数
+mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jquery的ready，Vue会在文档加载完毕后调用mounted函数。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt;
+        
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    import eventBus from './eventBus' 
+    export default {
+        name:'recordIndex',
+		data(){
+			return{
+				message:'我是初始值'
+			}
+		},
+        mounted(){
+            let _this = this;
+            eventBus.$on('childMsg',(msg) =&gt; {
+                _this.message = msg;
+            })
+        }
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>当两个组件写好后就需要用到一个放置两个组件的容器了，接下来创建一个index组件来存放a，b组件</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+    &lt;div id="app"&gt;
+        &lt;recordIndex&gt;&lt;/recordIndex&gt;
+        &lt;recordTimeLine&gt;&lt;/recordTimeLine&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    import recordTimeLine from './components/recordTimeLine'
+    import recordIndex from './components/recordIndex'
+    export default {
+        name:'records',
+        components:{recordTimeLine,recordIndex},
+    }
+&lt;/script&gt;
+&lt;style scoped&gt;
+&lt;/style&gt;
+</code></pre>
+</div>
+
+<p>这样当点击a组件的button时，触发了发射事件，b组件就可以接收并绑定显示到页面了</p>
+
+<blockquote>
+  <p>创建一个事件总线，例如demo中的eventBus，用它作为通信桥梁
+在需要传值的组件中用eventBus.$emit触发一个自定义事件，并传递参数
+在需要接收数据的组件中用eventBus.$on监听自定义事件，并在回调函数中处理传递过来的参数</p>
+</blockquote>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/08/23/jqueryAPI/" data-toggle="tooltip" data-placement="top" title="jQuery常用API">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/08/23/vuecli-install/" data-toggle="tooltip" data-placement="top" title="vue-cli笔记--安装">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

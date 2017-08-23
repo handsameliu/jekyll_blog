@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>hexo+github.io建立轻博客 - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/07/05/hexo-github.io/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-js-version.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-js-version.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#教程" title="教程">教程</a>
+                        
+                        <a class="tag" href="/tags/#github" title="github">github</a>
+                        
+                        <a class="tag" href="/tags/#hexo" title="hexo">hexo</a>
+                        
+                    </div>
+                    <h1>hexo+github.io建立轻博客</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by handsameliu on July 5, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="准备工作">准备工作</h2>
+
+<!-- more -->
+
+<p>使用hexo前需要安装nodejs以及git。可以到官方进行下载<a href="https://nodejs.org/en/">nodejs</a>，<a href="https://git-scm.com/download/">git</a></p>
+
+<h3 id="设置github仓库">设置github仓库</h3>
+
+<p>git安装完成后需要创建对应的仓库。可到 <a href="https://github.com">github.com</a></p>
+
+<blockquote>
+  <p><strong>重要：</strong>名称要起为 <code class="highlighter-rouge">你的github名称.github.io</code> 。这里建议你这么起名，因为github默认这样解析。你也可以起其他的名字，因为github已经对你的账户默认绑定了一个域名<code class="highlighter-rouge">你的github名称.github.io</code>，你起一个其他名字的话就算是单独的子网页了(访问的时候不方便)。</p>
+</blockquote>
+
+<p><strong>重要：</strong> 起好名字后需要到项目的设置<code class="highlighter-rouge">setings</code>中设置 <code class="highlighter-rouge">github pages</code>选项，可以直接设置<code class="highlighter-rouge">Source</code>的值为<code class="highlighter-rouge">master</code>。(貌似现在默认就是master了)。至于模版<code class="highlighter-rouge">Theme Chooser</code>不选也可以的。</p>
+
+<p>上传前还要确定自己本地的git已经生成了公钥并且绑定了自己的github。</p>
+
+<p>安装完成后就可以安装hexo了,最好先建立一个独立的文件夹然后在这个文件夹进行一下步骤</p>
+
+<h2 id="开始">开始</h2>
+
+<h3 id="安装hexo">安装hexo</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ npm install hexo-cli -g	# 全局安装
+$ hexo init blog # 这个名字可以随便起，反正最后都要转移到git项目中
+$ cd blog	
+$ npm install	# 安装依赖
+$ hexo g # hexo generate的简写
+$ hexo s # hexo server的简写
+</code></pre>
+</div>
+
+<p>完成以上步骤后命令行提示：<code class="highlighter-rouge">06:55:40.452 INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code> 后就可以在 <code class="highlighter-rouge">http://localhost:4000/</code> 查看了。会显示一个默认的页面。</p>
+
+<blockquote>
+  <p>(以下这张图是配置好后的图片)。</p>
+</blockquote>
+
+<p><img src="/img/20170704151457.jpg" alt="图片" /></p>
+
+<h3 id="更换默认主题">更换默认主题</h3>
+
+<p>主题 <code class="highlighter-rouge">Next</code>（他的start最多，文档比较详细）<a href="http://theme-next.iissnan.com/getting-started.html">Next官方文档-开始使用</a></p>
+
+<p>进入到blog项目的根目录中运行以下命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre>
+</div>
+
+<p>完成下载后进入到themes/next文件夹中安装所需要的包</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd themes/next
+npm install
+</code></pre>
+</div>
+
+<p>安装完成后修改<code class="highlighter-rouge">站点配置文件</code>, blog根目录下的<code class="highlighter-rouge">_config.yml</code>文件，将theme改为next</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>theme: next
+</code></pre>
+</div>
+
+<p>改好后启动项目验证修改情况。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hexo clean  # 清空缓存（建议在有大的改动时运行一次）
+hexo g
+hexo s
+</code></pre>
+</div>
+
+<p>此时即可使用浏览器访问 <code class="highlighter-rouge">http://localhost:4000</code> ，检查站点是否正确运行。你会看到一个全新的主题。</p>
+
+<h3 id="自定义主题内容">自定义主题内容</h3>
+
+<p>你可能觉得当前的主题并不好看，Next提供了三个主题任你选择</p>
+
+<ul>
+  <li>Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</li>
+  <li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
+  <li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+</ul>
+
+<p>想要改变主题中的某些设置，你需要到主题的包中修改对应的设置。在themes/next中修改<code class="highlighter-rouge">_config.yml</code>文件</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#scheme: Muse
+#scheme: Mist
+scheme: Pisces
+</code></pre>
+</div>
+
+<p>完成后可以重复上一步，验证修改情况。</p>
+
+<p>页面此时的语言并非中文，出现中文会乱码，那么就需要在blog根目录下修改配置文件<code class="highlighter-rouge">_config.yml</code>了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>language: zh-Hans
+</code></pre>
+</div>
+
+<p>目前 NexT 支持的语言如以下表格所示：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">语言</th>
+      <th style="text-align: left">代码</th>
+      <th style="text-align: left">设定示例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">简体中文</td>
+      <td style="text-align: left">zh-Hans</td>
+      <td style="text-align: left">language: zh-Hans</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">English</td>
+      <td style="text-align: left">en</td>
+      <td style="text-align: left">language: en</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Français</td>
+      <td style="text-align: left">fr-FR</td>
+      <td style="text-align: left">language: fr-FR</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Português</td>
+      <td style="text-align: left">pt</td>
+      <td style="text-align: left">language: pt or language: pt-BR</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">繁體中文</td>
+      <td style="text-align: left">zh-hk 或者 zh-tw</td>
+      <td style="text-align: left">language: zh-hk</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Русский язык</td>
+      <td style="text-align: left">ru</td>
+      <td style="text-align: left">language: ru</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Deutsch</td>
+      <td style="text-align: left">de</td>
+      <td style="text-align: left">language: de</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">日本語</td>
+      <td style="text-align: left">ja</td>
+      <td style="text-align: left">language: ja</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Indonesian</td>
+      <td style="text-align: left">id</td>
+      <td style="text-align: left">language: id</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Korean</td>
+      <td style="text-align: left">ko</td>
+      <td style="text-align: left">language: ko</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>与language一起的还有很多字段，顺便都可以设置一下的</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># Site
+title: 大标题
+subtitle: 子标题
+description: 自我介绍
+author: 作者
+language: zh-Hans
+timezone: 时区
+</code></pre>
+</div>
+
+<p>现在头像也没有显示出来，同样也是在站点的配置文件中<code class="highlighter-rouge">_config.yml</code>中，字段是<code class="highlighter-rouge">avatar</code>。</p>
+
+<p>该字段可同时接收完整的url和本地相对路径。</p>
+
+<p>相对路径的文件目录是在<code class="highlighter-rouge">source</code>中，可以创建一个img文件夹存放图片，链接示例为<code class="highlighter-rouge">/img/avatar.png</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>avatar: http://example.com/avatar.png 或 /img/avatar.png
+</code></pre>
+</div>
+
+<p>这时就可以设置菜单了，我们可以到blog根目录下的配置文件中<code class="highlighter-rouge">_config.yml</code>修改</p>
+
+<p>它对应的字段是<code class="highlighter-rouge">menu</code>，找到后可以将你不喜欢的目录内容用#注释掉。内容的设置格式是：item name: link</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>menu:
+	home: /
+	archives: /archives
+	tags: /tags
+	categories: /categories
+	#about: /about
+	#commonweal: /404.html
+</code></pre>
+</div>
+
+<blockquote>
+  <p>若你的站点运行在子目录中，请将链接前缀的 / 去掉</p>
+</blockquote>
+
+<p>当前目录中除了有文章<code class="highlighter-rouge">archives</code>外还有其他两个链接，分别是<code class="highlighter-rouge">tags</code>和<code class="highlighter-rouge">categories</code></p>
+
+<p>tags代表了文章的标签，categories代表了文章的分类。这两个页面是所有标签和分类的汇总，当文章中包含对应的字段时编译器会自动编译到对应的页面中。</p>
+
+<p>这里就要用到hexo的特定语法了，他只能对指定的markdown标签解析。</p>
+
+<p>在blog根目录下使用 <code class="highlighter-rouge">hexo new page</code> 新建一个页面，命名为 <code class="highlighter-rouge">tags</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hexo new page tags
+</code></pre>
+</div>
+
+<p>刚刚新建的页面会在<code class="highlighter-rouge">source</code>文件夹下产生对应的文件夹及index.md文件。</p>
+
+<p>可在index文件中修改type属性。将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>title: 标签
+date: 2017-12-22 12:39:04
+type: "tags"
+---
+</code></pre>
+</div>
+
+<p>同理，categories也是同样的操作。</p>
+
+<p>在blog根目录下使用 <code class="highlighter-rouge">hexo new page</code> 新建一个页面，命名为 <code class="highlighter-rouge">categories</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hexo new page categories
+</code></pre>
+</div>
+
+<p>刚刚新建的页面会在<code class="highlighter-rouge">source</code>文件夹下产生对应的文件夹及index.md文件。</p>
+
+<p>可在index文件中修改type属性。将页面的类型设置为 <code class="highlighter-rouge">categories</code> ，主题将自动为这个页面显示分类云。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+title: 标签
+date: 2017-12-22 12:39:04
+type: "categories"
+---
+</code></pre>
+</div>
+
+<p>完成以上两步菜单的所有链接就都可以点击了。</p>
+
+<p>但是在tags和categories中是没有内容的。我们就来添加一下。</p>
+
+<p>创建一个新的文章</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hexo new hello-world
+</code></pre>
+</div>
+
+<p>这里我借用一下他人的 <a href="https://segmentfault.com/a/1190000002632530">hexo参考文档</a></p>
+
+<p>在文章开头加入以下代码</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+title: test
+tags:
+  - Testing
+categories:
+  - Testing
+---
+</code></pre>
+</div>
+
+<p>重新执行 <code class="highlighter-rouge">hexo g</code> <code class="highlighter-rouge">hexo s</code> 查看网页效果，<code class="highlighter-rouge">tags</code>和<code class="highlighter-rouge">categories</code>中就会存在内容。</p>
+
+<p>完成后即可推送到git仓库上</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hexo n #写文章
+hexo g #生成
+hexo d #部署 #可与hexo g合并为 hexo d -g  会将当前的markdown文档转换为html页面并上传到对应的git仓库中
+</code></pre>
+</div>
+
+<p>这里还不能推送到git仓库上的，因为并没有指定对应的git仓库名称。配置一下git仓库地址就可以了，但前提是要有对应的仓库哦。</p>
+
+<p>在blog根目录下的<code class="highlighter-rouge">_config.yml</code>文件中找到<code class="highlighter-rouge">deploy</code>字段，设置对应的值(这里使用的是我的git地址)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>deploy:
+	type: git
+	repo: git@github.com:handsameliu/handsameliu.github.io.git  # 这里一定要ssh格式，ssh格式可以到自己的git仓库中获取
+	branch: master
+</code></pre>
+</div>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/05/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/07/05/issues/" data-toggle="tooltip" data-placement="top" title="平时遇到的一些问题总结">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="工作五年的初级程序员，自认为拥有小小的帅气，请多指教">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>jQuery常用API - 我的博客 | handsameliu</title>
+
+    <link rel="canonical" href="/2017/08/23/jqueryAPI/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">handsameliu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-jquery.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-jquery.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#总结" title="总结">总结</a>
+                        
+                        <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
+                        
+                    </div>
+                    <h1>jQuery常用API</h1>
+                    
+                    
+                    <h2 class="subheading">jQuery</h2>
+                    
+                    <span class="meta">Posted by handsameliu on August 23, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <p>项目要重构了，来复习一下老版的jquery(项目兼容ie8，或者更低)…</p>
+</blockquote>
+
+<h2 id="基本选择器">基本选择器</h2>
+
+<!-- more -->
+
+<p><code class="highlighter-rouge">$(document);</code>获取文档对象</p>
+
+<p><code class="highlighter-rouge">$('#id');</code>获取某个id元素</p>
+
+<p><code class="highlighter-rouge">$('.className');</code>获取某个class元素</p>
+
+<p><code class="highlighter-rouge">$('input[name=username]');</code>获取name为username的input元素</p>
+
+<p><code class="highlighter-rouge">$('a:first');</code>获取a标签的第一个</p>
+
+<p><code class="highlighter-rouge">$('tr:odd');</code>获取表格行的奇数行</p>
+
+<p><code class="highlighter-rouge">$('#id:input');</code>获取某个id元素中的input元素</p>
+
+<p><code class="highlighter-rouge">$('div:visible');</code>获取div的状态是visible的元素</p>
+
+<p><code class="highlighter-rouge">$('div:gt(2)');</code>获取除了前三个的所有div元素</p>
+
+<p><code class="highlighter-rouge">$('div:animated');</code>获取div中处于animated状态的元素</p>
+
+<h2 id="过滤器">过滤器</h2>
+
+<p><code class="highlighter-rouge">$('div').has('p');</code>div元素中所有的p元素</p>
+
+<p><code class="highlighter-rouge">$('div').not('className');</code>div元素集合中不是此className的元素</p>
+
+<p><code class="highlighter-rouge">$('div').filter('className');</code>div元素集合中class为className的元素</p>
+
+<p><code class="highlighter-rouge">$('div').first();</code>div元素集合中的第一个</p>
+
+<p><code class="highlighter-rouge">$('div').eq(5);</code>div元素集合中的第六个（下标0开始）</p>
+
+<p><code class="highlighter-rouge">$('div').next('p');</code>div元素的后面的第一个p元素</p>
+
+<p><code class="highlighter-rouge">$('div').parent();</code>div元素的父级</p>
+
+<p><code class="highlighter-rouge">$('div').closest('#id');</code>离div元素最近的名为id的元素</p>
+
+<p><code class="highlighter-rouge">$('div').childen();</code>div元素的子集，子元素</p>
+
+<p><code class="highlighter-rouge">$('div').siblings();</code>div元素的兄弟元素，同级元素</p>
+
+<h2 id="链式操作">链式操作</h2>
+
+<blockquote>
+  <p>在选中网页元素以后，可以对它进行一系列操作，并且所有操作可以连接在一起，以链条的形式写出来。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$('div').find('h3').eq(2).html('Hello');
+分解开来，就是下面这样： 　　$('div') //找到div元素 　　　.find('h3') //选择其中的h3元素 　　　.eq(2) //选择第3个h3元素 　　　.html('Hello'); //将它的内容改为Hello
+这是jQuery最令人称道、最方便的特点。它的原理在于每一步的jQuery操作，返回的都是一个jQuery对象，所以不同操作可以连在一起。
+
+jQuery还提供了.end()方法，使得结果集可以后退一步：
+$('div') 　　　.find('h3') 　　　.eq(2) 　　　.html('Hello') 　　　.end() //退回到选中所有的h3元素的那一步 　　　.eq(0) //选中第一个h3元素 　　　.html('World'); //将它的内容改为World
+</code></pre>
+</div>
+
+<h2 id="元素的取值和赋值">元素的取值和赋值</h2>
+
+<blockquote>
+  <p>使用同一个函数，来完成取值（getter）和赋值（setter），即”取值器”与”赋值器”合一。到底是取值还是赋值，由函数的参数决定。</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">$('p').html();</code>取出p标签内的代码内容</p>
+
+<p><code class="highlighter-rouge">$('p').html('holle world');</code>给指定的p标签赋值</p>
+
+<p><code class="highlighter-rouge">$('p').text();</code>取出p标签中的内容或赋值</p>
+
+<p><code class="highlighter-rouge">$('p').val();</code>取出p标签中的值或赋值</p>
+
+<p><code class="highlighter-rouge">$('p').attr();</code>取出p标签的属性或赋值</p>
+
+<p><code class="highlighter-rouge">$('p').width();</code>取出p标签的宽或赋值</p>
+
+<p><code class="highlighter-rouge">$('p').height();</code>取出p标签的高或赋值</p>
+
+<blockquote>
+  <p>需要注意的是，如果结果集包含多个元素，那么赋值的时候，将对其中所有的元素赋值；取值的时候，则是只取出第一个元素的值（.text()例外，它取出所有元素的text内容）。</p>
+</blockquote>
+
+<h2 id="移动">移动</h2>
+
+<blockquote>
+  <p>提供两组方法，来操作元素在网页中的位置移动。一组方法是直接移动该元素，另一组方法是移动其他元素，使得目标元素达到我们想要的位置。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$('div1').insertAfter('div2');
+第一种方法是使用.insertAfter()，把div1元素移动div2元素后面
+
+$('div2').after('div1');
+第二种方法是使用.after()，把div2元素加到div1元素前面
+</code></pre>
+</div>
+
+<p>表面上看，这两种方法的效果是一样的，唯一的不同似乎只是操作视角的不同。但是实际上，它们有一个重大差别，那就是返回的元素不一样。第一种方法返回div1元素，第二种方法返回div2元素。你可以根据需要，选择到底使用哪一种方法。</p>
+
+<p>使用这种模式的操作方法，一共有四对：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>.insertAfter()和.after()：在现存元素的外部，从后面插入元素 　　.insertBefore()和.before()：在现存元素的外部，从前面插入元素 　　.appendTo()和.append()：在现存元素的内部，从后面插入元素 　　.prependTo()和.prepend()：在现存元素的内部，从前面插入元素
+</code></pre>
+</div>
+
+<h2 id="元素的复制删除和创建">元素的复制、删除和创建</h2>
+
+<p><code class="highlighter-rouge">.clone();</code>复制元素</p>
+
+<p><code class="highlighter-rouge">.remove();</code>删除元素，但不会保留元素的事件，删的一干二净</p>
+
+<p><code class="highlighter-rouge">.detach();</code>同为删除元素，但会保留被删除元素的事件，有利于重新插入文档时使用</p>
+
+<p><code class="highlighter-rouge">.empty();</code>清空元素内的内容</p>
+
+<p>$(‘div1’)<code class="highlighter-rouge">.append</code>(‘div2’);追加元素到指定元素之后</p>
+
+<h2 id="工具方法">工具方法</h2>
+
+<blockquote>
+  <p>除了对选中的元素进行操作以外，还提供一些与元素无关的工具方法（utility）。不必选中元素，就可以直接使用这些方法。</p>
+</blockquote>
+
+<p>如果你懂得Javascript语言的继承原理，那么就能理解工具方法的实质。它是定义在jQuery构造函数上的方法，即<code class="highlighter-rouge">jQuery.method()</code>，所以可以直接使用。而那些操作元素的方法，是定义在构造函数的<code class="highlighter-rouge">prototype对象</code>上的方法，即<code class="highlighter-rouge">jQuery.prototype.method()</code>，所以必须生成实例（即选中元素）后使用。如果不理解这种区别，问题也不大，只要把工具方法理解成，是像javascript<code class="highlighter-rouge">原生函数</code>那样，可以直接使用的方法就行了。</p>
+
+<p>常用的工具方法：</p>
+
+<p><code class="highlighter-rouge">$.trim();</code>清空字符串两端的空格</p>
+
+<p><code class="highlighter-rouge">$.each();</code>循环数组或对象</p>
+
+<p><code class="highlighter-rouge">$.inArray();</code>返回目标所在数组中的位置，如果不存在返回-1</p>
+
+<p><code class="highlighter-rouge">$.grep();</code>返回数组中符合某种标准的元素</p>
+
+<p><code class="highlighter-rouge">$.extend();</code>将多个对象合并为一个对象</p>
+
+<p><code class="highlighter-rouge">$.makeArray();</code>将对象转化为数组</p>
+
+<p><code class="highlighter-rouge">$.type();</code>判断对象的类型（函数对象，日期对象，正则对象，数组对象等等）</p>
+
+<p><code class="highlighter-rouge">$.isArray();</code>判断是否是标准的数组</p>
+
+<p><code class="highlighter-rouge">$.isEmptyObject();</code>判断目标对象是否是空的</p>
+
+<p><code class="highlighter-rouge">$.isFunction();</code>判断是否是函数对象</p>
+
+<p><code class="highlighter-rouge">$.isPlainObject();</code>判断目标对象是否使用’{}’或’new Object()’ 创建出的</p>
+
+<p><code class="highlighter-rouge">$.support();</code>判断浏览器是否支持某种特性</p>
+
+<h2 id="事件操作">事件操作</h2>
+
+<blockquote>
+  <p>jquery的设计思想就是把<code class="highlighter-rouge">事件绑定到元素上</code>。</p>
+</blockquote>
+
+<p>例如：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="err">　　　　</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">);</span>
+<span class="err">　　</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>事件列表：</p>
+
+<p><code class="highlighter-rouge">.click();</code>单击事件</p>
+
+<p><code class="highlighter-rouge">.change();</code>当指定元素内容改变后触发</p>
+
+<p><code class="highlighter-rouge">.blur();</code>光标离开失去焦点</p>
+
+<p><code class="highlighter-rouge">.focus();</code>获取焦点</p>
+
+<p><code class="highlighter-rouge">.hover();</code>同时为mouseenter和mouseleave事件处理函数</p>
+
+<p><code class="highlighter-rouge">.keyup();</code>键盘抬起，松开键盘时触发</p>
+
+<p><code class="highlighter-rouge">.keydown();</code>按下键盘时触发</p>
+
+<p><code class="highlighter-rouge">.keypress();</code>按下键盘，长时间按键后将返回多个事件</p>
+
+<p><code class="highlighter-rouge">.mousedown();</code>按下鼠标</p>
+
+<p><code class="highlighter-rouge">.mouseup();</code>松开鼠标</p>
+
+<p><code class="highlighter-rouge">.mouseenter();</code>鼠标进入到指定元素内，进入子元素不会触发</p>
+
+<p><code class="highlighter-rouge">.mouseleave();</code>鼠标离开指定元素，离开子元素不触发</p>
+
+<p><code class="highlighter-rouge">.mousemove();</code>鼠标在指定元素内移动</p>
+
+<p><code class="highlighter-rouge">.mouseout();</code>鼠标离开，离开子元素也会触发</p>
+
+<p><code class="highlighter-rouge">.mouseover();</code>鼠标进入，进入子元素也会触发</p>
+
+<p><code class="highlighter-rouge">.focusin();</code>子元素获得焦点</p>
+
+<p><code class="highlighter-rouge">.focusout();</code>子元素失去焦点</p>
+
+<p><code class="highlighter-rouge">.dblclick();</code>双击事件</p>
+
+<p><code class="highlighter-rouge">.load();</code>元素加载完毕</p>
+
+<p><code class="highlighter-rouge">.ready();</code>dom加载完成</p>
+
+<p><code class="highlighter-rouge">.scroll();</code>滚动条位置的变化</p>
+
+<p><code class="highlighter-rouge">.select();</code>用户选中文本框的内容</p>
+
+<p><code class="highlighter-rouge">.submit();</code>提交表单</p>
+
+<p><code class="highlighter-rouge">.toggle();</code>根据鼠标点击的次数，依次运行多个函数</p>
+
+<p><code class="highlighter-rouge">.unload();</code>用户离开页面时触发</p>
+
+<p>以上事件在jquery中都是用<code class="highlighter-rouge">bind</code>方法绑定的，它可以更灵活的控制事件。</p>
+
+<p>比如你可以为多个事件绑定同一个函数：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span>
+<span class="err">　　　　</span><span class="s1">'click change'</span><span class="p">,</span> <span class="c1">//同时绑定click和change事件</span>
+<span class="err">　　　　</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="err">　　　　　　</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">);</span>
+<span class="err">　　　　</span><span class="p">}</span>
+<span class="err">　　</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>有时你指向让他运行一次，可以使用<code class="highlighter-rouge">one()</code>方法</p>
+
+<p>``javascript`
+    $(“p”).one(“click”, function() {
+　　　　alert(“Hello”); //只运行一次，以后的点击不会运行
+　　});</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+可使用 `.unbind()` 解除事件绑定
+
+所有的事件处理函数，都可以接受一个事件对象(event object)作为参数，比如下面例子中的'e':
+
+```javascript
+    $("p").click(function(e) {
+        //event 事件对象
+　　　　alert(e.type); // "click"
+　　});
+</code></pre>
+</div>
+
+<p>这个event事件对象有许多的有用的方法和属性可以使用：</p>
+
+<p><code class="highlighter-rouge">event.pageX</code>  事件发生时，鼠标距离网页左上角的水平定位</p>
+
+<p><code class="highlighter-rouge">event.pageY</code>  事件发生时，鼠标距离网页左上角的垂直定位</p>
+
+<p><code class="highlighter-rouge">event.type</code>   事件的类型</p>
+
+<p><code class="highlighter-rouge">event.target</code> 事件针对的网页元素</p>
+
+<p><code class="highlighter-rouge">event.which</code>  按下了哪一个键</p>
+
+<p><code class="highlighter-rouge">event.data</code>   在事件上绑定数据，然后传入事件处理函数</p>
+
+<p><code class="highlighter-rouge">event.stopPropagation()</code>  阻止冒泡</p>
+
+<p><code class="highlighter-rouge">event.preventDefault()</code>   阻止默认行为</p>
+
+<p>在事件的处理过程中，可以使用this关键字，返回事件针对的dom元素：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">　　　　</span><span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'href'</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="s1">'evil'</span><span class="p">))</span> <span class="p">{</span> <span class="c1">//如果确认为有害链接</span>
+<span class="err">　　　　　　</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">//阻止打开</span>
+<span class="err">　　　　　　</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'evil'</span><span class="p">);</span> <span class="c1">//加上表示有害的class</span>
+<span class="err">　　　　</span><span class="p">}</span>
+<span class="err">　　</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>有两种方法可以出发一个事件，一种是直接触发，另一种是使用trigger()或者trigger Handler()：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$('id').click();
+$('id').trigger('click');
+</code></pre>
+</div>
+
+<h2 id="特殊效果">特殊效果</h2>
+
+<p><code class="highlighter-rouge">.show();</code> 显示元素 相当于display:block</p>
+
+<p><code class="highlighter-rouge">.hide();</code> 隐藏元素</p>
+
+<p><code class="highlighter-rouge">.fadeIn();</code> 淡入</p>
+
+<p><code class="highlighter-rouge">.fadeOut();</code> 淡出</p>
+
+<p><code class="highlighter-rouge">.fadeTo();</code>调整透明度</p>
+
+<p><code class="highlighter-rouge">.slideDown();</code> 向下打开</p>
+
+<p><code class="highlighter-rouge">.slideUp();</code> 向上卷起</p>
+
+<p><code class="highlighter-rouge">.slideToggle();</code> 根据当前元素的情况打开或卷起  (slideDown,slideUp)</p>
+
+<p><code class="highlighter-rouge">.toggle();</code>根据当前元素的情况显示或隐藏元素  （show,hide）</p>
+
+<p>除了<code class="highlighter-rouge">.show()</code>和<code class="highlighter-rouge">.hide()</code>外，其他的特效默认都会有400ms(毫秒),但是你可以改变这个设置。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$('id').fadeIn(300);  300毫秒内淡入
+$('id').fadeIn('slow');  换面的淡出
+</code></pre>
+</div>
+
+<p>特效结束后还能指定接下来运行的函数:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span> 
+<span class="p">});</span>  <span class="c1">//更复杂的特效，可以用.animate()自定义。</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">).</span><span class="nx">animate</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="na">left</span> <span class="p">:</span> <span class="s2">"+=50"</span><span class="p">,</span> <span class="c1">//不断右移</span>
+        <span class="na">opacity</span> <span class="p">:</span> <span class="mf">0.25</span> <span class="c1">//指定透明度</span>
+    <span class="p">},</span>
+    <span class="mi">300</span><span class="p">,</span> <span class="c1">// 持续时间</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'done!'</span><span class="p">);</span> <span class="p">}</span> <span class="c1">//回调函数</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">.stop()</code>和<code class="highlighter-rouge">.delay()</code>用来停止或延缓特效的执行</p>
+
+<p>$.fx.off如果设置为true，则关闭页面特效</p>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/08/23/gitIssues/" data-toggle="tooltip" data-placement="top" title="git突然无法连接提示公钥或密码错误的坑">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/08/23/vue2-component/" data-toggle="tooltip" data-placement="top" title="Vue2组件通信">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#Testing" title="Testing" rel="3">
+                                    Testing
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#总结" title="总结" rel="10">
+                                    总结
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#js" title="js" rel="2">
+                                    js
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongodb" title="mongodb" rel="3">
+                                    mongodb
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#mongoose" title="mongoose" rel="2">
+                                    mongoose
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#Vue2" title="Vue2" rel="2">
+                                    Vue2
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">模版作者·Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/u/2093882590">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/handsameliu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; handsameliu 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
