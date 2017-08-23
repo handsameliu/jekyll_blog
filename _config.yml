@@ -69,7 +69,7 @@ kramdown:
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "即将工作五年的初级程序员，自认为拥有小小的帅气，请多指教"
-sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /jekyll_blog/img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
