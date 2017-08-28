@@ -5,8 +5,8 @@
     <description>工作五年的初级程序员，自认为拥有小小的帅气，请多指教</description>
     <link>http://localhost:4000/jekyll_blog/</link>
     <atom:link href="http://localhost:4000/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 23 Aug 2017 17:08:09 +0800</pubDate>
-    <lastBuildDate>Wed, 23 Aug 2017 17:08:09 +0800</lastBuildDate>
+    <pubDate>Mon, 28 Aug 2017 10:21:49 +0800</pubDate>
+    <lastBuildDate>Mon, 28 Aug 2017 10:21:49 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -366,6 +366,689 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
         <category>总结</category>
         
         <category>Vue2</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>less 笔记</title>
+        <description>&lt;p&gt;CSS（层叠样式表）是一门历史悠久的标记性语言，同 HTML 一道，被广泛应用于万维网（World Wide Web）中。HTML 主要负责文档结构的定义，CSS 负责文档表现形式或样式的定义。&lt;/p&gt;
+
+&lt;p&gt;作为一门标记性语言，CSS 的语法相对简单，对使用者的要求较低，但同时也带来一些问题：CSS 需要书写大量看似没有逻辑的代码，不方便维护及扩展，不利于复用，尤其对于非前端开发工程师来讲，往往会因为缺少 CSS 编写经验而很难写出组织良好且易于维护的 CSS 代码，造成这些困难的很大原因源于 CSS 是一门非程序式语言，没有变量、函数、SCOPE（作用域）等概念。LESS 为 Web 开发者带来了福音，它在 CSS 的语法基础之上，引入了变量，Mixin（混入），运算以及函数等功能，大大简化了 CSS 的编写，并且降低了 CSS 的维护成本，就像它的名称所说的那样，LESS 可以让我们用更少的代码做更多的事情。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;相比sass来说，less编译的依赖不多。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;在客户端使用&quot;&gt;在客户端使用&lt;/h2&gt;
+
+&lt;p&gt;和引入css一样直接使用style标签引入，但是rel的属性要设置为”&lt;code class=&quot;highlighter-rouge&quot;&gt;stylesheet/less&lt;/code&gt;” 。
+在引入less文件后一定要引入&lt;code class=&quot;highlighter-rouge&quot;&gt;less.js&lt;/code&gt;，否则可能会编译解析出错。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet/less&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;styles.less&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;在服务器端使用&quot;&gt;在服务器端使用&lt;/h2&gt;
+
+&lt;p&gt;less在服务器端的使用主要是借助于less的编译器，将less源文件编译生成最终的css文件。
+目前常用且简单的方式是利用node的包管理器(npm)安装less。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install less
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果你想要安装稳定版的less，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install less@latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在项目开发初期，我们无论采用客户端还是服务器端的用法，我们都需要想办法将我们要用到的css或less文件引入到我们的html页面或是桥接文件中，less提供了一个我们很熟悉的功能&lt;code class=&quot;highlighter-rouge&quot;&gt;Importing&lt;/code&gt;。我们可以通过这个关键字引入我们需要的 .less 或 .css 文件。 如：&lt;/p&gt;
+
+&lt;p&gt;@import “variables.less”;&lt;/p&gt;
+
+&lt;p&gt;.less 文件也可以省略后缀名，像这样：@import “variables”;&lt;/p&gt;
+
+&lt;p&gt;引入css同less文件一样，只是.css 后缀名不能省略。&lt;/p&gt;
+
+&lt;h3 id=&quot;使用编译生成的静态-css-文件&quot;&gt;使用编译生成的静态 CSS 文件&lt;/h3&gt;
+
+&lt;p&gt;我们可以通过less的编译器，将less文件编译成为css文件，在html文章中引入使用。这里要强调的一点，less是完全兼容css语法的，也就是说，我们可以将标准的css文件直接改成 .less 格式，less编译器可以完全识别。&lt;/p&gt;
+
+&lt;h3 id=&quot;使用&quot;&gt;使用&lt;/h3&gt;
+
+&lt;p&gt;当我们安装了less，就可以在node中这样调用编译器：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'less'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.class { width: 1 + 1 }'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;输出的结果是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.class {
+    width: 2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然也可以手动调用解析器和编译器：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.class { width: 1 + 1 }'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toCSS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;配置&quot;&gt;配置&lt;/h3&gt;
+
+&lt;p&gt;你可以向解析器传递参数&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;less&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./lib'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Specify search paths for @import directives&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'style.less'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Specify a filename, for better error messages&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'.class { width: 1 + 1 }'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;tree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toCSS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;compress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Minify CSS output&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;在命令行下使用&quot;&gt;在命令行下使用&lt;/h3&gt;
+
+&lt;p&gt;你可以在终端调用 LESS 解析器:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ lessc styles.less
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面的命令会将编译后的 CSS 传递给 stdout, 你可以将它保存到一个文件中:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ lessc styles.less &amp;gt; styles.css
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如何你想将编译后的 CSS 压缩掉，那么加一个 -x 参数就可以了.&lt;/p&gt;
+
+&lt;h2 id=&quot;变量&quot;&gt;变量&lt;/h2&gt;
+
+&lt;p&gt;顾名思义，变量可以让我们定义一系列的值，以达到复用的效果，所以等我们修改代码样式的时候只需要修改这一个变量就可以了。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;请注意 LESS 中的变量为完全的 ‘常量’ ，所以只能定义一次&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* LESS */
+@color: #4D926F;
+#header {
+  color: @color;
+}
+h2 {
+  color: @color;
+}
+
+/* 生成的 CSS */
+#header {
+  color: #4D926F;
+}
+h2 {
+  color: #4D926F;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;混合&quot;&gt;混合&lt;/h2&gt;
+
+&lt;p&gt;就是讲两个class混合到一起，从而使两个class具有继承关系，他们还可以像函数一样带有&lt;code class=&quot;highlighter-rouge&quot;&gt;参数&lt;/code&gt;的调用。
+例如classA被classB引用，那么classB就继承并具有了classA的所有属性。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;任何 CSS class, id 或者 元素 属性集都可以以同样的方式引入&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* LESS */
+.rounded-corners (@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+#header {
+  .rounded-corners;
+}
+#footer {
+  .rounded-corners(10px); /* 带参了，所以默认值5px会被替换为10px*/
+}
+
+/* 生成的 CSS */
+/* 不带参的函数 */
+#header {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+/* 带参的函数 */
+#footer {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你也可以定义不带参数属性集合,如果你想隐藏这个属性集合，不让它暴露到CSS中去，但是你还想在其他的属性集合中引用，你会发现这个方法非常的好用:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+.wrap () {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word;
+}
+pre { .wrap }
+
+/* css */
+pre {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;arguments-变量&quot;&gt;@arguments 变量&lt;/h3&gt;
+
+&lt;p&gt;@arguments包含了所有传递进来的参数. 如果你不想单独处理每一个参数的话就可以像这样写:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+.box-shadow(2px, 5px);
+
+/* css */
+box-shadow: 2px 5px 1px #000;
+-moz-box-shadow: 2px 5px 1px #000;
+-webkit-box-shadow: 2px 5px 1px #000;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;模式匹配和导引表达式&quot;&gt;模式匹配和导引表达式&lt;/h2&gt;
+
+&lt;p&gt;有些情况下，我们想根据传入的参数来改变混合的默认呈现，比如下面这个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@s, @color) { ... }
+
+.class {
+  .mixin(@switch, #888);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果想让.mixin根据不同的@switch值而表现各异，如下这般设置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (dark, @color) {
+  color: darken(@color, 10%);
+}
+.mixin (light, @color) {
+  color: lighten(@color, 10%);
+}
+.mixin (@_, @color) { /* @_通配，都不论第一个参数是什么都会包括 */
+  display: block;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+@switch: light;
+
+.class {
+  .mixin(@switch, #888);
+}
+
+/* css */
+.class {
+  color: #a2a2a2;
+  display: block;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如上，&lt;code class=&quot;highlighter-rouge&quot;&gt;.mixin&lt;/code&gt;就会得到传入颜色的浅色。如果&lt;code class=&quot;highlighter-rouge&quot;&gt;@switch&lt;/code&gt;设为dark，就会得到深色。&lt;/p&gt;
+
+&lt;p&gt;具体实现如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;第一个混合定义并未被匹配，因为它只接受dark做为首参&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;第二个混合定义被成功匹配，因为它只接受light&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;第三个混合定义被成功匹配，因为它接受任意值&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;只有被匹配的混合才会被使用。变量可以匹配任意的传入值，而变量以外的固定值就仅仅匹配与其相等的传入值。&lt;/p&gt;
+
+&lt;p&gt;我们也可以匹配多个参数：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@a) {
+  color: @a;
+}
+.mixin (@a, @b) {
+  color: fade(@a, @b);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们现在调用，.mixin使用带有一个参数，那么我们将使用的是只有一个参数的.mixin(@a)。如果传递了两个参数，那么将使用带有两个参数的.mixin(@a,@b)。&lt;/p&gt;
+
+&lt;h3 id=&quot;引导&quot;&gt;引导&lt;/h3&gt;
+
+&lt;p&gt;当我们想根据表达式进行匹配，而非根据值和参数匹配时，导引就显得非常有用。如果你对函数式编程非常熟悉，那么你很可能已经使用过导引。&lt;/p&gt;
+
+&lt;p&gt;为了尽可能地保留CSS的可声明性，LESS通过导引混合而非if/else语句来实现条件判断，因为前者已在&lt;code class=&quot;highlighter-rouge&quot;&gt;@media query&lt;/code&gt;特性中被定义。&lt;/p&gt;
+
+&lt;p&gt;以此例做为开始：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@a) when (lightness(@a) &amp;gt;= 50%) {
+  background-color: black;
+}
+.mixin (@a) when (lightness(@a) &amp;lt; 50%) {
+  background-color: white;
+}
+.mixin (@a) {
+  color: @a;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;when&lt;/code&gt;关键字用以定义一个导引序列(此例只有一个导引)。接下来我们运行下列代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+.class1 { .mixin(#ddd) }
+.class2 { .mixin(#555) }
+
+/* css */
+.class1 {
+  background-color: black;
+  color: #ddd;
+}
+.class2 {
+  background-color: white;
+  color: #555;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;导引中可用的全部比较运算有： &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt; &amp;gt;= = =&amp;lt; &amp;lt;&lt;/code&gt;。此外，关键字&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;只表示&lt;code class=&quot;highlighter-rouge&quot;&gt;布尔真&lt;/code&gt;值，下面两个混合是相同的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.truth (@a) when (@a) { ... }
+.truth (@a) when (@a = true) { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;除去&lt;code class=&quot;highlighter-rouge&quot;&gt;关键字true以外的值&lt;/code&gt;都被视示&lt;code class=&quot;highlighter-rouge&quot;&gt;布尔假&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.class {
+    .truth(40); // 不符合上述定义中的任何一种。 因为值为false
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;导引序列使用逗号‘,’—分割，当且仅当所有条件都符合时，才会被视为匹配成功。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@a) when (@a &amp;gt; 10), (@a &amp;lt; -10) { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;导引可以无参数，也可以对参数进行比较运算：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@media: mobile;
+
+.mixin (@a) when (@media = mobile) { ... }
+.mixin (@a) when (@media = desktop) { ... }
+
+.max (@a, @b) when (@a &amp;gt; @b) { width: @a }
+.max (@a, @b) when (@a &amp;lt; @b) { width: @b }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果想基于值的类型进行匹配，我们就可以使用is*函式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@a, @b: 0) when (isnumber(@b)) { ... }
+.mixin (@a, @b: black) when (iscolor(@b)) { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面就是常见的检测函式：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;iscolor
+isnumber
+isstring
+iskeyword
+isurl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果你想判断一个值是纯数字，还是某个单位量，可以使用下列函式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;ispixel  //px 
+ispercentage   //百分比
+isem  // em
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后再补充一点，在导引序列中可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;and&lt;/code&gt;关键字实现&lt;code class=&quot;highlighter-rouge&quot;&gt;与&lt;/code&gt;条件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@a) when (isnumber(@a)) and (@a &amp;gt; 0) { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;not&lt;/code&gt;关键字实现&lt;code class=&quot;highlighter-rouge&quot;&gt;或&lt;/code&gt;条件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.mixin (@b) when not (@b &amp;gt; 0) { ... }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;嵌套&quot;&gt;嵌套&lt;/h2&gt;
+
+&lt;p&gt;如同混合，目的同样是让不同的class合并为一个，这样可以从很大程度上减少代码量，并且代码看起来更清晰。而且会感觉跟DOM结构格式有点像。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* LESS */
+#header {
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  p { font-size: 12px;
+    a { text-decoration: none;
+      &amp;amp;:hover { border-width: 1px }
+    }
+  }
+}
+
+/* 生成的 CSS */
+#header h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+#header p {
+  font-size: 12px;
+}
+#header p a {
+  text-decoration: none;
+}
+#header p a:hover {
+  border-width: 1px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意 &amp;amp; 符号的使用—如果你想写串联选择器，而不是写后代选择器，就可以用到&amp;amp;了. 这点对伪类尤其有用如 :hover 和 :focus.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+.bordered {
+  &amp;amp;.float {
+    float: left; 
+  }
+  .top {
+    margin: 5px; 
+  }
+}
+
+/* css */
+.bordered.float {
+  float: left;  
+}
+.bordered .top {
+  margin: 5px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;函数运算&quot;&gt;函数&amp;amp;运算&lt;/h2&gt;
+
+&lt;p&gt;函数提供了加减乘除操作,可以做属性和颜色的操作。这样就可以实现属性间的复杂关系。LESS的函数和js中是一一对应的，如果你想还能操作属性值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* LESS */
+
+@the-border: 1px;
+@base-color: #111;
+@red:        #842210;
+
+#header {
+  color: @base-color * 3;
+  border-left: @the-border;
+  border-right: @the-border * 2;
+}
+#footer { 
+  color: @base-color + #003300;
+  border-color: desaturate(@red, 10%);/*饱和度*/
+}
+
+/* 生成的 CSS */
+#header {
+  color: #333;
+  border-left: 1px;
+  border-right: 2px;
+}
+#footer { 
+  color: #114411;
+  border-color: #7d2717;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;例如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@base: 5%;
+@filler: @base * 2;
+@other: @base + @filler;
+
+color: #888 / 4;
+background-color: @base-color + #111;
+height: 100% / 2 + @filler;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS 的运算已经超出了我们的期望，它能够分辨出颜色和单位。如果像下面这样单位运算的话:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@var: 1px + 5;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS 会输出 6px.&lt;/p&gt;
+
+&lt;p&gt;括号也同样允许使用:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@var&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;并且可以在复合属性中进行运算:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;border: (@width * 2) solid black;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;color-函数&quot;&gt;Color 函数&lt;/h3&gt;
+
+&lt;p&gt;LESS 提供了一系列的颜色运算函数. 颜色会先被转化成 HSL 色彩空间, 然后在通道级别操作:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;lighten(@color, 10%);     // 返回一个比输入颜色浅10%的颜色
+darken(@color, 10%);      // 返回一个比输入颜色深10%的颜色
+
+saturate(@color, 10%);    // 返回的颜色比输入颜色多10%
+desaturate(@color, 10%);  // 返回的颜色比输入颜色少10%
+
+fadein(@color, 10%);      // 返回的颜色比输入的颜色透明10%
+fadeout(@color, 10%);     // 返回的颜色比输入的颜色透明10%
+fade(@color, 50%);        // 返回的颜色透明度为50%
+
+spin(@color, 10);         // 返回的颜色比输入的颜色大10度
+spin(@color, -10);        // 返回的颜色比输入的颜色小10度
+
+mix(@color1, @color2);    // 返回的颜色是color1与color2的混合
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以提取颜色信息:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;hue(@color);        // 返回输入颜色的色调
+saturation(@color); // 返回输入颜色的饱和度
+lightness(@color);  // 返回输入颜色的亮度
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你想在一种颜色的通道上创建另一种颜色，这些函数就显得那么的好用，例如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@new: hsl(hue(@old), 45%, 90%);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;@new 将会保持 @old的&lt;code class=&quot;highlighter-rouge&quot;&gt;色调&lt;/code&gt;, 但是具有不同的&lt;code class=&quot;highlighter-rouge&quot;&gt;饱和度&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;亮度&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;math-函数&quot;&gt;Math 函数&lt;/h3&gt;
+
+&lt;p&gt;LESS提供了一组方便的数学函数，你可以使用它们处理一些数字类型的值:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;round(1.67); // returns `2`  四舍五入
+ceil(2.4);   // returns `3`  向上取舍，返回大于或者等于指定表达式的最小整数
+floor(2.6);  // returns `2`  向下取舍，返回小于或者等于指定表达式的最小整数
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你想将一个值转化为百分比，你可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;percentage&lt;/code&gt; 函数:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;percentage(0.5); // returns `50%`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;命名空间&quot;&gt;命名空间&lt;/h2&gt;
+
+&lt;p&gt;有时候，你可能为了更好组织CSS或者单纯是为了更好的封装，将一些变量或者混合模块打包起来, 你可以像下面这样在#bundle中定义一些属性集之后可以重复使用:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;#bundle {
+  .button () {
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &amp;amp;:hover { background-color: white }
+  }
+  .tab { ... }
+  .citation { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你只需要在 #header a中像这样引入 .button:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;#header a {
+  color: orange;
+  #bundle &amp;gt; .button;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;作用域&quot;&gt;作用域&lt;/h2&gt;
+
+&lt;p&gt;LESS 中的作用域跟其他编程语言非常类似，首先会从&lt;code class=&quot;highlighter-rouge&quot;&gt;本地查找变量&lt;/code&gt;或者&lt;code class=&quot;highlighter-rouge&quot;&gt;混合模块&lt;/code&gt;，如果没找到的话会去&lt;code class=&quot;highlighter-rouge&quot;&gt;父级作用域&lt;/code&gt;中查找，直到找到为止.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@var: red;
+#page {
+  @var: white;
+  #header {
+    color: @var; // white
+  }
+}
+#footer {
+  color: @var; // red  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;注释&quot;&gt;注释&lt;/h2&gt;
+
+&lt;p&gt;CSS 形式的注释在 LESS 中是依然保留的:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* Hello, I'm a CSS-style comment */
+.class { color: black }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;LESS 同样也支持双斜线的注释, 但是编译成 CSS 的时候自动过滤掉:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;// Hi, I'm a silent comment, I won't show up in your CSS
+.class { color: white }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;importing&quot;&gt;Importing&lt;/h2&gt;
+
+&lt;p&gt;上面已经讲解过&lt;code class=&quot;highlighter-rouge&quot;&gt;importing&lt;/code&gt;引入了。这里在说一下，你可以在main文件中通过下面的形势引入 .less 文件, .less 后缀可带可不带:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@import &quot;lib.less&quot;;
+@import &quot;lib&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你想导入一个CSS文件而且不想LESS对它进行处理，只需要使用&lt;code class=&quot;highlighter-rouge&quot;&gt;.css后缀&lt;/code&gt;就可以:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@import &quot;lib.css&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样LESS就会跳过它不去处理它.&lt;/p&gt;
+
+&lt;h2 id=&quot;字符串插值&quot;&gt;字符串插值&lt;/h2&gt;
+
+&lt;p&gt;变量可以用类似ruby和php的方式嵌入到字符串中，像&lt;code class=&quot;highlighter-rouge&quot;&gt;@{name}&lt;/code&gt;这样的结构:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@base-url: &quot;http://assets.fnord.com&quot;;
+background-image: url(&quot;@{base-url}/images/bg.png&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;避免编译&quot;&gt;避免编译&lt;/h2&gt;
+
+&lt;p&gt;有时候我们需要输出一些不正确的CSS语法或者使用一些 LESS不认识的专有语法.&lt;/p&gt;
+
+&lt;p&gt;要输出这样的值我们可以在字符串前加上一个 ~, 例如:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.class {
+    filter: ~&quot;ms:alwaysHasItsOwnSyntax.For.Stuff()&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以将要避免编译的值用 “”包含起来，输出结果为:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;.class {
+    filter: ms:alwaysHasItsOwnSyntax.For.Stuff();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;javascript-表达式&quot;&gt;JavaScript 表达式&lt;/h2&gt;
+
+&lt;p&gt;JavaScript 表达式也可以在&lt;code class=&quot;highlighter-rouge&quot;&gt;.less&lt;/code&gt;文件中使用. 可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;反引号&lt;/code&gt;的方式使用:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+@var: `&quot;hello&quot;.toUpperCase() + '!'`;
+
+/* css 输出*/
+@var: &quot;HELLO!&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意你也可以同时使用字符串插值和避免编译:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;/* less */
+@str: &quot;hello&quot;;
+@var: ~`&quot;@{str}&quot;.toUpperCase() + '!'`;
+
+/* css 输出 */
+@var: HELLO!;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它也可以访问&lt;code class=&quot;highlighter-rouge&quot;&gt;JavaScript环境&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@height: `document.body.clientHeight`;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你想将一个JavaScript&lt;code class=&quot;highlighter-rouge&quot;&gt;字符串&lt;/code&gt;解析成&lt;code class=&quot;highlighter-rouge&quot;&gt;16进制&lt;/code&gt;的颜色值, 你可以使用 color 函数:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-less&quot;&gt;@color: color(`window.colors.baseColor`);
+@darkcolor: darken(@color, 10%);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;参考：https://www.ibm.com/developerworks/cn/web/1207_zhaoch_lesscss/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;参考：http://www.bootcss.com/p/lesscss/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/jekyll_blog/2017/08/23/less/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/less/</guid>
+        
+        <category>Less</category>
         
         
       </item>
@@ -1975,755 +2658,6 @@ promise.then(function(result) {
         <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/jekyll_blog/2017/07/05/mongoose%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
         <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/07/05/mongoose%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
-        
-        <category>总结</category>
-        
-        <category>mongodb</category>
-        
-        <category>mongoose</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>mongoose基础使用方法</title>
-        <description>&lt;h2 id=&quot;mongoose基础知识&quot;&gt;mongoose基础知识&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;参考 http://cnodejs.org/topic/504b4924e2b84515770103dd  版本可能略旧，但是讲的比较细入门是不错的
-参考 http://www.nodeclass.com/api/mongoose.html	
-参考 http://mongoosejs.com/docs/api.html&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h3 id=&quot;名词解释&quot;&gt;名词解释&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;名称&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;含义&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Schema&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Model&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;由Schema发布生成的模型，具有抽象属性和行为的数据库操作对&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Entity&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;由Model创建的实体，他的操作也会影响数据库&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;命名规范：本学习文档采用&lt;code class=&quot;highlighter-rouge&quot;&gt;严格命名方式&lt;/code&gt;来区别不同对象，例如：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;//Person的文本属性&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//Person的数据库模型&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonEntity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;//Person实体&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;schemamodelentity的关系请牢记schema生成modelmodel创造entitymodel和entity都可对数据库操作造成影响但model比entity更具操作性&quot;&gt;Schema、Model、Entity的关系请牢记，Schema生成Model，Model创造Entity，Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性&lt;/h4&gt;
-
-&lt;h3 id=&quot;开始使用&quot;&gt;开始使用&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;1.首先要安装mongodb和nodejs&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2.项目中只能创建一个数据库链接（不同环境下可以使用不同的环境变量来切换数据库）&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mongoose'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//引用mongoose模块&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createConnection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'test'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//创建一个数据库连接&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// createConnection有两个参数，参数1是数据库的网络地址，参数2是数据库的名称&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;3.打开本机localhost的test数据库时，我们可以监测是否有异常&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'error'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'连接错误:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;once&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'open'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;//一次打开记录&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;成功开启数据库后，就可以执行数据库相应操作，假设以下代码都在回调中处理&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;4.定义Schema&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;//定义一个属性name，类型为String&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;5.将该Schema发布为Model&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//如果该Model已经发布，则可以直接通过名字索引到，如下：&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//var PersonModel = db.model('Person');&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//如果没有发布，上一段代码将会异常&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;6.用Model创建Entity&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;personEntity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Krouky'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//打印这个实体的名字看看&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;personEntity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 结果为 Krouky&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;7.我们可以为此Schema创建方法(实际开发过程中可以将一些原生简单的方法封装到这里，日后直接调用)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//为Schema模型追加speak方法&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'我的名字叫'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;personEntity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Krouky'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;personEntity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//我的名字叫Krouky&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;8.Entity是具有具体的数据库操作CRUD的&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;personEntity.save();  //执行完成后，数据库就有该数据了
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;9.如果要执行查询，需要依赖Model，当然Entity也是可以做到的(具体的mongoose方法在我的另一篇常用方法介绍里)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//查询到的所有person&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;具体的如何配置Schema、Model以及Model和Entity的相关操作，我们会在后面进行&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Model和Entity都有能影响数据库的操作，但仍有区别，后面我们也会做解释&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;schema纯洁的数据库原型&quot;&gt;Schema——纯洁的数据库原型&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;什么是Schema？&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;和作者有些分歧，我认为就是一个数据库模型，数据属性的模型。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;如何定义Schema?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BlogSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//new Schema()中传入一个JSON对象，该对象形如 xxx:yyyy ,&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;xxx&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;是一个字符串，定义了属性，&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;yyy&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;是一个&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，定义了属性类型&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;什么是Schema.Type？&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema.Type&lt;/code&gt;是由&lt;code class=&quot;highlighter-rouge&quot;&gt;Mongoose&lt;/code&gt;内定的一些数据类型，基本数据类型都在其中，他也内置了一些&lt;code class=&quot;highlighter-rouge&quot;&gt;Mongoose&lt;/code&gt;特有的&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema.Type&lt;/code&gt;。当然，你也可以自定义Schema.Type，只有满足Schema.Type的类型才能定义在Schema内。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Schema.Types详解&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NodeJS&lt;/code&gt;中的基本数据类型都属于&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema.Type&lt;/code&gt;，另外&lt;code class=&quot;highlighter-rouge&quot;&gt;Mongoose&lt;/code&gt;还定义了自己的类型&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//举例：&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExampleSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;binary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;living&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;mixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//该混合类型等同于nested&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//主键&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;_fk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//外键&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfNumber&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfBoolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfMixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;arrOfObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;nested&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;stuff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;关于Buffer&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Buffer&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;ArrayBuffer&lt;/code&gt;是Nodejs两种隐藏的对象，相关内容请查看&lt;code class=&quot;highlighter-rouge&quot;&gt;NodeJS-API&lt;/code&gt;(个人理解：二进制数据，存储方式类似于C中的指针)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;关于Mixed&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema.Types.Mixed&lt;/code&gt;是&lt;code class=&quot;highlighter-rouge&quot;&gt;Mongoose&lt;/code&gt;定义个混合类型，该混合类型如果未定义具体形式。因此,如果定义具体内容，就直接使用&lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;&lt;/code&gt;来定义，以下两句等价&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AnySchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{}});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AnySchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;混合类型因为没有特定约束，因此可以任意修改，一旦修改了原型，则必须调用&lt;code class=&quot;highlighter-rouge&quot;&gt;markModified()&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;anything&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'change'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;markModified&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'anything'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//传入anything，表示该属性类型发生变化&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 保存的方法&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;关于ObjectId&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;主键，一种特殊而且非常重要的类型，每个Schema都会默认配置这个属性（无需自己配置），属性名为_id，除非自己定义，方可覆盖（所有数据库中都有主键，可以把mongodb玩成类似关系型数据库）&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mongoose'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StudentSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;				&lt;span class=&quot;c1&quot;&gt;//默认会有_id:ObjectId&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TeacherSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ObjectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//只有id:ObjectId&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;该类型的值由系统自己生成，从某种意义上几乎不会重复，生成过程比较复杂，有兴趣的朋友可以查看源码。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;关于Array&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt;在JavaScript编程语言中并不叫数组，而是&lt;code class=&quot;highlighter-rouge&quot;&gt;集合&lt;/code&gt;，因此里面可以存入不同的值，以下代码等价：(原作者认为不是数组，但我认为就是数组，也许我学的没有原作者好吧)&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExampleSchema1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[]});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExampleSchema2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExampleSchema3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExampleSchema4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{}]});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;附言&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Schema不仅定义了&lt;code class=&quot;highlighter-rouge&quot;&gt;文档结构&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;使用性能&lt;/code&gt;，还可以有&lt;code class=&quot;highlighter-rouge&quot;&gt;扩展插件&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;实例方法&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;静态方法&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;复合索引&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;文档生命周期钩子&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Schema可以定义插件，并且插件具有良好的&lt;code class=&quot;highlighter-rouge&quot;&gt;可拔插性&lt;/code&gt;，请有兴趣的读者继续往后阅读或者查阅官方资料。&lt;/p&gt;
-
-&lt;h3 id=&quot;schema的扩展&quot;&gt;Schema的扩展&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;实例方法&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;有的时候，我们创造的&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema&lt;/code&gt;不仅要为后面的&lt;code class=&quot;highlighter-rouge&quot;&gt;Model&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;提供公共的属性，还要提供&lt;code class=&quot;highlighter-rouge&quot;&gt;公共的方法&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;下面例子比快速通道的例子更加高级，可以进行高级扩展：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//查询类似数据&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findSimilarTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;使用如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'krouky'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'前端工程师'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findSimilarTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;//persons中就能查询到其他前端工程师&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;静态方法&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;静态方法在&lt;code class=&quot;highlighter-rouge&quot;&gt;Model&lt;/code&gt;层就能使用，如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;statics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findByName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;RegExp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'i'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;findByName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'krouky'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//找到所有名字叫krouky的人&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;索引&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;索引或者复合索引能让搜索更加高效，默认索引就是主键索引ObjectId，属性名为_id， 索引会作为一个专题来讲解&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;虚拟属性&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Schema中如果定义了虚拟属性，那么该属性将不写入数据库，例如：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'krouky'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'han'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;如果每次想使用全名就得这样&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;console.log(krouky.name.first + ' ' + krouky.name.last);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;显然这是很麻烦的，我们可以定义&lt;code class=&quot;highlighter-rouge&quot;&gt;虚拟属性&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;virtual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name.full'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;那么就能用krouky.name.full来调用全名了，反之如果知道full，也可以反向解析first和last属性&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;virtual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name.full'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;split&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Person'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;full&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'krouky han'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//会被自动分解&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;krouky&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;//krouky&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;配置项&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;在使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new Schema(config)&lt;/code&gt;时，我们可以追加一个参数&lt;code class=&quot;highlighter-rouge&quot;&gt;options&lt;/code&gt;来配置&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema&lt;/code&gt;的配置，形如：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var ExampleSchema = new Schema(config,options);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;或者使用&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var ExampleSchema = new Schema(config);
-ExampleSchema.set(option,value);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;可供配置项有：&lt;code class=&quot;highlighter-rouge&quot;&gt;safe&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;strict&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;capped&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;versionKey&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;autoIndex&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;safe——安全属性（默认安全）&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;一般可做如下配置：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{safe:true});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当然我们也可以这样&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{safe:{j:1,w:2,wtimeout:10000}});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;j表示做1份日志，w表示做2个副本（尚不明确），超时时间10秒&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;strict——严格配置（默认启用）&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;确保&lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;的值存入数据库前会被自动验证，如果你没有充足的理由，请不要停用，例子：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ThingSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ThingModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SchemaSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;thing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;iAmNotInTheThingSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//iAmNotInTheThingSchema这个属性将无法被存储&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;如果取消严格选项，&lt;code class=&quot;highlighter-rouge&quot;&gt;iAmNotInTheThingSchema&lt;/code&gt;将会被存入数据库&lt;/p&gt;
-
-&lt;p&gt;该选项也可以在构造实例时使用，例如：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ThingModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;thing1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ThingModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//启用严格&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;thing2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ThingModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//禁用严格&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;strict&lt;/code&gt;也可以设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;throw&lt;/code&gt;，表示出现问题将会抛出错误&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;shardKey&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;需要&lt;code class=&quot;highlighter-rouge&quot;&gt;mongodb&lt;/code&gt;做分布式，才会使用该属性&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;capped——上限设置&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;如果有数据库的批量操作，该属性能限制一次操作的量，例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{capped:1024});  //一次操作上线1024条数据
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;当然该参数也可是JSON对象，包含size、max、autiIndexId属性&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{capped:{size:1024,max:100,autoIndexId:true}});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;versionKey——版本锁&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;版本锁是Mongoose默认配置（__v属性）的，如果你想自己定制，如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{versionKey:'__someElse'});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;此时存入数据库的版本锁就不是__v属性，而是__someElse，相当于是给版本锁取名字。&lt;/p&gt;
-
-&lt;p&gt;具体怎么存入都是由Mongoose和MongoDB自己决定，当然，这个属性你也可以去除&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new Schema({...},{versionKey:false});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;除非你知道你在做什么，并且你知道这样做的后果&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;autoIndex——自动索引&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;该内容将在索引章节单独讲解&lt;/p&gt;
-
-&lt;h3 id=&quot;documents&quot;&gt;Documents&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Document&lt;/code&gt;是与&lt;code class=&quot;highlighter-rouge&quot;&gt;MongoDB&lt;/code&gt;文档一一对应的模型，Document可&lt;code class=&quot;highlighter-rouge&quot;&gt;等同于&lt;/code&gt;Entity，具有属性和操作性.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Document&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;CRUD&lt;/code&gt;都必须经过严格验证的，参看 &lt;strong&gt;2.5.2 Schema的strict严格配置&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;具体 &lt;code class=&quot;highlighter-rouge&quot;&gt;增删改查&lt;/code&gt; 方法可以查看另一篇mongoose常用方法文章。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Sub Docs&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;如同&lt;code class=&quot;highlighter-rouge&quot;&gt;SQL&lt;/code&gt;数据库中2张表有主外关系，Mongoose将2个&lt;code class=&quot;highlighter-rouge&quot;&gt;Document&lt;/code&gt;的嵌套叫做&lt;code class=&quot;highlighter-rouge&quot;&gt;Sub-Docs&lt;/code&gt;（子文档）&lt;/p&gt;
-
-&lt;p&gt;简单的说就是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Document嵌套&lt;/code&gt;另外一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Document&lt;/code&gt;或者&lt;code class=&quot;highlighter-rouge&quot;&gt;Documents&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ChildSchema1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ChildSchema2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ParentSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;children1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ChildSchema1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;//嵌套Document&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;children2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ChildSchema2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//嵌套Documents&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Sub-Docs&lt;/code&gt;享受和&lt;code class=&quot;highlighter-rouge&quot;&gt;Documents&lt;/code&gt;一样的操作，但是&lt;code class=&quot;highlighter-rouge&quot;&gt;Sub-Docs&lt;/code&gt;的操作都由&lt;code class=&quot;highlighter-rouge&quot;&gt;父类&lt;/code&gt;去执行&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ParentModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Parent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parentSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ParentModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;children2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'c1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'c2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;children2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'d'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;parent&lt;/code&gt;在执行保存时，由于包含&lt;code class=&quot;highlighter-rouge&quot;&gt;children2&lt;/code&gt;，他是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;数据库模型对象&lt;/code&gt;，因此会先保存chilren2[0]和chilren2[1]。&lt;/p&gt;
-
-&lt;p&gt;如果子文档在更新时出现错误，将直接报在父类文档中，可以这样处理：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;ChildrenSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'save'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'x'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'#err:not-x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ParentModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;children1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'not-x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//#err:not-x&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;查询子文档&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;children&lt;/code&gt;是&lt;code class=&quot;highlighter-rouge&quot;&gt;parent&lt;/code&gt;的子文档，可以通过如下方法查询到children&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; var child = parent.children.id(id);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Sub-Docs 新增、删除、更新&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;子文档是父文档的一个属性，因此按照属性的操作即可，不同的是在新增父类的时候，子文档是会被先加入进去的。&lt;/p&gt;
-
-&lt;p&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;ChildrenSchema&lt;/code&gt;是临时的一个子文档，不作为数据库映射集合，可以这样：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ParentSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//其实就是匿名混合模式&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;model&quot;&gt;Model&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;什么是Model&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Model&lt;/code&gt;模型，是经过&lt;code class=&quot;highlighter-rouge&quot;&gt;Schema&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;构造&lt;/code&gt;来的，除了Schema定义的数据库骨架以外，还具有数据库行为模型，他相当于管理数据库属性、行为的类&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;如何创建Model&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;你必须通过Schema来创建，如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//先创建Schema&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TankSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'String'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'String'&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//通过Schema创建Model&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TankModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mongoose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tank'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TankSchema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;如何操作Model&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;该模型就能直接拿来操作，具体查看API，例如：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tank&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'something'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'small'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;TankModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tank&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;你可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;Model&lt;/code&gt;来创建&lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;，Entity实体是一个特有Model具体对象，但是他并&lt;code class=&quot;highlighter-rouge&quot;&gt;不具备Model的方法&lt;/code&gt;，只能用自己的方法。&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//通过Model创建Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tankEntity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TankModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'someother'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'size:big'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;tankEntity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Query&lt;/strong&gt; (具体查看另一篇常用方法文章)&lt;/p&gt;
-
-&lt;p&gt;查询是数据库中运用最多也是最麻烦的地方，这里对Query解读的并不完善，仅仅是自己的一点领悟而已。(与原作者不同，幸好之前我干过java接触过oracle和sqlserver。。。)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Validation&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;数据的存储是需要验证的，不是什么数据都能往数据库里丢或者显示到客户端的，数据的验证需要记住以下规则：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;验证始终定义在SchemaType中&lt;/li&gt;
-    &lt;li&gt;验证是一个内部中间件&lt;/li&gt;
-    &lt;li&gt;验证是在一个Document被保存时默认启用的，除非你关闭验证&lt;/li&gt;
-    &lt;li&gt;验证是异步递归的，如果你的SubDoc验证失败，Document也将无法保存&lt;/li&gt;
-    &lt;li&gt;验证并不关心错误类型，而通过ValidationError这个对象可以访问&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;验证器&lt;/strong&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;属性&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;作用&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;required&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;非空验证&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;min/max&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;范围验证（边值验证）&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;enum/match&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;枚举验证/匹配验证&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;validate&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;自定义验证规则&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;以下是综合案例：&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PersonSchema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'String'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//姓名非空&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Nunmer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;//年龄最小18&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;120&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;//年龄最大120&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'String'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;enum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'北京'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'上海'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//只能是北京、上海人&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'String'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;na&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//validator是一个验证函数，err是验证失败的错误信息&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;验证失败&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;如果验证失败，则会返回&lt;code class=&quot;highlighter-rouge&quot;&gt;err信息&lt;/code&gt;，err是一个对象该对象属性如下&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;属性&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;作用&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.errors&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误集合（对象）&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.errors.color&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误属性(Schema的color属性)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.errors.color.message&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误属性信息&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.errors.path&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误属性路径&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.errors.type&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误类型&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.name&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误名称&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;err.message&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;错误消息&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;一旦验证失败，&lt;code class=&quot;highlighter-rouge&quot;&gt;Model&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Entity&lt;/code&gt;都将具有和&lt;code class=&quot;highlighter-rouge&quot;&gt;err&lt;/code&gt;一样的&lt;code class=&quot;highlighter-rouge&quot;&gt;errors属性&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;middleware中间件&quot;&gt;Middleware中间件&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;什么是中间件&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;中间件是一种控制函数，类似插件，能控制流程中的&lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;validate&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;save&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt;方法&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;中间件的分类&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;中间件分为两类:&lt;code class=&quot;highlighter-rouge&quot;&gt;Serial串行&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;Parallel并行&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Serial串行&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;串行使用&lt;code class=&quot;highlighter-rouge&quot;&gt;pre&lt;/code&gt;方法，执行下一个方法使用&lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;调用&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'save'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//做点什么&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Parallel并行&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;并行提供更具细粒度的操作&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'save'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;//下一个要执行的中间件并行执行&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;doAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;中间件特点&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;一旦定义了中间件，就会在&lt;code class=&quot;highlighter-rouge&quot;&gt;全部中间件执行完后&lt;/code&gt;执行其他操作，使用中间件可以&lt;code class=&quot;highlighter-rouge&quot;&gt;雾化模型&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;避免&lt;/code&gt;异步操作的层层迭代嵌套&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;使用范畴&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;复杂的验证&lt;/li&gt;
-  &lt;li&gt;删除有主外关联的doc&lt;/li&gt;
-  &lt;li&gt;异步默认&lt;/li&gt;
-  &lt;li&gt;某个特定动作触发异步任务，例如触发自定义事件和通知&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;例如，可以用来做自定义错误处理&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'save'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Eerror&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'some err'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;entity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//some err&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/07/05/mongoose%E5%9F%BA%E7%A1%80/</guid>
         
         <category>总结</category>
         
