@@ -3,10 +3,10 @@
   <channel>
     <title>handsameliu</title>
     <description>工作五年的初级程序员，自认为拥有小小的帅气，请多指教</description>
-    <link>/jekyll_blog/</link>
-    <atom:link href="/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 17 Nov 2017 15:36:18 +0800</pubDate>
-    <lastBuildDate>Fri, 17 Nov 2017 15:36:18 +0800</lastBuildDate>
+    <link>http://localhost:4000/jekyll_blog/</link>
+    <atom:link href="http://localhost:4000/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 21 Nov 2017 14:14:19 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Nov 2017 14:14:19 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -48,8 +48,8 @@ npm ERR!     E:\words_liu\vue-simple-calendar\npm-debug.log
 
 </description>
         <pubDate>Fri, 17 Nov 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/11/17/goToNPMIssues/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/11/17/goToNPMIssues/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/11/17/goToNPMIssues/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/11/17/goToNPMIssues/</guid>
         
         <category>总结</category>
         
@@ -163,8 +163,8 @@ npm ERR!     E:\words_liu\vue-simple-calendar\npm-debug.log
 
 </description>
         <pubDate>Thu, 12 Oct 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/10/12/eleme-v-charts/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/10/12/eleme-v-charts/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/10/12/eleme-v-charts/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/10/12/eleme-v-charts/</guid>
         
         <category>vue</category>
         
@@ -873,8 +873,8 @@ console.log(ans);
 
 </description>
         <pubDate>Mon, 18 Sep 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/09/18/jsInterviewQuestions25/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/09/18/jsInterviewQuestions25/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/09/18/jsInterviewQuestions25/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/09/18/jsInterviewQuestions25/</guid>
         
         <category>总结</category>
         
@@ -985,8 +985,8 @@ this.$set(userList,i,'1');
 
 </description>
         <pubDate>Tue, 29 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/29/vue2/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/29/vue2/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/29/vue2/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/29/vue2/</guid>
         
         <category>总结</category>
         
@@ -1672,8 +1672,8 @@ background-image: url(&quot;@{base-url}/images/bg.png&quot;);
 
 </description>
         <pubDate>Mon, 28 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/28/less/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/28/less/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/28/less/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/28/less/</guid>
         
         <category>Less</category>
         
@@ -1796,8 +1796,8 @@ npm run dev
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/23/vuecli-install/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/23/vuecli-install/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/23/vuecli-install/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/vuecli-install/</guid>
         
         <category>总结</category>
         
@@ -2031,8 +2031,8 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/23/vue2-component/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/23/vue2-component/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/23/vue2-component/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/vue2-component/</guid>
         
         <category>总结</category>
         
@@ -2383,8 +2383,8 @@ $('id').fadeIn('slow');  换面的淡出
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/23/jqueryAPI/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/23/jqueryAPI/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/23/jqueryAPI/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/jqueryAPI/</guid>
         
         <category>总结</category>
         
@@ -2457,8 +2457,8 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
 &lt;p&gt;完成后就可以正常clone了。&lt;/p&gt;
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/23/gitIssues/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/23/gitIssues/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/08/23/gitIssues/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/gitIssues/</guid>
         
         <category>总结</category>
         
@@ -2543,8 +2543,8 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
 
 </description>
         <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/07/05/testing/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/07/05/testing/</guid>
+        <link>http://localhost:4000/jekyll_blog/2017/07/05/testing/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/07/05/testing/</guid>
         
         <category>Testing</category>
         
