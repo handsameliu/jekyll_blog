@@ -3,10 +3,10 @@
   <channel>
     <title>handsameliu</title>
     <description>工作五年的初级程序员，自认为拥有小小的帅气，请多指教</description>
-    <link>http://localhost:4000/jekyll_blog/</link>
-    <atom:link href="http://localhost:4000/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Nov 2017 14:14:19 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Nov 2017 14:14:19 +0800</lastBuildDate>
+    <link>/jekyll_blog/</link>
+    <atom:link href="/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 14 Mar 2018 17:21:59 +0800</pubDate>
+    <lastBuildDate>Wed, 14 Mar 2018 17:21:59 +0800</lastBuildDate>
     <generator>Jekyll v3.5.0</generator>
     
       <item>
@@ -48,8 +48,8 @@ npm ERR!     E:\words_liu\vue-simple-calendar\npm-debug.log
 
 </description>
         <pubDate>Fri, 17 Nov 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/11/17/goToNPMIssues/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/11/17/goToNPMIssues/</guid>
+        <link>/jekyll_blog/2017/11/17/goToNPMIssues/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/11/17/goToNPMIssues/</guid>
         
         <category>总结</category>
         
@@ -163,8 +163,8 @@ npm ERR!     E:\words_liu\vue-simple-calendar\npm-debug.log
 
 </description>
         <pubDate>Thu, 12 Oct 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/10/12/eleme-v-charts/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/10/12/eleme-v-charts/</guid>
+        <link>/jekyll_blog/2017/10/12/eleme-v-charts/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/10/12/eleme-v-charts/</guid>
         
         <category>vue</category>
         
@@ -287,7 +287,8 @@ inner func:  self.foo = bar
 	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;   
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;   
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;     
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;         
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;         
 		&lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;     
 	&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;   
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -298,14 +299,7 @@ inner func:  self.foo = bar
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;这题我输出的结果是正常的。。。。&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;foo1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;foo2&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;结果是第一个输出一个object，第二个输出undefind。因为ECMAScript设定的ASI，return后会自动追加;分号。导致相当于没有返回。return后不要换行写其他东西，都不会执行。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;7、NaN 是什么？它的类型是什么？你如何可靠地测试一个值是否等于 NaN ？&lt;/p&gt;
@@ -873,8 +867,8 @@ console.log(ans);
 
 </description>
         <pubDate>Mon, 18 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/09/18/jsInterviewQuestions25/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/09/18/jsInterviewQuestions25/</guid>
+        <link>/jekyll_blog/2017/09/18/jsInterviewQuestions25/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/09/18/jsInterviewQuestions25/</guid>
         
         <category>总结</category>
         
@@ -985,8 +979,8 @@ this.$set(userList,i,'1');
 
 </description>
         <pubDate>Tue, 29 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/29/vue2/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/29/vue2/</guid>
+        <link>/jekyll_blog/2017/08/29/vue2/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/29/vue2/</guid>
         
         <category>总结</category>
         
@@ -1672,8 +1666,8 @@ background-image: url(&quot;@{base-url}/images/bg.png&quot;);
 
 </description>
         <pubDate>Mon, 28 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/28/less/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/28/less/</guid>
+        <link>/jekyll_blog/2017/08/28/less/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/28/less/</guid>
         
         <category>Less</category>
         
@@ -1796,8 +1790,8 @@ npm run dev
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/23/vuecli-install/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/vuecli-install/</guid>
+        <link>/jekyll_blog/2017/08/23/vuecli-install/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/23/vuecli-install/</guid>
         
         <category>总结</category>
         
@@ -2031,8 +2025,8 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/23/vue2-component/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/vue2-component/</guid>
+        <link>/jekyll_blog/2017/08/23/vue2-component/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/23/vue2-component/</guid>
         
         <category>总结</category>
         
@@ -2383,8 +2377,8 @@ $('id').fadeIn('slow');  换面的淡出
 
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/23/jqueryAPI/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/jqueryAPI/</guid>
+        <link>/jekyll_blog/2017/08/23/jqueryAPI/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/23/jqueryAPI/</guid>
         
         <category>总结</category>
         
@@ -2457,8 +2451,8 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
 &lt;p&gt;完成后就可以正常clone了。&lt;/p&gt;
 </description>
         <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/08/23/gitIssues/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/08/23/gitIssues/</guid>
+        <link>/jekyll_blog/2017/08/23/gitIssues/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/08/23/gitIssues/</guid>
         
         <category>总结</category>
         
@@ -2543,8 +2537,8 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
 
 </description>
         <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/2017/07/05/testing/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/2017/07/05/testing/</guid>
+        <link>/jekyll_blog/2017/07/05/testing/</link>
+        <guid isPermaLink="true">/jekyll_blog/2017/07/05/testing/</guid>
         
         <category>Testing</category>
         

@@ -110,7 +110,8 @@ function foo1(){
 	};   
 }   
 function foo2(){     
-	return{         
+	return
+	{         
 		bar: "hello"     
 	};   
 }
@@ -120,14 +121,7 @@ console.log("foo2 returns:");
 console.log(foo2());
 ```
 
-这题我输出的结果是正常的。。。。
-
-```javascript
-foo1 returns:
-Object {bar: "hello"}
-foo2 returns:
-Object {bar: "hello"}
-```
+结果是第一个输出一个object，第二个输出undefind。因为ECMAScript设定的ASI，return后会自动追加;分号。导致相当于没有返回。return后不要换行写其他东西，都不会执行。
 
 > 7、NaN 是什么？它的类型是什么？你如何可靠地测试一个值是否等于 NaN ？
 
