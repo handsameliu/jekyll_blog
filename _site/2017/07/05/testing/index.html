@@ -197,7 +197,7 @@
 <p><em>斜体</em></p>
 
 <h3 id="代码块">代码块</h3>
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="nd">@requires_authorization</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@requires_authorization</span>
 <span class="k">def</span> <span class="nf">somefunc</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="s">''</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="s">'''A docstring'''</span>
     <span class="k">if</span> <span class="n">param1</span> <span class="o">&gt;</span> <span class="n">param2</span><span class="p">:</span> <span class="c"># interesting</span>
@@ -207,8 +207,7 @@
     <span class="k">pass</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">message</span> <span class="o">=</span> <span class="s">'''interpreter
 ... prompt'''</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="表格">表格</h3>
 <p>| Item      |    Value | Qty  |
@@ -221,9 +220,9 @@
 
 <p>使用 <code class="highlighter-rouge">- [ ]</code> 和 <code class="highlighter-rouge">- [x]</code> 语法可以创建复选框，实现 todo-list 等功能。例如：</p>
 
-<ul>
-  <li>[x] 已完成事项</li>
-  <li>[ ] 待办事项1</li>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />已完成事项</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />待办事项1</li>
 </ul>
 
 <blockquote>
@@ -291,6 +290,10 @@
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -338,6 +341,20 @@
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -450,7 +467,7 @@
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

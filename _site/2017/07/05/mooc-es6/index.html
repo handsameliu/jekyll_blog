@@ -182,34 +182,31 @@
 
 <p>首当其冲的就是es6的箭头函数了，它简化了函数的书写。操作符左边为输入的参数，而右边则是进行的操作以及返回的值。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nx">prams</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nx">prams</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
 	<span class="c1">// 处理代码的表达式</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>而且箭头函数还没有作用域问题，它本身没有作用域。会自动向上查找。</p>
 
 <p>写回调也很方便</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="o">&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>  <span class="c1">//值较少，操作简单时可以省略括号和大括号</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="o">&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>  <span class="c1">//值较少，操作简单时可以省略括号和大括号</span>
+</code></pre></div></div>
 
 <h3 id="let与const-关键字">let与const 关键字</h3>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="err">可以把</span><span class="kd">let</span><span class="err">看成</span><span class="kd">var</span><span class="err">，只是它定义的变量被限定在了特定范围内才能使用，而离开这个范围则无效。</span><span class="kr">const</span><span class="err">则很直观，用来定义常量，即无法被更改值的变量。</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">可以把</span><span class="kd">let</span><span class="err">看成</span><span class="kd">var</span><span class="err">，只是它定义的变量被限定在了特定范围内才能使用，而离开这个范围则无效。</span><span class="kd">const</span><span class="err">则很直观，用来定义常量，即无法被更改值的变量。</span>
+</code></pre></div></div>
 
 <h3 id="class-类">class 类</h3>
 
 <p>es6中增加了对类class的支持，对象的创建和继承就更加直观了，并且父类方法的调用，构造函数，静态方法，实例化都更加形象，由于我之前是java工作者（其他没学过），所以看着相当亲切</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//类的定义</span>
-<span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>				<span class="c1">//开头建议大写，完全按照类的要求去写</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//类的定义</span>
+<span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>				<span class="c1">//开头建议大写，完全按照类的要求去写</span>
 	<span class="c1">//ES6中的新型构造器</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">//实例方法</span>
@@ -218,10 +215,10 @@
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">//类的继承</span>
-<span class="kr">class</span> <span class="nx">XiaoMing</span> <span class="kr">extends</span> <span class="nx">Person</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nx">XiaoMing</span> <span class="kd">extends</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     	<span class="c1">//直接调用super父类构造器进行初始化</span>
-        <span class="kr">super</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="nx">program</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"I'm xiaoming..."</span><span class="p">);</span>
@@ -232,23 +229,21 @@
 <span class="nx">person</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span>			<span class="c1">//输出 My name is baby</span>
 <span class="nx">en</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span>				<span class="c1">//输出 My name is xiaoming</span>
 <span class="nx">en</span><span class="p">.</span><span class="nx">program</span><span class="p">();</span>				<span class="c1">//输出 I'm xiaoming...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="字符串模板">字符串模板</h3>
 
 <p>字符串模板相对简单易懂些。ES6中允许使用反引号 ` 来创建字符串，此种方法创建的字符串里面可以包含由美元符号加花括号包裹的变量 ${vraible} 。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'liu'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">my</span> <span class="nx">name</span> <span class="nx">is</span>  <span class="nx">$</span><span class="p">{</span><span class="nx">name</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'liu'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`my name is  </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
 
 <h3 id="解构">解构</h3>
 
 <p>自动解析数组或对象中的值。直接返回一个数组，然后数组中的值会自动被解析到对应接收该值的变量中。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">]</span><span class="o">=</span><span class="nx">getVal</span><span class="p">(),</span><span class="c1">//函数返回值的解构</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">]</span><span class="o">=</span><span class="nx">getVal</span><span class="p">(),</span><span class="c1">//函数返回值的解构</span>
     <span class="p">[</span><span class="nx">name</span><span class="p">,,</span><span class="nx">age</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">'小二'</span><span class="p">,</span><span class="s1">'male'</span><span class="p">,</span><span class="s1">'18'</span><span class="p">];</span><span class="c1">//数组解构</span>
 
 <span class="kd">function</span> <span class="nx">getVal</span><span class="p">()</span> <span class="p">{</span>
@@ -257,14 +252,13 @@
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'x:'</span><span class="o">+</span><span class="nx">x</span><span class="o">+</span><span class="s1">', y:'</span><span class="o">+</span><span class="nx">y</span><span class="p">);</span><span class="c1">//输出：x:1, y:2 </span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="o">+</span><span class="nx">name</span><span class="o">+</span><span class="s1">', age:'</span><span class="o">+</span><span class="nx">age</span><span class="p">);</span><span class="c1">//输出： name:小二, age:18</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="参数默认值不定参数拓展参数">参数默认值，不定参数，拓展参数</h3>
 
 <p>现在可以在定义函数的时候指定参数的默认值了，而不用像以前那样通过逻辑或操作符来达到目。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function sayHello(name){
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function sayHello(name){
 	//传统的指定默认参数的方式
 	var name=name||'dude';
 	console.log('Hello '+name);
@@ -277,39 +271,36 @@ sayHello();//输出：Hello dude
 sayHello('Wayou');//输出：Hello Wayou
 sayHello2();//输出：Hello dude
 sayHello2('Wayou');//输出：Hello Wayou
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="不定参数">不定参数</h4>
 
 <p>不定参数是在函数中使用命名参数同时接收不定数量的未命名参数。这只是一种语法糖，在以前的JavaScript代码中我们可以通过arguments变量来达到这一目的。不定参数的格式是三个句点后跟代表所有不定参数的变量名。比如下面这个例子中，…x代表了所有传入add函数的参数。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">/</span><span class="err">将所有参数相加的函数</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="err">将所有参数相加的函数</span>
 <span class="kd">function</span> <span class="nx">add</span><span class="p">(...</span><span class="nx">x</span><span class="p">){</span>
 	<span class="k">return</span> <span class="nx">x</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">m</span><span class="p">,</span><span class="nx">n</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">m</span><span class="o">+</span><span class="nx">n</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">//传递任意个数的参数</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span><span class="c1">//输出：6</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span><span class="c1">//输出：15</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="拓展参数">拓展参数</h4>
 
 <p>拓展参数则是另一种形式的语法糖，它允许传递数组或者类数组直接做为函数的参数而不用通过apply。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">people</span><span class="o">=</span><span class="p">[</span><span class="s1">'Wayou'</span><span class="p">,</span><span class="s1">'John'</span><span class="p">,</span><span class="s1">'Sherlock'</span><span class="p">];</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">people</span><span class="o">=</span><span class="p">[</span><span class="s1">'Wayou'</span><span class="p">,</span><span class="s1">'John'</span><span class="p">,</span><span class="s1">'Sherlock'</span><span class="p">];</span>
 <span class="c1">//sayHello函数本来接收三个单独的参数人妖，人二和人三</span>
 <span class="kd">function</span> <span class="nx">sayHello</span><span class="p">(</span><span class="nx">people1</span><span class="p">,</span><span class="nx">people2</span><span class="p">,</span><span class="nx">people3</span><span class="p">){</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">Hello</span> <span class="nx">$</span><span class="p">{</span><span class="nx">people1</span><span class="p">},</span><span class="nx">$</span><span class="p">{</span><span class="nx">people2</span><span class="p">},</span><span class="nx">$</span><span class="p">{</span><span class="nx">people3</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="nx">people1</span><span class="p">}</span><span class="s2">,</span><span class="p">${</span><span class="nx">people2</span><span class="p">}</span><span class="s2">,</span><span class="p">${</span><span class="nx">people3</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">//但是我们将一个数组以拓展参数的形式传递，它能很好地映射到每个单独的参数</span>
 <span class="nx">sayHello</span><span class="p">(...</span><span class="nx">people</span><span class="p">);</span><span class="c1">//输出：Hello Wayou,John,Sherlock </span>
 
 <span class="c1">//而在以前，如果需要传递数组当参数，我们需要使用函数的apply方法</span>
 <span class="nx">sayHello</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">people</span><span class="p">);</span><span class="c1">//输出：Hello Wayou,John,Sherlock</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="模块">模块</h3>
 
@@ -317,10 +308,10 @@ sayHello2('Wayou');//输出：Hello Wayou
 
 <p>将不同功能的代码分别写在不同文件中，各模块只需导出公共接口部分，然后通过模块的导入的方式可以在其他地方使用   下面的例子来自tutsplus:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// point.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// point.js</span>
 <span class="nx">module</span> <span class="s2">"point"</span> <span class="p">{</span>
-    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Point</span> <span class="p">{</span>
-        <span class="nx">constructor</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">export</span> <span class="kd">class</span> <span class="nx">Point</span> <span class="p">{</span>
+        <span class="kd">constructor</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
             <span class="kr">public</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
             <span class="kr">public</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
         <span class="p">}</span>
@@ -329,20 +320,19 @@ sayHello2('Wayou');//输出：Hello Wayou
  
 <span class="c1">// myapp.js</span>
 <span class="c1">//声明引用的模块</span>
-<span class="nx">module</span> <span class="nx">point</span> <span class="nx">from</span> <span class="s2">"/point.js"</span><span class="p">;</span>
+<span class="nx">module</span> <span class="nx">point</span> <span class="k">from</span> <span class="s2">"/point.js"</span><span class="p">;</span>
 <span class="c1">//这里可以看出，尽管声明了引用的模块，还是可以通过指定需要的部分进行导入</span>
-<span class="kr">import</span> <span class="nx">Point</span> <span class="nx">from</span> <span class="s2">"point"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Point</span> <span class="k">from</span> <span class="s2">"point"</span><span class="p">;</span>
  
 <span class="kd">var</span> <span class="nx">origin</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">origin</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="promises">Promises</h3>
 
 <p>Promises是处理异步操作的一种模式，之前在很多三方库中有实现，比如jQuery的deferred 对象。当你发起一个异步请求，并绑定了.when(), .done()等事件处理程序时，其实就是在应用promise模式。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>//创建promise
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//创建promise
 var promise = new Promise(function(resolve, reject) {
     // 进行一些异步或耗时操作
     if ( /*如果成功 */ ) {
@@ -359,20 +349,18 @@ promise.then(function(result) {
 	//promise失败会执行这里
     console.log(err); // Error: "It broke"
 });
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="for-of-值遍历">for of 值遍历</h3>
 
 <p>我们都知道for in 循环用于遍历数组，类数组或对象，ES6中新引入的for of循环功能相似，不同的是每次循环它提供的不是序号而是值。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">someArray</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span> <span class="p">];</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">someArray</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span> <span class="p">];</span>
  
-<span class="k">for</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">of</span> <span class="nx">someArray</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">v</span> <span class="k">of</span> <span class="nx">someArray</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span><span class="c1">//输出 a,b,c</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                 <hr>
@@ -428,6 +416,10 @@ promise.then(function(result) {
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -475,6 +467,20 @@ promise.then(function(result) {
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -587,7 +593,7 @@ promise.then(function(result) {
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

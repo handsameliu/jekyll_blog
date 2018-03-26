@@ -258,127 +258,108 @@
 
 <h3 id="2切换创建数据库">2、切换/创建数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>use yourDB; 当创建一个集合(table)的时候会自动创建当前数据库
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use yourDB; 当创建一个集合(table)的时候会自动创建当前数据库
+</code></pre></div></div>
 
 <h3 id="3查询所有数据库">3、查询所有数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>show dbs;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>show dbs;
+</code></pre></div></div>
 
 <h3 id="4删除当前使用数据库">4、删除当前使用数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.dropDatabase();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.dropDatabase();
+</code></pre></div></div>
 
 <h3 id="5从指定主机上克隆数据库">5、从指定主机上克隆数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库  
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库  
+</code></pre></div></div>
 
 <h3 id="6从指定的机器上复制指定数据库数据到某个数据库">6、从指定的机器上复制指定数据库数据到某个数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.copyDatabase("mydb", "temp", "127.0.0.1");将本机的mydb的数据复制到temp数据库中    db.copyDatabase('atl_db','atl_db','192.168.3.44:27017');   in，out，目标ip地址
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.copyDatabase("mydb", "temp", "127.0.0.1");将本机的mydb的数据复制到temp数据库中    db.copyDatabase('atl_db','atl_db','192.168.3.44:27017');   in，out，目标ip地址
+</code></pre></div></div>
 
 <h3 id="7修复当前数据库">7、修复当前数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.repairDatabase();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.repairDatabase();
+</code></pre></div></div>
 
 <h3 id="8查看当前使用的数据库">8、查看当前使用的数据库</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.getName();
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getName();
 db; db和getName方法是一样的效果，都可以查询当前使用的数据库
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="9显示当前db状态">9、显示当前db状态</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> db.stats();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> db.stats();
+</code></pre></div></div>
 
 <h3 id="10当前db版本">10、当前db版本</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> db.version();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> db.version();
+</code></pre></div></div>
 
 <h3 id="11查看当前db的链接机器地址">11、查看当前db的链接机器地址</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> db.getMongo();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> db.getMongo();
+</code></pre></div></div>
 
 <h2 id="collection聚集集合">Collection聚集集合</h2>
 
 <h3 id="1创建一个聚集集合table">1、创建一个聚集集合（table）</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.createCollection(“collName”, {size: 20, capped: 5, max: 100});
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.createCollection(“collName”, {size: 20, capped: 5, max: 100});
+</code></pre></div></div>
 
 <h3 id="2得到指定名称的聚集集合table">2、得到指定名称的聚集集合（table）</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.getCollection("account");
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollection("account");
+</code></pre></div></div>
 
 <h3 id="3得到当前db的所有聚集集合">3、得到当前db的所有聚集集合</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.getCollectionNames();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getCollectionNames();
+</code></pre></div></div>
 
 <h3 id="4显示当前db所有聚集索引的状态">4、显示当前db所有聚集索引的状态</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.printCollectionStats();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.printCollectionStats();
+</code></pre></div></div>
 
 <h2 id="用户相关">用户相关</h2>
 
 <h3 id="1添加一个用户">1、添加一个用户</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.addUser("name");
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.addUser("name");
 db.addUser("userName", "pwd123", true); 添加用户、设置密码、是否只读 ### 2、数据库认证、安全模式
 
 db.auth("userName", "123123");
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="3显示当前所有用户">3、显示当前所有用户</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>show users;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>show users;
+</code></pre></div></div>
 
 <h3 id="4删除用户">4、删除用户</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.removeUser("userName");
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.removeUser("userName");
+</code></pre></div></div>
 
 <h2 id="其他">其他</h2>
 
 <h3 id="1查询之前的错误信息">1、查询之前的错误信息</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.getPrevError();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.getPrevError();
+</code></pre></div></div>
 
 <h3 id="2清除错误记录">2、清除错误记录</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.resetError();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.resetError();
+</code></pre></div></div>
 
 <h2 id="查看聚集集合基本信息">查看聚集集合基本信息</h2>
 
@@ -565,80 +546,69 @@ db.auth("userName", "123123");
 
 <h3 id="1创建索引">1、创建索引</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.ensureIndex({name: 1});
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.userInfo.ensureIndex({name: 1});
 db.userInfo.ensureIndex({name: 1, ts: -1});
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="2查询当前聚集集合所有索引">2、查询当前聚集集合所有索引</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.getIndexes();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.userInfo.getIndexes();
+</code></pre></div></div>
 
 <h3 id="3查看总索引记录大小">3、查看总索引记录大小</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.userInfo.totalIndexSize();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.userInfo.totalIndexSize();
+</code></pre></div></div>
 
 <h3 id="4读取当前集合的所有index信息">4、读取当前集合的所有index信息</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.reIndex();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.reIndex();
+</code></pre></div></div>
 
 <h3 id="5删除指定索引">5、删除指定索引</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.dropIndex("name_1");
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.dropIndex("name_1");
+</code></pre></div></div>
 
 <h3 id="6删除所有索引索引">6、删除所有索引索引</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.dropIndexes();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.dropIndexes();
+</code></pre></div></div>
 
 <h2 id="修改添加删除集合数据">修改、添加、删除集合数据</h2>
 
 <h3 id="添加">添加</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.save({name: ‘zhangsan', age: 25, ***: true});
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.save({name: ‘zhangsan', age: 25, ***: true});
+</code></pre></div></div>
 
 <p>添加的数据的数据列，没有固定，根据添加的数据为准</p>
 
 <h3 id="删除">删除</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.remove({age: 132});
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.remove({age: 132});
+</code></pre></div></div>
 
 <h3 id="修改">修改</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({age: 25}, {$set: {name: 'changeName'}}, false, true);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.update({age: 25}, {$set: {name: 'changeName'}}, false, true);
+</code></pre></div></div>
 
 <p>相当于：update users set name = ‘changeName’ where age = 25;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}}, false, true);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}}, false, true);
+</code></pre></div></div>
 
 <p>相当于：update users set age = age + 50 where name = ‘Lisi’;</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}, $set: {name: 'hoho'}}, false, true);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.update({name: 'Lisi'}, {$inc: {age: 50}, $set: {name: 'hoho'}}, false, true);
+</code></pre></div></div>
 
 <p>相当于：update users set age = age + 50, name = ‘hoho’ where name = ‘Lisi’;</p>
 
 <h3 id="查询修改删除">查询修改删除</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.findAndModify({
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.findAndModify({
   query: {age: {$gte: 25}}, 
   sort: {age: -1}, 
   update: {$set: {name: 'a2'}, $inc: {age: 2}},
@@ -650,8 +620,7 @@ db.runCommand({ findandmodify : "users",
   update: {$set: {name: 'a2'}, $inc: {age: 2}},
   remove: true
 });
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -704,32 +673,29 @@ db.runCommand({ findandmodify : "users",
 
 <h3 id="1简单hello-world">1、简单Hello World</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>print("Hello World!");
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print("Hello World!");
 这种写法调用了print函数，和直接写入"Hello World!"的效果是一样的；
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="2将一个对象转换成json">2、将一个对象转换成json</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>tojson(new Object());
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tojson(new Object());
 tojson(new Object('a'));
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="3循环添加数据">3、循环添加数据</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; for (var i = 0; i &lt; 30; i++) {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; for (var i = 0; i &lt; 30; i++) {
 ... db.users.save({name: "u_" + i, age: 22 + i, ***: i % 2});
 ... };
 这样就循环添加了30条数据，同样也可以省略括号的写法
 &gt; for (var i = 0; i &lt; 30; i++) db.users.save({name: "u_" + i, age: 22 + i, ***: i % 2});
 也是可以的，当你用db.users.find()查询的时候，显示多条数据而无法一页显示的情况下，可以用it查看下一页的信息；
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="4find-游标查询">4、find 游标查询</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt;var cursor = db.users.find();
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;var cursor = db.users.find();
 &gt; while (cursor.hasNext()) { 
   printjson(cursor.next()); 
 }
@@ -737,62 +703,54 @@ tojson(new Object('a'));
 var cursor = db.users.find();
 while (cursor.hasNext()) { printjson(cursor.next); }
 同样可以省略{}号
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="5foreach迭代循环">5、forEach迭代循环</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find().forEach(printjson);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.find().forEach(printjson);
 forEach中必须传递一个函数来处理每条迭代的数据信息
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="6将find游标当数组处理">6、将find游标当数组处理</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var cursor = db.users.find();
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var cursor = db.users.find();
 cursor[4];
 取得下标索引为4的那条数据
 既然可以当做数组处理，那么就可以获得它的长度：cursor.length();或者cursor.count();
 那样我们也可以用循环显示数据
 for (var i = 0, len = c.length(); i &lt; len; i++) printjson(c[i]);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="7将find游标转换成数组">7、将find游标转换成数组</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&gt; var arr = db.users.find().toArray();
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; var arr = db.users.find().toArray();
 &gt; printjson(arr[2]);
 用toArray方法将其转换为数组
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="8定制我们自己的查询结果">8、定制我们自己的查询结果</h3>
 
 <p>只显示age &lt;= 28的并且只显示age这列数据</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);
 db.users.find({age: {$lte: 28}}, {age: true}).forEach(printjson);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>排除age的列</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);
+</code></pre></div></div>
 
 <h3 id="9foreach传递函数显示信息">9、forEach传递函数显示信息</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.things.find({x:4}).forEach(function(x) {print(tojson(x));});
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.things.find({x:4}).forEach(function(x) {print(tojson(x));});
+</code></pre></div></div>
 
 <h3 id="10查询时间">10、查询时间</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>db.users.find({createTime:new Date(time)});
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>db.users.find({createTime:new Date(time)});
 db.users.find({createTime:{$gt:new Date(time),$lt:new Date(time)}}); 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -849,6 +807,10 @@ db.users.find({createTime:{$gt:new Date(time),$lt:new Date(time)}});
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -896,6 +858,20 @@ db.users.find({createTime:{$gt:new Date(time),$lt:new Date(time)}});
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -1008,7 +984,7 @@ db.users.find({createTime:{$gt:new Date(time),$lt:new Date(time)}});
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

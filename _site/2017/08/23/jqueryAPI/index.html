@@ -224,14 +224,13 @@
   <p>在选中网页元素以后，可以对它进行一系列操作，并且所有操作可以连接在一起，以链条的形式写出来。</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$('div').find('h3').eq(2).html('Hello');
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$('div').find('h3').eq(2).html('Hello');
 分解开来，就是下面这样： 　　$('div') //找到div元素 　　　.find('h3') //选择其中的h3元素 　　　.eq(2) //选择第3个h3元素 　　　.html('Hello'); //将它的内容改为Hello
 这是jQuery最令人称道、最方便的特点。它的原理在于每一步的jQuery操作，返回的都是一个jQuery对象，所以不同操作可以连在一起。
 
 jQuery还提供了.end()方法，使得结果集可以后退一步：
 $('div') 　　　.find('h3') 　　　.eq(2) 　　　.html('Hello') 　　　.end() //退回到选中所有的h3元素的那一步 　　　.eq(0) //选中第一个h3元素 　　　.html('World'); //将它的内容改为World
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="元素的取值和赋值">元素的取值和赋值</h2>
 
@@ -263,21 +262,19 @@ $('div') 　　　.find('h3') 　　　.eq(2) 　　　.html('Hello') 　　　.
   <p>提供两组方法，来操作元素在网页中的位置移动。一组方法是直接移动该元素，另一组方法是移动其他元素，使得目标元素达到我们想要的位置。</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$('div1').insertAfter('div2');
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$('div1').insertAfter('div2');
 第一种方法是使用.insertAfter()，把div1元素移动div2元素后面
 
 $('div2').after('div1');
 第二种方法是使用.after()，把div2元素加到div1元素前面
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>表面上看，这两种方法的效果是一样的，唯一的不同似乎只是操作视角的不同。但是实际上，它们有一个重大差别，那就是返回的元素不一样。第一种方法返回div1元素，第二种方法返回div2元素。你可以根据需要，选择到底使用哪一种方法。</p>
 
 <p>使用这种模式的操作方法，一共有四对：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>.insertAfter()和.after()：在现存元素的外部，从后面插入元素 　　.insertBefore()和.before()：在现存元素的外部，从前面插入元素 　　.appendTo()和.append()：在现存元素的内部，从后面插入元素 　　.prependTo()和.prepend()：在现存元素的内部，从前面插入元素
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.insertAfter()和.after()：在现存元素的外部，从后面插入元素 　　.insertBefore()和.before()：在现存元素的外部，从前面插入元素 　　.appendTo()和.append()：在现存元素的内部，从后面插入元素 　　.prependTo()和.prepend()：在现存元素的内部，从前面插入元素
+</code></pre></div></div>
 
 <h2 id="元素的复制删除和创建">元素的复制、删除和创建</h2>
 
@@ -333,11 +330,10 @@ $('div2').after('div1');
 
 <p>例如：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 <span class="err">　　　　</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">);</span>
 <span class="err">　　</span><span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>事件列表：</p>
 
@@ -395,14 +391,13 @@ $('div2').after('div1');
 
 <p>比如你可以为多个事件绑定同一个函数：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span>
 <span class="err">　　　　</span><span class="s1">'click change'</span><span class="p">,</span> <span class="c1">//同时绑定click和change事件</span>
 <span class="err">　　　　</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 <span class="err">　　　　　　</span><span class="nx">alert</span><span class="p">(</span><span class="s1">'Hello'</span><span class="p">);</span>
 <span class="err">　　　　</span><span class="p">}</span>
 <span class="err">　　</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>有时你指向让他运行一次，可以使用<code class="highlighter-rouge">one()</code>方法</p>
 
@@ -410,7 +405,7 @@ $('div2').after('div1');
     $(“p”).one(“click”, function() {
 　　　　alert(“Hello”); //只运行一次，以后的点击不会运行
 　　});</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 可使用 `.unbind()` 解除事件绑定
 
 所有的事件处理函数，都可以接受一个事件对象(event object)作为参数，比如下面例子中的'e':
@@ -420,8 +415,7 @@ $('div2').after('div1');
         //event 事件对象
 　　　　alert(e.type); // "click"
 　　});
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这个event事件对象有许多的有用的方法和属性可以使用：</p>
 
@@ -443,21 +437,19 @@ $('div2').after('div1');
 
 <p>在事件的处理过程中，可以使用this关键字，返回事件针对的dom元素：</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
 <span class="err">　　　　</span><span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'href'</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="s1">'evil'</span><span class="p">))</span> <span class="p">{</span> <span class="c1">//如果确认为有害链接</span>
 <span class="err">　　　　　　</span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">//阻止打开</span>
 <span class="err">　　　　　　</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'evil'</span><span class="p">);</span> <span class="c1">//加上表示有害的class</span>
 <span class="err">　　　　</span><span class="p">}</span>
 <span class="err">　　</span><span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>有两种方法可以出发一个事件，一种是直接触发，另一种是使用trigger()或者trigger Handler()：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$('id').click();
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$('id').click();
 $('id').trigger('click');
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="特殊效果">特殊效果</h2>
 
@@ -481,14 +473,13 @@ $('id').trigger('click');
 
 <p>除了<code class="highlighter-rouge">.show()</code>和<code class="highlighter-rouge">.hide()</code>外，其他的特效默认都会有400ms(毫秒),但是你可以改变这个设置。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$('id').fadeIn(300);  300毫秒内淡入
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$('id').fadeIn(300);  300毫秒内淡入
 $('id').fadeIn('slow');  换面的淡出
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>特效结束后还能指定接下来运行的函数:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span> 
 <span class="p">});</span>  <span class="c1">//更复杂的特效，可以用.animate()自定义。</span>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">).</span><span class="nx">animate</span><span class="p">(</span>
@@ -499,8 +490,7 @@ $('id').fadeIn('slow');  换面的淡出
     <span class="mi">300</span><span class="p">,</span> <span class="c1">// 持续时间</span>
     <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'done!'</span><span class="p">);</span> <span class="p">}</span> <span class="c1">//回调函数</span>
 <span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">.stop()</code>和<code class="highlighter-rouge">.delay()</code>用来停止或延缓特效的执行</p>
 
@@ -561,6 +551,10 @@ $('id').fadeIn('slow');  换面的淡出
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -608,6 +602,20 @@ $('id').fadeIn('slow');  换面的淡出
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -720,7 +728,7 @@ $('id').fadeIn('slow');  换面的淡出
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

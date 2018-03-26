@@ -180,7 +180,7 @@
 
 <p>首先来写一个子组件，在子组件的new Vue对象中添加props属性，在属性中以数组的形式写入父级要传输过来的属性名称。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt;
         测量数据 
     &lt;/div&gt;
@@ -193,12 +193,11 @@
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>写完后就可以写父组件了，需要在组件上绑定一个属性，这个属性就是子组件接收时所用的。然后将想要传递的内容写入到=之后即可。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt; 
         &lt;recordIndex v-bind:message='我是父级给子级传递的内容'&gt;&lt;/recordIndex&gt;
     &lt;/div&gt;
@@ -212,8 +211,7 @@
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这样，一个简单的父级向子级组件传值的功能就做好了。</p>
 
@@ -229,7 +227,7 @@
 
 <p>还是先来看子组件，这个例子时点击发送消息，所以需要在页面中添加一个button按钮并绑定事件，事件内容如下</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt;
         &lt;button v-on:click="sendParentMsg"&gt;点我给父级传值&lt;/button&gt;
     &lt;/div&gt;
@@ -246,14 +244,13 @@
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这里用到了Vue自带的$emit方法，这个方法相当于广播，将内容发送出去。所需要的参数只有两个，一个是父级页面接受消息的方法另一个是想要传递的参数</p>
 
 <p>那么父级组件就需要在页面的子组件标签上定义并绑定一个名为<code class="highlighter-rouge">listenToChild</code>的方法，代码如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt;
         &lt;recordIndex v-on:listenToChild="showChildMsg"&gt;&lt;/recordIndex&gt;
     &lt;/div&gt;
@@ -272,8 +269,7 @@
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>绑定事件后，就指定了子级组件的事件名称，然后就需要把事件内容指定为父级组件中自定义的接受方法了，</p>
 
@@ -293,17 +289,16 @@
 
 <p>可以在当前文件夹中定义，名为eventBus的js文件。文件内只创建一个Vue实例，它就承担起了组件之间通信的桥梁，也就是中央事件总线。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import Vue from 'vue';
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import Vue from 'vue';
 export default new Vue;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在a.js文件中建议写一个事件，这样可以清晰的控制。
 在页面中引入之前定义好的介质文件eventBus.js。
 事件方法中使用介质eventBus.$emit事件，将同级文件接收的自定义事件sendMsg和内容发射出去。
 PS:$emit实例方法触发当前实例(这里的当前实例就是eventBus)上的事件,附加参数都会传给监听器回调。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template&gt;
 	&lt;div class="timeline-demo"&gt;
 		&lt;button type="primary" v-on:click='sendMsg'&gt;给其他组件传值&lt;/button&gt;
 	&lt;/div&gt;
@@ -324,14 +319,13 @@ PS:$emit实例方法触发当前实例(这里的当前实例就是eventBus)上�
 &lt;/script&gt;
 &lt;style lang="less"&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在b.js文件中也需要在mounted中写一个用于接收的监听事件,用来监听a页面发射出的childMsg事件。
 <code class="highlighter-rouge">$on</code>：第一个参数是a页面$emit发射的第一个参数，第二个参数是一个回调方法，用于接收并操作$emit传递的参数
 mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jquery的ready，Vue会在文档加载完毕后调用mounted函数。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt;
         
     &lt;/div&gt;
@@ -355,12 +349,11 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>当两个组件写好后就需要用到一个放置两个组件的容器了，接下来创建一个index组件来存放a，b组件</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;template lang="html"&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template lang="html"&gt;
     &lt;div id="app"&gt;
         &lt;recordIndex&gt;&lt;/recordIndex&gt;
         &lt;recordTimeLine&gt;&lt;/recordTimeLine&gt;
@@ -376,8 +369,7 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
 &lt;/script&gt;
 &lt;style scoped&gt;
 &lt;/style&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这样当点击a组件的button时，触发了发射事件，b组件就可以接收并绑定显示到页面了</p>
 
@@ -442,6 +434,10 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -489,6 +485,20 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -601,7 +611,7 @@ mounted:是一个Vue生命周期中的钩子函数，简单点说就类似于jqu
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

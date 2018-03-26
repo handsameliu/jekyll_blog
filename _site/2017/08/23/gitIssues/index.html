@@ -207,27 +207,25 @@
 
 <p>添加后还有重要的一步，就是测试一下是否能连接成功，在命令行输入<code class="highlighter-rouge">ssh -T git@github.com</code>, 会让你输入网站登录的密码。显示如下即为正确。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh -T git@github.com
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ssh -T git@github.com
 The authenticity of host 'github.com (192.30.255.112)' can't be established.
 RSA key fingerprint is SHA256:nThbg........
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added 'github.com,192.30.255.112' (RSA) to the list of known hosts.
 Enter passphrase for key 'C:\\Users\\acer\\.ssh\\github-rsa':
 Hi 你github上的用户名! You've successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>操作完成后.ssh文件中的<code class="highlighter-rouge">known_hosts</code>文件中会写入一条你刚刚连接网站的记录。</p>
 
 <p>多sshkey使用时，还有更重要的一步，需要配置.ssh文件中的<code class="highlighter-rouge">config</code>文件，<code class="highlighter-rouge">每多一个sshkey就要配置一次</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Host github.com              建议输入你的网站名  不建议重复
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host github.com              建议输入你的网站名  不建议重复
 HostName github.com			 输入你网站的域名，既你克隆项目时，使用的ssh方式中url里@符号后面的地址
 IdentityFile C:\\Users\\acer\\.ssh\\github-rsa			你的rsa文件地址
 PreferredAuthentications publickey						照抄，意思是已公钥的方式
 User handsameliu			 用户名，可以填你网站的用户名，也可以填网址 不建议重复
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>完成后就可以正常clone了。</p>
 
@@ -285,6 +283,10 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -332,6 +334,20 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -444,7 +460,7 @@ User handsameliu			 用户名，可以填你网站的用户名，也可以填网
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

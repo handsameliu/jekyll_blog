@@ -178,7 +178,7 @@
 
 <!-- more -->
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span><span class="err">文件后缀名为</span><span class="nt">sass</span><span class="err">的语法</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">文件后缀名为</span><span class="nt">sass</span><span class="err">的语法</span>
 <span class="nt">body</span>
   <span class="nt">background</span><span class="o">:</span> <span class="nf">#eee</span>
   <span class="nt">font-size</span><span class="nd">:12px</span>
@@ -193,8 +193,7 @@
 <span class="nt">p</span><span class="p">{</span>
   <span class="nl">background</span><span class="p">:</span> <span class="m">#0982c1</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="sass的导入">sass的导入</h2>
 
@@ -202,10 +201,9 @@
 所有的sass导入文件都可以忽略后缀名.scss。一般来说基础的文件命名方法以_开头，如_mixin.scss。这种文件在导入的时候可以不写下划线，可写成”[@import ‘mixin’]”。
 当前转译后的css文件会包含其他sass文件的内容。而通过css方式引入的还会保持引入的样子。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"reset.css"</span><span class="p">;</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"reset.css"</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s1">"mixin"</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="注释">注释</h2>
 
@@ -215,42 +213,39 @@
   <li>2.以//双斜杠形式的单行注释，但是单行注释不会被转译</li>
 </ul>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/*标准的css注释*/</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/*标准的css注释*/</span>
 <span class="o">//</span><span class="err">双斜杠注释</span>
 <span class="o">//</span><span class="err">在</span><span class="c">/* 后面加一个感叹号，标识为重要注释。即使是亚索模式编译，也会保留这行注释，通常可以用于申明版权信息
 /*!
 	重要注释！
 */</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="变量">变量</h2>
 
 <p>sass的变量必须是$开头，后面紧跟变量名。变量与变量名之间需要使用冒号(:)隔开。
 如果值后面加上~default则标识默认值,但也可以被修改。需要使用覆盖的方式，只需在默认变量之前重新声明变量即可。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="nt">fontSize</span><span class="nd">:12px</span><span class="o">;</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">fontSize</span><span class="nd">:12px</span><span class="o">;</span>
 <span class="err">$</span><span class="nt">lineHeight</span><span class="nd">:60px</span><span class="o">;</span>
 <span class="err">$</span><span class="nt">lineHeight</span><span class="nd">:50px</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 <span class="nt">div</span><span class="p">{</span>
 	<span class="nl">font-size</span><span class="p">:</span><span class="err">$</span><span class="n">fontSize</span><span class="p">;</span>  <span class="err">//12px</span>
     <span class="nl">line-height</span><span class="p">:</span><span class="err">$</span><span class="n">lineHeight</span><span class="p">;</span>  <span class="err">//60px</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="特殊变量">特殊变量</h2>
 
 <p>指在特殊情况下使用的变量，以#{$stylename}的形式使用。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="nt">baseFontSize</span><span class="nd">:14px</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">baseFontSize</span><span class="nd">:14px</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 <span class="err">$</span><span class="nt">baseTop</span><span class="nd">:top</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 <span class="nc">.border-</span><span class="err">#</span><span class="p">{</span><span class="err">$baseTop</span><span class="p">}{</span>
 	<span class="err">border-#{$baseTop</span><span class="p">}</span> <span class="o">:</span> <span class="err">$</span><span class="nt">baseFontSize</span> <span class="nt">solid</span> <span class="nf">#999</span><span class="o">;</span>
 <span class="err">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="多值变量">多值变量</h2>
 
 <p>多值变量分为list类型（类似js数组）和map类型（类似js对象）</p>
@@ -259,33 +254,30 @@
 
 <p>list数据可以通过空格，逗号，或者小括号风格多个值，可以用nth($var,$index)取值。其还有很多函数可以调用使用，如：[length($list)],[join($list1,$list2,[$separator])],[append($list,$value,[$separator])]等等…</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">//</span><span class="err">一维数组</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span><span class="err">一维数组</span>
 <span class="err">$</span><span class="nt">borderList</span><span class="nd">:2px</span> <span class="nt">3px</span> <span class="nt">4px</span> <span class="nt">5px</span><span class="o">;</span>
 <span class="o">//</span><span class="err">二位数组</span>
 <span class="err">$</span><span class="nt">borderList</span><span class="o">:(</span><span class="nt">1px</span> <span class="nt">2px</span><span class="o">)</span> <span class="o">(</span><span class="nt">3px</span> <span class="nt">4px</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code> <span class="o">//</span><span class="err">使用</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">//</span><span class="err">使用</span>
  <span class="nt">div</span><span class="p">{</span>
  	<span class="nl">border</span><span class="p">:</span><span class="n">nth</span><span class="p">(</span><span class="err">$</span><span class="n">borderList</span><span class="p">,</span><span class="m">1</span><span class="p">)</span> <span class="n">nth</span><span class="p">(</span><span class="err">$</span><span class="n">borderList</span><span class="p">,</span><span class="m">2</span><span class="p">)</span> <span class="n">nth</span><span class="p">(</span><span class="err">$</span><span class="n">borderList</span><span class="p">,</span><span class="m">3</span><span class="p">)</span> <span class="n">nth</span><span class="p">(</span><span class="err">$</span><span class="n">borderList</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
  <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="map">map</h2>
 
 <p>map数据以key，value键值对的形式承兑出现，其中value也可以是list。
 格式为$map:(key:value,key:value,…..).可通过map-get($map,$key)取值。还带有函数可以调用，如[ map.gerge($map1.$map2),map-keys($map),map-valyes($map) ]等</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="nt">headings</span><span class="o">:(</span><span class="nt">h1</span><span class="nd">:18px</span><span class="o">,</span><span class="nt">h2</span><span class="nd">:14px</span><span class="o">,</span><span class="nt">h3</span><span class="nd">:12px</span><span class="o">);</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">headings</span><span class="o">:(</span><span class="nt">h1</span><span class="nd">:18px</span><span class="o">,</span><span class="nt">h2</span><span class="nd">:14px</span><span class="o">,</span><span class="nt">h3</span><span class="nd">:12px</span><span class="o">);</span>
 <span class="k">@each</span> <span class="err">$</span><span class="n">header</span><span class="p">,</span><span class="err">$</span><span class="n">size</span> <span class="n">in</span> <span class="err">$</span><span class="n">headings</span><span class="p">{</span>
 	<span class="err">#</span><span class="p">{</span><span class="err">$header</span><span class="p">}</span> <span class="p">{</span>
     	<span class="nl">font-size</span><span class="p">:</span><span class="err">$</span><span class="n">size</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="全局变量">全局变量</h2>
 
@@ -295,30 +287,28 @@
 
 <p>在选择器中声明的变量会覆盖外面全局声明的变量。(这也就是人们常说的sass没有局部变量)</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="nt">fontSize</span><span class="nd">:12px</span><span class="o">;</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">fontSize</span><span class="nd">:12px</span><span class="o">;</span>
 <span class="nt">body</span><span class="p">{</span>
 	<span class="err">$</span><span class="py">fontSize</span><span class="p">:</span><span class="m">14px</span><span class="p">;</span>
     <span class="nl">font-size</span><span class="p">:</span><span class="err">$</span><span class="n">fontSize</span><span class="p">;</span>  <span class="err">//12px</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="计算功能">计算功能</h2>
 
 <p>sass允许我们在代码中使用算数表达式</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">body</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span><span class="p">{</span>
 	<span class="nl">margin</span><span class="p">:(</span><span class="m">14px</span><span class="p">/</span><span class="m">2</span><span class="p">);</span>
     <span class="nl">top</span><span class="p">:</span><span class="m">50px</span><span class="err">+</span><span class="m">100px</span><span class="p">;</span>
     <span class="nl">right</span><span class="p">:</span><span class="err">$</span><span class="n">var</span> <span class="err">*</span> <span class="m">10%</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="嵌套">嵌套</h2>
 
 <p>sass允许选择器与属性嵌套展示</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">div</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="p">{</span>
 	<span class="err">h1{</span>
     	<span class="nl">color</span><span class="p">:</span><span class="no">red</span><span class="p">;</span>
     <span class="p">}</span>
@@ -333,20 +323,18 @@
 <span class="nt">a</span><span class="p">{</span>
 	<span class="err">&amp;:hover{</span><span class="nl">color</span><span class="p">:</span><span class="no">yellow</span><span class="p">;}</span>
 <span class="err">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="继承">继承</h2>
 
 <p>sass允许一个选择器，继承另一个选择器，</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.class1</span><span class="p">{</span><span class="nl">border</span><span class="p">:</span><span class="m">1px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;}</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.class1</span><span class="p">{</span><span class="nl">border</span><span class="p">:</span><span class="m">1px</span> <span class="nb">solid</span> <span class="no">red</span><span class="p">;}</span>
 <span class="nc">.class2</span><span class="p">{</span>
 	<span class="err">@extend</span> <span class="err">.class1;</span>
     <span class="nl">font-size</span><span class="p">:</span><span class="m">120px</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="mixin">Mixin</h2>
 
@@ -354,126 +342,113 @@
 
 <p>使用@mixin命令，定义一个代码块。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@mixin</span> <span class="nb">left</span><span class="p">(</span><span class="err">$</span><span class="n">value</span><span class="p">:</span><span class="m">10px</span><span class="p">){</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@mixin</span> <span class="nb">left</span><span class="p">(</span><span class="err">$</span><span class="n">value</span><span class="p">:</span><span class="m">10px</span><span class="p">){</span>
 	<span class="nl">float</span><span class="p">:</span><span class="nb">left</span><span class="p">;</span>
     <span class="nl">margin-left</span><span class="p">:</span><span class="m">10px</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>使用@include命令，调用这个mixin。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">div</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">div</span><span class="p">{</span>
 	<span class="err">@include</span> <span class="err">left(20px);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>mixin实例如下</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@mixin</span> <span class="n">rounded</span><span class="p">(</span><span class="err">$</span><span class="n">vert</span><span class="p">,</span><span class="err">$</span><span class="n">horz</span><span class="p">,</span><span class="err">$</span><span class="n">radius</span><span class="p">:</span><span class="m">10px</span><span class="p">){</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@mixin</span> <span class="n">rounded</span><span class="p">(</span><span class="err">$</span><span class="n">vert</span><span class="p">,</span><span class="err">$</span><span class="n">horz</span><span class="p">,</span><span class="err">$</span><span class="n">radius</span><span class="p">:</span><span class="m">10px</span><span class="p">){</span>
 	<span class="nt">border-</span><span class="err">#</span><span class="p">{</span><span class="err">$vert</span><span class="p">}</span><span class="nt">-</span><span class="err">#</span><span class="p">{</span><span class="err">$horz</span><span class="p">}</span><span class="nt">-radius</span><span class="o">:</span><span class="err">$</span><span class="nt">radius</span><span class="o">;</span>
     <span class="nt">-moz-border-radius-</span><span class="err">#</span><span class="p">{</span><span class="err">$vert</span><span class="p">}</span><span class="err">#</span><span class="p">{</span><span class="err">$horz</span><span class="p">}</span><span class="o">:</span><span class="err">$</span><span class="nt">radius</span><span class="o">;</span>
     <span class="nt">-webkit-border-radius-</span><span class="err">#</span><span class="p">{</span><span class="err">$vert</span><span class="p">}</span><span class="err">#</span><span class="p">{</span><span class="err">$horz</span><span class="p">}</span><span class="o">:</span><span class="err">$</span><span class="nt">radius</span><span class="o">;</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>使用的时候，下面这样调用：</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nf">#navbar</span> <span class="nt">li</span> <span class="p">{</span><span class="err">@include</span> <span class="err">rounded(top,left);</span><span class="p">}</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#navbar</span> <span class="nt">li</span> <span class="p">{</span><span class="err">@include</span> <span class="err">rounded(top,left);</span><span class="p">}</span>
 <span class="nf">#footer</span> <span class="p">{</span><span class="err">@include</span> <span class="err">rounded(top,left,5px);</span><span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="颜色函数">颜色函数</h2>
 
 <p>sass提供了一些内置的颜色函数，以便生成系列颜色。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">lighten</span><span class="o">(</span><span class="nf">#cc3</span><span class="o">,</span><span class="nt">10</span><span class="o">%)</span>  <span class="o">//</span><span class="nf">#d6d65c</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">lighten</span><span class="o">(</span><span class="nf">#cc3</span><span class="o">,</span><span class="nt">10</span><span class="o">%)</span>  <span class="o">//</span><span class="nf">#d6d65c</span>
 <span class="nt">darken</span><span class="o">(</span><span class="nf">#cc3</span><span class="o">,</span><span class="nt">10</span><span class="o">%)</span>   <span class="o">//</span><span class="nf">#a3a329</span>
 <span class="nt">grayscale</span><span class="o">(</span><span class="nf">#cc3</span><span class="o">)</span>    <span class="o">//</span><span class="nf">#808080</span>
 <span class="nt">complement</span><span class="o">(</span><span class="nf">#cc3</span><span class="o">)</span>   <span class="o">//</span><span class="nf">#33c</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="插入文件">插入文件</h2>
 
 <p>@import命令，用来插入外部文件。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"path/filename.scss"</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"path/filename.scss"</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>如果插入的是.css文件，则等同于css的import命令</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"foo.css"</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="s1">"foo.css"</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h2 id="条件语句">条件语句</h2>
 
 <p>@if可以用来判断：</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">p</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">p</span><span class="p">{</span>
     <span class="err">@if</span> <span class="err">1+1==2{</span><span class="nl">border</span><span class="p">:</span><span class="m">1px</span> <span class="nb">solid</span><span class="p">;}</span>
     <span class="k">@if</span> <span class="m">5</span><span class="err">&lt;</span><span class="m">3</span> <span class="p">{</span><span class="nl">border</span><span class="p">:</span><span class="m">2px</span> <span class="nb">dotted</span><span class="p">;}</span>
 <span class="err">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>配套的还有@else命令</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@if</span> <span class="n">lightness</span><span class="p">(</span><span class="err">$</span><span class="n">color</span><span class="p">)</span> <span class="err">&gt;</span> <span class="m">30%</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@if</span> <span class="n">lightness</span><span class="p">(</span><span class="err">$</span><span class="n">color</span><span class="p">)</span> <span class="err">&gt;</span> <span class="m">30%</span><span class="p">{</span>
 	<span class="nl">background-color</span><span class="p">:</span><span class="m">#000</span><span class="p">;</span>
 <span class="p">}</span><span class="k">@else</span> <span class="p">{</span>
 	<span class="nl">background-color</span><span class="p">:</span><span class="m">#fff</span><span class="p">;</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="循环语句">循环语句</h2>
 
 <p>sass支持for循环</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code>    <span class="k">@for</span> <span class="err">$</span><span class="n">i</span> <span class="n">from</span> <span class="m">1</span> <span class="n">to</span> <span class="m">10</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">@for</span> <span class="err">$</span><span class="n">i</span> <span class="n">from</span> <span class="m">1</span> <span class="n">to</span> <span class="m">10</span><span class="p">{</span>
     	<span class="nc">.border</span><span class="o">:</span><span class="err">#</span><span class="p">{</span><span class="err">$i</span><span class="p">}</span><span class="nt">px</span> <span class="nt">solid</span> <span class="nt">blue</span><span class="o">;</span>
     <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>也支持while循环：</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="err">$</span><span class="nt">i</span><span class="nd">:6</span><span class="o">;</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="nt">i</span><span class="nd">:6</span><span class="o">;</span>
 <span class="k">@while</span> <span class="err">$</span><span class="n">i</span><span class="err">&gt;</span><span class="m">0</span><span class="p">{</span>
 	<span class="nc">.item-</span><span class="err">#</span><span class="p">{</span><span class="err">$i</span><span class="p">}{</span><span class="nl">width</span><span class="p">:</span><span class="m">2em</span><span class="err">*$</span><span class="n">i</span><span class="p">;}</span>
     <span class="err">$</span><span class="nt">i</span><span class="o">:</span><span class="err">$</span><span class="nt">i-2</span><span class="o">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>each 命令，作用域for类似：</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@each</span> <span class="err">$</span><span class="n">menber</span> <span class="n">in</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@each</span> <span class="err">$</span><span class="n">menber</span> <span class="n">in</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">{</span>
 	<span class="o">.</span><span class="err">#</span><span class="p">{</span><span class="err">$menber</span><span class="p">}{</span>
     	<span class="nl">background-image</span><span class="p">:</span><span class="sx">url("/image/#{$menber}.jpg")</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="自定义函数">自定义函数</h2>
 
 <p>sass允许用户编写自己的函数</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@function</span> <span class="nb">double</span><span class="p">(</span><span class="err">$</span><span class="n">n</span><span class="p">){</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@function</span> <span class="nb">double</span><span class="p">(</span><span class="err">$</span><span class="n">n</span><span class="p">){</span>
 	<span class="k">@return</span> <span class="err">$</span><span class="n">n</span><span class="err">*</span><span class="m">2</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nf">#sidebar</span><span class="p">{</span>
 	<span class="nl">width</span><span class="p">:</span><span class="nb">double</span><span class="p">(</span><span class="m">5px</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -530,6 +505,10 @@
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -577,6 +556,20 @@
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -689,7 +682,7 @@
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

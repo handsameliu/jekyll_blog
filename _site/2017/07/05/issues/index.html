@@ -200,7 +200,7 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 
 <p>所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	wx.config({
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	wx.config({
 		debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 		appId: '', // 必填，公众号的唯一标识
 		timestamp: , // 必填，生成签名的时间戳
@@ -208,29 +208,26 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 		signature: '',// 必填，签名，见附录1
 		jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 	});
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="步骤四通过ready接口处理成功验证">步骤四：通过ready接口处理成功验证</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	wx.ready(function(){
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	wx.ready(function(){
 		// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 	});
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="步骤五通过error接口处理失败验证">步骤五：通过error接口处理失败验证</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	wx.error(function(res){
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	wx.error(function(res){
 		// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="接口调用说明">接口调用说明</h3>
 
 <p>所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	1.success：接口调用成功时执行的回调函数。
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	1.success：接口调用成功时执行的回调函数。
 	2.fail：接口调用失败时执行的回调函数。
 	3.complete：接口调用完成时执行的回调函数，无论成功或失败都会执行。
 	4.cancel：用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。
@@ -240,16 +237,14 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 	调用成功时："xxx:ok" ，其中xxx为调用的接口名
 	用户取消时："xxx:cancel"，其中xxx为调用的接口名
 	调用失败时：其值为具体错误信息
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="建议将以上方法重新封装到一个统一的方法中方便调用以下是所有的jslist建议是需要哪个请求哪个即可不用都写上">建议将以上方法重新封装到一个统一的方法中，方便调用。以下是所有的jslist，建议是需要哪个请求哪个即可，不用都写上。</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let jsList = ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone','hideMenuItems','showMenuItems','hideAllNonBaseMenuItem','showAllNonBaseMenuItem','translateVoice','startRecord','stopRecord','onVoiceRecordEnd','playVoice','onVoicePlayEnd','pauseVoice','stopVoice','uploadVoice','downloadVoice','chooseImage','previewImage','uploadImage','downloadImage','getNetworkType','openLocation','getLocation','hideOptionMenu','showOptionMenu','closeWindow','scanQRCode','chooseWXPay','openProductSpecificView','addCard','chooseCard','openCard','configWXDeviceWiFi','onReceiveDataFromWXDevice','openWXDeviceLib', 'getWXDeviceInfos','connectWXDevice','disconnectWXDevice','getWXDeviceTicket'];
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let jsList = ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone','hideMenuItems','showMenuItems','hideAllNonBaseMenuItem','showAllNonBaseMenuItem','translateVoice','startRecord','stopRecord','onVoiceRecordEnd','playVoice','onVoicePlayEnd','pauseVoice','stopVoice','uploadVoice','downloadVoice','chooseImage','previewImage','uploadImage','downloadImage','getNetworkType','openLocation','getLocation','hideOptionMenu','showOptionMenu','closeWindow','scanQRCode','chooseWXPay','openProductSpecificView','addCard','chooseCard','openCard','configWXDeviceWiFi','onReceiveDataFromWXDevice','openWXDeviceLib', 'getWXDeviceInfos','connectWXDevice','disconnectWXDevice','getWXDeviceTicket'];
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	// 开始录音
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	// 开始录音
 	wx.ready(function () {
 		wx.startRecord({
 			success: function(){
@@ -270,8 +265,7 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 			console.log(res);
 		}
 	});
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>微信语音的格式是amr的所以无法直接播放就需要转换成h5可以识别的格式了。而且还需要先上传到微信才能下载到本地。。。</p>
 
@@ -280,7 +274,7 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 <p>七牛提供了各种语言不通的sdk，非常方便。
 首先require(‘qiniu’)，其次就是非常重要的key了。需要从自己的七牛账户中获取到ACCESS_KEY，SECRET_KEY，Bucket_Name，这些都是要在请求token的时候使用的。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	// 获取图片token
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	// 获取图片token
 	exports.getToken = (req, res) =&gt; {
 		// 获取密钥
 		qiniu.conf.ACCESS_KEY = ACCESS_KEY;
@@ -322,8 +316,7 @@ input标签需要设置keyUp事件，每次输入的值都要监听（其实手�
 		let token = uptoken.token();
 		return token;
 	};
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上传的话，将token和文件一起post到七牛即可了，token是有时效的哦。。</p>
 
@@ -360,7 +353,7 @@ vw 相对于视窗的宽度：视窗宽度是100vw。vw 相对于视窗的高度
 也许是受益于react的生命周期吧。
 以下是知乎的解决方法，可以直接使用。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>xxx.setDocumentTitle = function(title) {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xxx.setDocumentTitle = function(title) {
 	document.title = title;
 	if (/ip(hone|od|ad)/i.test(navigator.userAgent)) {
 		var i = document.createElement('iframe');
@@ -378,18 +371,16 @@ vw 相对于视窗的宽度：视窗宽度是100vw。vw 相对于视窗的高度
 //链接：https://www.zhihu.com/question/26228251/answer/129206389
 //来源：知乎
 //著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="9下载微信二维码图片并修改名称及后缀">9、下载微信二维码图片并修改名称及后缀</h2>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;a</span> <span class="na">id=</span><span class="s">"link"</span> <span class="na">download=</span><span class="s">"我的二维码.jpg"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span> dasdasds
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="nt">&lt;a</span> <span class="na">id=</span><span class="s">"link"</span> <span class="na">download=</span><span class="s">"我的二维码.jpg"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span> dasdasds
 		<span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">"myCanvas"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
 	<span class="nt">&lt;/a&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// 方法忘记是从哪个网站上找的了。。。不过仅对于有后缀的图片是可以处理的，微信生产的二维码是没有后缀的。</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 方法忘记是从哪个网站上找的了。。。不过仅对于有后缀的图片是可以处理的，微信生产的二维码是没有后缀的。</span>
 <span class="c1">// 所以我的项目中暂时使用的是a标签直接链接地址弹出下载的方式。</span>
 
 <span class="kd">function</span> <span class="nx">convertImageToBase64</span><span class="p">(</span><span class="nx">image_url</span><span class="p">)</span> <span class="p">{</span>
@@ -408,21 +399,19 @@ vw 相对于视窗的宽度：视窗宽度是100vw。vw 相对于视窗的高度
 	<span class="p">};</span>
 	<span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">image_url</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>再补充一种下载方式 不兼容火狐</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var $a = document.createElement('a');
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var $a = document.createElement('a');
 $a.setAttribute("href", $scope.twoBarCodeImg);
 $a.setAttribute("download", "我的二维码.jpg");
 var evObj = document.createEvent('MouseEvents');
 evObj.initMouseEvent( 'click', true, true, window, 0, 0, 0, 0, 0, false, false, true, false, 0, null);
 $a.dispatchEvent(evObj);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>最好是让后台返回一个文件地址或者文件流。前台别操作</p>
@@ -438,7 +427,7 @@ $a.dispatchEvent(evObj);
 
 <p>由于是移动端开发使用的是css3的属性，没有使用伪类的方法。如果考虑兼容建议伪类的方式。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code>	<span class="c">/*第一种方式也是我使用的方式*/</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="c">/*第一种方式也是我使用的方式*/</span>
 	<span class="nt">display</span><span class="o">:</span> <span class="s2">'-webkit-box'</span><span class="o">,</span>
     <span class="nt">WebkitLineClamp</span><span class="o">:</span> <span class="s2">'3'</span><span class="o">,</span> <span class="c">/*设定超出几行显示省略号*/</span>
     <span class="nt">WebkitBoxOrient</span><span class="o">:</span> <span class="s2">'vertical'</span><span class="o">,</span>
@@ -449,10 +438,9 @@ $a.dispatchEvent(evObj);
 	<span class="nt">text-overflow</span><span class="nd">:ellipsis</span><span class="o">;</span>
 	<span class="nt">white-space</span><span class="o">:</span> <span class="nt">nowrap</span><span class="o">;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/*纯css3实现的多行超出显示省略号*/</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/*纯css3实现的多行超出显示省略号*/</span>
 <span class="err">$</span><span class="nt">font-size</span><span class="o">:</span> <span class="nt">26px</span><span class="o">;</span>
 <span class="err">$</span><span class="nt">line-height</span><span class="o">:</span> <span class="nt">1</span><span class="nc">.4</span><span class="o">;</span>
 <span class="err">$</span><span class="nt">lines-to-show</span><span class="o">:</span> <span class="nt">3</span><span class="o">;</span>
@@ -484,8 +472,7 @@ $a.dispatchEvent(evObj);
     <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
     <span class="nl">text-overflow</span><span class="p">:</span> <span class="n">ellipsis</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>适用范围：
 因使用了WebKit的CSS扩展属性，该方法适用于WebKit浏览器及移动端；
@@ -496,7 +483,7 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 
 <h3 id="使用伪元素加绝对定位">使用伪元素加绝对定位</h3>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">p</span> <span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">p</span> <span class="p">{</span>
 	<span class="nl">position</span><span class="p">:</span><span class="nb">relative</span><span class="p">;</span>
 	<span class="nl">line-height</span><span class="p">:</span><span class="m">20px</span><span class="p">;</span>
 	<span class="nl">max-height</span><span class="p">:</span><span class="m">40px</span><span class="p">;</span>
@@ -514,8 +501,7 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 	<span class="nl">background</span><span class="p">:</span><span class="n">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">right</span><span class="p">,</span><span class="nb">transparent</span><span class="p">,</span><span class="m">#fff</span> <span class="m">55%</span><span class="p">);</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>适用范围：
 该方法适用范围广，但文字未超出行的情况下也会出现省略号,可结合js优化该方法。
@@ -530,18 +516,17 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 
 <h2 id="11监听微信端后退事件">11、监听微信端后退事件</h2>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"popstate"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>  
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"popstate"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>  
 	<span class="c1">// 监听后执行的方法。</span>
 <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="12微信分享时遇到的问题">12、微信分享时遇到的问题</h2>
 
 <p>在制作微信分享时，遇到了一个当时认为及其奇葩的问题。分享后不显示我所设置的值。原因是页面中有一个方法加入了过滤条件，没有登陆就无法查询到。
 正常情况下按照微信jssdk中的方法一次就可以搞定。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//wxChatConfig  为获取微信授权的方法 ，具体在后台不便写出</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//wxChatConfig  为获取微信授权的方法 ，具体在后台不便写出</span>
 <span class="nx">wxChatConfig</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">doctor</span><span class="p">,</span> <span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">doctor</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 	<span class="nx">wx</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 		<span class="kd">let</span> <span class="nx">shareData</span> <span class="o">=</span> <span class="p">{</span>
@@ -563,30 +548,28 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 		<span class="nx">wx</span><span class="p">.</span><span class="nx">onMenuShareTimeline</span><span class="p">(</span><span class="nx">shareData</span><span class="p">);</span>
 	<span class="p">});</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="13ios下readonly失效">13、ios下readonly失效</h2>
 
 <p>最近使用reactweui做公众号，在iso设备上出现readonly失效的情况，找了一下原因是ios系统的问题，虽然设置了只读，但是失效了，安卓下完美。所以找到几种方法。最好用的是让当前元素支取焦点，其次是两个css3webkit属性</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">activeElement</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>  <span class="c1">// 第一个就可以完美解决问题</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">activeElement</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>  <span class="c1">// 第一个就可以完美解决问题</span>
 <span class="err">在</span><span class="nx">focus</span><span class="err">的时候</span><span class="nx">e</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
 <span class="nx">unselectable</span><span class="o">=</span><span class="s2">"on"</span>
 <span class="nx">onselectstart</span><span class="o">=</span><span class="s2">"return false;"</span>
-<span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">user</span><span class="o">-</span><span class="nx">select</span><span class="err">:</span><span class="nx">none</span><span class="p">;</span>
-<span class="nx">ime</span><span class="o">-</span><span class="nx">mode</span><span class="err">:</span><span class="nx">disabled</span><span class="p">;</span>
-<span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">touch</span><span class="o">-</span><span class="nx">callout</span><span class="err">:</span><span class="nx">none</span><span class="p">;</span>
-</code></pre>
-</div>
+<span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">user</span><span class="o">-</span><span class="nx">select</span><span class="p">:</span><span class="nx">none</span><span class="p">;</span>
+<span class="nx">ime</span><span class="o">-</span><span class="nx">mode</span><span class="p">:</span><span class="nx">disabled</span><span class="p">;</span>
+<span class="o">-</span><span class="nx">webkit</span><span class="o">-</span><span class="nx">touch</span><span class="o">-</span><span class="nx">callout</span><span class="p">:</span><span class="nx">none</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h2 id="14判断是手机还是pc并实现跳转">14、判断是手机还是PC并实现跳转</h2>
 
 <p>由于目前好多网站手机端和PC端使用的并不是同一个自适应页面，所以就需要判断客户登陆的方式并自动跳转到指定的页面。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">browser</span><span class="o">=</span><span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">browser</span><span class="o">=</span><span class="p">{</span>
 		<span class="na">versions</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
-			<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">,</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">appVersion</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">,</span> <span class="nx">app</span> <span class="o">=</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">appVersion</span><span class="p">;</span>
 			<span class="k">return</span> <span class="p">{</span>
 				<span class="na">trident</span><span class="p">:</span> <span class="nx">u</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'Trident'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
 				<span class="na">presto</span><span class="p">:</span> <span class="nx">u</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'Presto'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
@@ -600,15 +583,14 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 				<span class="na">webApp</span><span class="p">:</span> <span class="nx">u</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'Safari'</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
 			<span class="p">};</span>
 		<span class="p">}(),</span>
-		<span class="na">language</span><span class="p">:(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">browserLanguage</span> <span class="o">||</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+		<span class="na">language</span><span class="p">:(</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">browserLanguage</span> <span class="o">||</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">language</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
 	<span class="p">}</span>
 
 	<span class="k">if</span><span class="p">(</span><span class="nx">browser</span><span class="p">.</span><span class="nx">versions</span><span class="p">.</span><span class="nx">mobile</span> <span class="o">||</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">versions</span><span class="p">.</span><span class="nx">ios</span> <span class="o">||</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">versions</span><span class="p">.</span><span class="nx">android</span> <span class="o">||</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">versions</span><span class="p">.</span><span class="nx">iPhone</span> <span class="o">||</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">versions</span><span class="p">.</span><span class="nx">iPad</span><span class="p">){</span>
 		<span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s2">"指定页面"</span><span class="p">;</span>
 	<span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="15ios中new-date提示invalid-date">15、ios中new Date提示’invalid date’</h2>
 
@@ -616,7 +598,7 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 
 <p>另附，生成任意时间格式代码。</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">newDate</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/-/gm</span><span class="p">),</span><span class="s2">"/"</span><span class="p">);</span>  <span class="c1">// 将日期中的-替换为/</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">newDate</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/-/gm</span><span class="p">),</span><span class="s2">"/"</span><span class="p">);</span>  <span class="c1">// 将日期中的-替换为/</span>
 <span class="cm">/**
  * 自定义时间 time 时间, format 想要的格式
  */</span>
@@ -627,23 +609,22 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
 	<span class="p">};</span>
 	<span class="k">return</span> <span class="nx">format</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/yyyy|MM|dd|HH|mm|ss/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">switch</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">case</span> <span class="s1">'yyyy'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'yyyy'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span>
-			<span class="k">case</span> <span class="s1">'MM'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'MM'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-			<span class="k">case</span> <span class="s1">'mm'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'mm'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">());</span>
-			<span class="k">case</span> <span class="s1">'dd'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'dd'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span>
-			<span class="k">case</span> <span class="s1">'HH'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'HH'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getHours</span><span class="p">());</span>
-			<span class="k">case</span> <span class="s1">'ss'</span><span class="err">:</span>
+			<span class="k">case</span> <span class="s1">'ss'</span><span class="p">:</span>
 				<span class="k">return</span> <span class="nx">tf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
 		<span class="p">}</span>
 	<span class="p">})</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -700,6 +681,10 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -747,6 +732,20 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -859,7 +858,7 @@ display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe

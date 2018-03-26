@@ -193,14 +193,13 @@
 <h2 id="开始">开始</h2>
 
 <h3 id="安装hexo">安装hexo</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>$ npm install hexo-cli -g	# 全局安装
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npm install hexo-cli -g	# 全局安装
 $ hexo init blog # 这个名字可以随便起，反正最后都要转移到git项目中
 $ cd blog	
 $ npm install	# 安装依赖
 $ hexo g # hexo generate的简写
 $ hexo s # hexo server的简写
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>完成以上步骤后命令行提示：<code class="highlighter-rouge">06:55:40.452 INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code> 后就可以在 <code class="highlighter-rouge">http://localhost:4000/</code> 查看了。会显示一个默认的页面。</p>
 
@@ -216,30 +215,26 @@ $ hexo s # hexo server的简写
 
 <p>进入到blog项目的根目录中运行以下命令</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre></div></div>
 
 <p>完成下载后进入到themes/next文件夹中安装所需要的包</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd themes/next
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd themes/next
 npm install
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>安装完成后修改<code class="highlighter-rouge">站点配置文件</code>, blog根目录下的<code class="highlighter-rouge">_config.yml</code>文件，将theme改为next</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>theme: next
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>theme: next
+</code></pre></div></div>
 
 <p>改好后启动项目验证修改情况。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo clean  # 清空缓存（建议在有大的改动时运行一次）
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexo clean  # 清空缓存（建议在有大的改动时运行一次）
 hexo g
 hexo s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>此时即可使用浏览器访问 <code class="highlighter-rouge">http://localhost:4000</code> ，检查站点是否正确运行。你会看到一个全新的主题。</p>
 
@@ -255,19 +250,17 @@ hexo s
 
 <p>想要改变主题中的某些设置，你需要到主题的包中修改对应的设置。在themes/next中修改<code class="highlighter-rouge">_config.yml</code>文件</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#scheme: Muse
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#scheme: Muse
 #scheme: Mist
 scheme: Pisces
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>完成后可以重复上一步，验证修改情况。</p>
 
 <p>页面此时的语言并非中文，出现中文会乱码，那么就需要在blog根目录下修改配置文件<code class="highlighter-rouge">_config.yml</code>了。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>language: zh-Hans
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>language: zh-Hans
+</code></pre></div></div>
 
 <p>目前 NexT 支持的语言如以下表格所示：</p>
 
@@ -335,15 +328,14 @@ scheme: Pisces
 
 <p>与language一起的还有很多字段，顺便都可以设置一下的</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># Site
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Site
 title: 大标题
 subtitle: 子标题
 description: 自我介绍
 author: 作者
 language: zh-Hans
 timezone: 时区
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>现在头像也没有显示出来，同样也是在站点的配置文件中<code class="highlighter-rouge">_config.yml</code>中，字段是<code class="highlighter-rouge">avatar</code>。</p>
 
@@ -351,23 +343,21 @@ timezone: 时区
 
 <p>相对路径的文件目录是在<code class="highlighter-rouge">source</code>中，可以创建一个img文件夹存放图片，链接示例为<code class="highlighter-rouge">/img/avatar.png</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>avatar: http://example.com/avatar.png 或 /img/avatar.png
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>avatar: http://example.com/avatar.png 或 /img/avatar.png
+</code></pre></div></div>
 
 <p>这时就可以设置菜单了，我们可以到blog根目录下的配置文件中<code class="highlighter-rouge">_config.yml</code>修改</p>
 
 <p>它对应的字段是<code class="highlighter-rouge">menu</code>，找到后可以将你不喜欢的目录内容用#注释掉。内容的设置格式是：item name: link</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>menu:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>menu:
 	home: /
 	archives: /archives
 	tags: /tags
 	categories: /categories
 	#about: /about
 	#commonweal: /404.html
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>若你的站点运行在子目录中，请将链接前缀的 / 去掉</p>
@@ -381,40 +371,36 @@ timezone: 时区
 
 <p>在blog根目录下使用 <code class="highlighter-rouge">hexo new page</code> 新建一个页面，命名为 <code class="highlighter-rouge">tags</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo new page tags
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexo new page tags
+</code></pre></div></div>
 
 <p>刚刚新建的页面会在<code class="highlighter-rouge">source</code>文件夹下产生对应的文件夹及index.md文件。</p>
 
 <p>可在index文件中修改type属性。将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>title: 标签
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>title: 标签
 date: 2017-12-22 12:39:04
 type: "tags"
 ---
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>同理，categories也是同样的操作。</p>
 
 <p>在blog根目录下使用 <code class="highlighter-rouge">hexo new page</code> 新建一个页面，命名为 <code class="highlighter-rouge">categories</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo new page categories
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexo new page categories
+</code></pre></div></div>
 
 <p>刚刚新建的页面会在<code class="highlighter-rouge">source</code>文件夹下产生对应的文件夹及index.md文件。</p>
 
 <p>可在index文件中修改type属性。将页面的类型设置为 <code class="highlighter-rouge">categories</code> ，主题将自动为这个页面显示分类云。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: 标签
 date: 2017-12-22 12:39:04
 type: "categories"
 ---
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>完成以上两步菜单的所有链接就都可以点击了。</p>
 
@@ -422,44 +408,40 @@ type: "categories"
 
 <p>创建一个新的文章</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo new hello-world
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexo new hello-world
+</code></pre></div></div>
 
 <p>这里我借用一下他人的 <a href="https://segmentfault.com/a/1190000002632530">hexo参考文档</a></p>
 
 <p>在文章开头加入以下代码</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: test
 tags:
   - Testing
 categories:
   - Testing
 ---
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>重新执行 <code class="highlighter-rouge">hexo g</code> <code class="highlighter-rouge">hexo s</code> 查看网页效果，<code class="highlighter-rouge">tags</code>和<code class="highlighter-rouge">categories</code>中就会存在内容。</p>
 
 <p>完成后即可推送到git仓库上</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>hexo n #写文章
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexo n #写文章
 hexo g #生成
 hexo d #部署 #可与hexo g合并为 hexo d -g  会将当前的markdown文档转换为html页面并上传到对应的git仓库中
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这里还不能推送到git仓库上的，因为并没有指定对应的git仓库名称。配置一下git仓库地址就可以了，但前提是要有对应的仓库哦。</p>
 
 <p>在blog根目录下的<code class="highlighter-rouge">_config.yml</code>文件中找到<code class="highlighter-rouge">deploy</code>字段，设置对应的值(这里使用的是我的git地址)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>deploy:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deploy:
 	type: git
 	repo: git@github.com:handsameliu/handsameliu.github.io.git  # 这里一定要ssh格式，ssh格式可以到自己的git仓库中获取
 	branch: master
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -516,6 +498,10 @@ hexo d #部署 #可与hexo g合并为 hexo d -g  会将当前的markdown文档�
                             
         				
                             
+                				<a href="/jekyll_blog/tags/#教程" title="教程" rel="2">
+                                    教程
+                                </a>
+                            
         				
                             
         				
@@ -563,6 +549,20 @@ hexo d #部署 #可与hexo g合并为 hexo d -g  会将当前的markdown文档�
                 				<a href="/jekyll_blog/tags/#vue-cli" title="vue-cli" rel="2">
                                     vue-cli
                                 </a>
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
                             
         				
                             
@@ -675,7 +675,7 @@ hexo d #部署 #可与hexo g合并为 hexo d -g  会将当前的markdown文档�
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; handsameliu 2017
+                    Copyright &copy; handsameliu 2018
                     <!-- <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> | -->
                     <iframe
