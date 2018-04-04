@@ -154,6 +154,37 @@
             ">
     			
 <div class="post-preview">
+    <a href="/jekyll_blog/2017/08/23/gitIssues/">
+        <h2 class="post-title">
+            git突然无法连接提示公钥或密码错误的坑
+        </h2>
+        
+        <h3 class="post-subtitle">
+            git
+        </h3>
+        
+        <div class="post-content-preview">
+            ssh配置文件莫名其妙的出现了问题，可能由于在电脑上乱试版本管理工具导致的吧。
+
+然后就是各种调，因为当前电脑会链接github和gitlab以及服务器，所以本地的ssh有点多，设置起来也费点时间。
+
+
+
+那么今天遇到的问题就坑了
+
+
+  ssh -T git@github.com		正常连接
+  git pull origin master	提示密码不对无法连接
+  各种查看后发现项目.g...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/jekyll_blog/2017/07/05/testing/">
         <h2 class="post-title">
             test markdown
@@ -441,25 +472,6 @@ git安装完成后需要创建对应的仓库。可到 github.com
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/jekyll_blog/2017/07/05/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        
-        <div class="post-content-preview">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by handsameliu on July 5, 2017
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -500,7 +512,7 @@ git安装完成后需要创建对应的仓库。可到 github.com
                             
                         
                             
-                                <a href="/jekyll_blog/tags/#总结" title="总结" rel="13">
+                                <a href="/jekyll_blog/tags/#总结" title="总结" rel="14">
                                     总结
                                 </a>
                             
@@ -571,6 +583,12 @@ git安装完成后需要创建对应的仓库。可到 github.com
                         
                             
                         
+                            
+                        
+                            
+                                <a href="/jekyll_blog/tags/#javascript" title="javascript" rel="2">
+                                    javascript
+                                </a>
                             
                         
                             

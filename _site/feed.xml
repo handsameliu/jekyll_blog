@@ -3,12 +3,378 @@
   <channel>
     <title>handsameliu</title>
     <description>工作五年的初级程序员，自认为拥有小小的帅气，请多指教</description>
-<<<<<<< HEAD
-    <link>http://localhost:4000/jekyll_blog/</link>
-    <atom:link href="http://localhost:4000/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 26 Mar 2018 18:28:50 +0800</pubDate>
-    <lastBuildDate>Mon, 26 Mar 2018 18:28:50 +0800</lastBuildDate>
+    <link>/jekyll_blog/</link>
+    <atom:link href="/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 04 Apr 2018 11:35:05 +0800</pubDate>
+    <lastBuildDate>Wed, 04 Apr 2018 11:35:05 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>面试汇总</title>
+        <description>&lt;h3 id=&quot;医视界-20180403&quot;&gt;医视界 20180403&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'123'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// 1233&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;// number&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;// 1234&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;// 0,1,2,3,4,5,6,7,8,9&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// 100&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;// 9&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;写出熟悉的新增的css样式，伪类。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;vertical-align
+border-radius
+box-shadow
+text-shadow
+transform
+transition
+animation
+@keyframes&lt;/p&gt;
+
+&lt;p&gt;:nth类选择器	
+:first-child	
+:lase-child		
+:nth-child()&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;call和apply的区别，==和===的区别，null和undefined的区别。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;call和apply的区别: 功能一样，都可以改变方法的执行上下文，将一个对象的方法交给另一个方法来执行，并且立即执行。不同点是call方法的第二个参数开始可以接收任意个参数，每个参数会映射到被call运行了的方法参数上。而apply方法最多允许两个参数,第二个参数是一个数组。&lt;/p&gt;
+
+&lt;p&gt;==和===的区别：”===”叫做严格运算符，”==”叫做相等运算符。严格运算符会严格比较两个值是否一致，包括类型，如果类型不相同也会返回false。引用类型会比较是否指向同一对象。相等运算符在比较相同类型时与严格模式运算符一样，类型不同时并不会比较类型，会进行隐式转换，转换后执行严格运算比较。&lt;/p&gt;
+
+&lt;p&gt;null和undefined的区别：两个都自身严格相等。null表示没有对象，即这里不应该有值。undefined表示缺少值，即变量已被声明，但还未赋值。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;javascript事件流是什么？&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;事件流描述的是从页面中接收事件的顺序。事件发生时会在元素阶段与根节点之间按照特定的顺序传播，路径所经过的所有节点都会收到该事件，这个传播过程就是DOM事件流。&lt;/p&gt;
+
+&lt;p&gt;事件传播的顺序对应的浏览器的两种事件流模型：&lt;code class=&quot;highlighter-rouge&quot;&gt;捕获型事件流&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;冒泡型事件流&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;冒泡型事件流&lt;/code&gt;：事件的传播是从最特定的事件目标到最不特定的事件目标。即从DOM树的叶子到根。&lt;code class=&quot;highlighter-rouge&quot;&gt;推荐&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;捕获型事件流&lt;/code&gt;：事件的传播是从最不特定的事件目标到最特定的事件目标。即从DOM树的根到叶子。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DOM0级&lt;/code&gt;事件方法指定的事件程序被认为是元素的方法，程序是在元素作用域中进行的，程序中this是引用的当前元素。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DOM2级&lt;/code&gt;事件规定的事件流分为三个阶段：&lt;code class=&quot;highlighter-rouge&quot;&gt;捕获&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;目标&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;冒泡&lt;/code&gt;。事件在冒泡阶段被触发，与DOM0级方法一样，这里添加的事件处理程序也是在其依赋的元素作用域中运行，使用DOM2级添加处理程序的好处是可以添加多个事件处理程序。&lt;/p&gt;
+
+&lt;p&gt;非IE浏览器中使用&lt;code class=&quot;highlighter-rouge&quot;&gt;addEventListener&lt;/code&gt;方法，在IE中使用的是&lt;code class=&quot;highlighter-rouge&quot;&gt;attachEvent&lt;/code&gt;方法，且具体事件名称前要加&lt;code class=&quot;highlighter-rouge&quot;&gt;on&lt;/code&gt;，例如&lt;code class=&quot;highlighter-rouge&quot;&gt;onclick&lt;/code&gt;。在IE中使用attachEvent()和使用DOM0级方法的主要区别在于事件处理程序的作用域，在使用DOM0级情况下，事件处理程序在其所属元素的作用域内运行，在使用attachEvent()方法的情况下，事件处理程序在全局作用域下运行，其中的this指向window。&lt;/p&gt;
+
+&lt;p&gt;可以做兼容处理 &lt;code class=&quot;highlighter-rouge&quot;&gt;var e = e || window.event&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;阻止冒泡：非IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;e.stopPropagation()&lt;/code&gt;; IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;window.event.cancelBubble = true&lt;/code&gt;;&lt;/p&gt;
+
+&lt;p&gt;阻止默认事件：非IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;e.preventDefault()&lt;/code&gt;; IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;window.event.returnValue = false&lt;/code&gt;;&lt;/p&gt;
+
+&lt;p&gt;获取事件目标：非IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;e.target&lt;/code&gt;; IE: &lt;code class=&quot;highlighter-rouge&quot;&gt;window.event.srcElement&lt;/code&gt;;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;js事件委托是什么？使用事件委托对一个列表中的链接进行操作，点击每一个链接单独打开新窗口。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;红包书上是这么说的：事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ulid&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.baidu.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;baidu&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.jd.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;jd&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.taobao.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;taobao&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.bilibili.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;bilibili&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.youku.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;youku&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ulid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;UL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;srcElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toLowerCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;　　&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;根据不同后台接口的返回值（json格式或纯数组，但具体返回值不固定，返回格式不固定，无特殊处理），创建动态渲染表格，使其可复用多个项目。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;略，参考dataTable插件&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;还有三道题，没记住。都是原生js基础。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;360企业安全-20180313&quot;&gt;360企业安全 20180313&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;1.经典的作用域题，但长时间没有看又忘了。
+      &lt;h5 id=&quot;参考&quot;&gt;&lt;a href=&quot;http://blog.csdn.net/mongo__/article/details/72810338&quot;&gt;参考&lt;/a&gt;&lt;/h5&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
+&lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;c1&quot;&gt;// 请写出一下的输出结果  &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;   
+&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;   
+&lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;    
+&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;答案是 &lt;code class=&quot;highlighter-rouge&quot;&gt;2 4 1 1 2 3 3&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第一行： Foo.getName() 
+	» 调用方式2的函数代码块，结果为&lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第二行：getName() 
+    » 如果单独看这条执行语句，一般会有个全局声明的函数方式5”function getName(){} “,但要是放在这么个复杂的上下文环境中，那肯定是不一样的，
+	» 因为还有个方式4 “var getName = function(){}” 来捣乱，&lt;code class=&quot;highlighter-rouge&quot;&gt;当定义的变量和声明的函数重名了怎么办？&lt;/code&gt;
+	» 答：它们都会进行预解析，函数声明提前于变量声明，但是&lt;code class=&quot;highlighter-rouge&quot;&gt;最终会被变量覆盖&lt;/code&gt;！so方式4获胜，输出结果为&lt;code class=&quot;highlighter-rouge&quot;&gt;4&lt;/code&gt;！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第三行：Foo().getName()
+	» 本句，有个执行顺序的，先执行方式1的“Foo()”,结果是”this” 并指向window，并产生了一个全局getName(window.getName)指针指向一个匿名函数，然后再执行”this.getName()” , 其实就是执行刚刚造出来的那个全局getName指向的匿名函数，所以输出&lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第四行：getName()
+    » 此句执行的是方式1执行出来的那个全局变量getName 指针指向的匿名函数，此时方式4已经被覆盖了！所以结果为 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第五行：new Foo.getName()
+    » 首先还是先看运算符优先级吧，结果是【new Foo() &amp;gt;  Foo() &amp;gt; new Foo】，先运算方式2的Foo.getName() 结果为&lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;，再new一个Foo实例对象。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第六行：new Foo().getName()
+    » 先执行 new Foo(), 结果产生一个新的实例对象，并且继承了Foo()这个构造函数中的getName方法，所以再执行方式3函数块，因此结果为 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;执行语句第七行：new new Foo().getName()
+    » &lt;del&gt;先实例化new Foo,执行后就是变成了 new Foo的实例对象.getName(), 然后再实例化 new Foo的实例对象.getName(), 也就是回到了方式3的函数块，最后执行结果为&lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;&lt;/del&gt;
+    先实例化Foo，再实例化new Foo().getName，也就是 new 和 () 是成对出现的 – @Lamonfly&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;2，逐行输入下列，输出是什么
+      &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;注意是&lt;code class=&quot;highlighter-rouge&quot;&gt;逐行输入&lt;/code&gt;，都报错&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;3，以下输出为&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; 
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;答案是 1,4,6,3,2,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;从上往下看定时器异步最后这个肯定没有问题，但值得我注意的是只有在resolve的then中才会是异步的，所以1先输出，而4会优先于3输出，然后输出6。return 后不再执行。promise执行return后才会执行resolve的3。
+promise执行完成后才会输出定时器中的2&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;4，css 水平垂直居中的方法&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;很多种，比较简单，就不系说了，可以自行搜索&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;5，git如何对分支进行跟踪
+      &lt;h5 id=&quot;参考-1&quot;&gt;&lt;a href=&quot;http://gitbook.liuhui998.com/4_7.html&quot;&gt;参考&lt;/a&gt;&lt;/h5&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在Git中‘追踪分支’是用与联系本地分支和远程分支的. 如果你在’追踪分支’(Tracking Branches)上执行推送(push)或拉取(pull)时,　它会自动推送(push)或拉取(pull)到关联的远程分支上.
+如果你经常要从远程仓库里拉取(pull)分支到本地,并且不想很麻烦的使用”git pull “这种格式; 那么就应当使用‘追踪分支’(Tracking Branches).
+‘git clone‘命令会自动在本地建立一个’master’分支，它是’origin/master’的‘追踪分支’. 而’origin/master’就是被克隆(clone)仓库的’master’分支.
+译者注: origin一般是指原始仓库地址的别名.
+你可以在使用’git branch’命令时加上’–track’参数, 来手动创建一个’追踪分支’.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch --track experimental origin/experimental
+git pull experimental
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;它会自动从‘origin’抓取(fetch)内容，再把远程的’origin/experimental’分支合并进(merge)本地的’experimental’分支.
+当要把修改推送(push)到origin时, 它会将你本地的’experimental’分支中的修改推送到origin的‘experimental’分支里,　而无需指定它(origin).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;6，vue2 组件之间的通信&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;只要答出父子间，同级兄弟间，vuex状态管理（项目没有用到过所以就答了一个名词）即可&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;简单，具体不写了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;7，做一个简易的vue状态管理，a组件中有time属性，b组件中有area属性，当a组件中的time或b组件中的area发生改变时，同时在控制台打印time和area&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;我理解的是实现一个类似vuex的状态管理控件。想到的是父子间通信和同级间通信，说出来后，面试官并不是很满意。回公司后问了一下其他人，也没有人能答出具体的实现，索性就学一下vuex的实现原理吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;8，平时用到那些css，js，svg，canvas&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;只说了一下平时用到的animate.css，echarts，bootstrap，vux，elementui，iview这些&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Mon, 26 Mar 2018 00:00:00 +0800</pubDate>
+        <link>/jekyll_blog/2018/03/26/yishijiemianshi/</link>
+        <guid isPermaLink="true">/jekyll_blog/2018/03/26/yishijiemianshi/</guid>
+        
+        <category>javascript</category>
+        
+        <category>面试</category>
+        
+        <category>总结</category>
+        
+        
+      </item>
     
       <item>
         <title>js的三座大山</title>
@@ -42,8 +408,6 @@
 &lt;/ol&gt;
 
 &lt;p&gt;构造函数实例化过程：首先创建一个空对象，再让this指向这个对象，然后执行代码，即给this.name赋值，最后返回this，并将值赋给f和f1.&lt;/p&gt;
-
-&lt;!-- more --&gt;
 
 &lt;h4 id=&quot;2构造函数扩展&quot;&gt;（2）构造函数扩展&lt;/h4&gt;
 
@@ -596,8 +960,8 @@ fn('张三', 20)
 
 </description>
         <pubDate>Mon, 26 Mar 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/jekyll_blog/javascript/%E5%8E%9F%E5%9E%8B/%E5%8E%9F%E5%9E%8B%E9%93%BE/%E4%BD%9C%E7%94%A8%E5%9F%9F/%E9%97%AD%E5%8C%85/%E5%BC%82%E6%AD%A5/%E5%8D%95%E7%BA%BF%E7%A8%8B/2018/03/26/javascript/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll_blog/javascript/%E5%8E%9F%E5%9E%8B/%E5%8E%9F%E5%9E%8B%E9%93%BE/%E4%BD%9C%E7%94%A8%E5%9F%9F/%E9%97%AD%E5%8C%85/%E5%BC%82%E6%AD%A5/%E5%8D%95%E7%BA%BF%E7%A8%8B/2018/03/26/javascript/</guid>
+        <link>/jekyll_blog/2018/03/26/javascript/</link>
+        <guid isPermaLink="true">/jekyll_blog/2018/03/26/javascript/</guid>
         
         <category>教程</category>
         
@@ -616,28 +980,7 @@ fn('张三', 20)
         <category>单线程</category>
         
         
-        <category>javascript</category>
-        
-        <category>原型</category>
-        
-        <category>原型链</category>
-        
-        <category>作用域</category>
-        
-        <category>闭包</category>
-        
-        <category>异步</category>
-        
-        <category>单线程</category>
-        
       </item>
-=======
-    <link>/jekyll_blog/</link>
-    <atom:link href="/jekyll_blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 14 Mar 2018 17:21:59 +0800</pubDate>
-    <lastBuildDate>Wed, 14 Mar 2018 17:21:59 +0800</lastBuildDate>
-    <generator>Jekyll v3.5.0</generator>
->>>>>>> 44fbdceec3a7326b309dc92195b9132c0fa4fd24
     
       <item>
         <title>编写vue插件并上传到npm</title>
@@ -918,17 +1261,7 @@ inner func:  self.foo = bar
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-<<<<<<< HEAD
-&lt;p&gt;这题我输出的结果是正常的。。。。&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;foo1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;foo2&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-=======
 &lt;p&gt;结果是第一个输出一个object，第二个输出undefind。因为ECMAScript设定的ASI，return后会自动追加;分号。导致相当于没有返回。return后不要换行写其他东西，都不会执行。&lt;/p&gt;
->>>>>>> 44fbdceec3a7326b309dc92195b9132c0fa4fd24
 
 &lt;blockquote&gt;
   &lt;p&gt;7、NaN 是什么？它的类型是什么？你如何可靠地测试一个值是否等于 NaN ？&lt;/p&gt;
@@ -2940,164 +3273,5 @@ $('id').fadeIn('slow');  换面的淡出
         
       </item>
     
-      <item>
-        <title>git突然无法连接提示公钥或密码错误的坑</title>
-        <description>&lt;p&gt;ssh配置文件莫名其妙的出现了问题，可能由于在电脑上乱试版本管理工具导致的吧。&lt;/p&gt;
-
-&lt;p&gt;然后就是各种调，因为当前电脑会链接github和gitlab以及服务器，所以本地的ssh有点多，设置起来也费点时间。&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;p&gt;那么今天遇到的问题就坑了&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ssh -T git@github.com		正常连接&lt;/li&gt;
-  &lt;li&gt;git pull origin master	提示密码不对无法连接&lt;/li&gt;
-  &lt;li&gt;各种查看后发现项目.git文件中的config文件中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;remote &quot;origin&quot;&lt;/code&gt;地址有误一个&lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt;被改成了&lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;。导致找不到目录，我一看所有我之前用SourceTree配置过的项目都存在这样的情况。估计是当初病急乱投医乱配导致的。以下是处理方法&lt;/li&gt;
-  &lt;li&gt;可以先在指定的项目中 &lt;code class=&quot;highlighter-rouge&quot;&gt;git remote -v&lt;/code&gt; 看到远程连接的地址，如果和你github中项目的ssh方式提供的网址一下那就不用往下看了。（这里的remote建议使用ssh的方式，就不用输密码了）&lt;/li&gt;
-  &lt;li&gt;在命令行运行&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote rm origin&lt;/code&gt; 删除远程连接&lt;/li&gt;
-  &lt;li&gt;在命令行运行&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add origin ssh方式的github项目地址&lt;/code&gt; 重新添加一下即可&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;前提：你要安装git，windowsCMD无法直接运行ssh命令。如果你之前配置过要重新配置相同网站的sshkey可以吧.ssh文件夹中的&lt;code class=&quot;highlighter-rouge&quot;&gt;known_hosts&lt;/code&gt;改名或删掉，以免影响新的key&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;以github为例&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;首先需要直接打开gitbash，在命令行中输入&lt;code class=&quot;highlighter-rouge&quot;&gt;ssh-keygen -t rsa -C &quot;建议填注册网站时填写的邮箱&quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ssh-keygen -t rsa -C “841489295@qq.com”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;然后会询问你生成的文件名，你可以指定也可以不指定（多ssh管理时建议指定）&lt;/p&gt;
-
-&lt;p&gt;然后回车就可以了，他就会在&lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\电脑用户名\.ssh&lt;/code&gt;生成一个你指定名称的rsa文件&lt;/p&gt;
-
-&lt;p&gt;取出已&lt;code class=&quot;highlighter-rouge&quot;&gt;.pub&lt;/code&gt;为后缀的文件中的内容，添加到你的github或者gitlab以及其他以git版本管理为功能的网站中（一般叫SSHKey）&lt;/p&gt;
-
-&lt;p&gt;添加后还有重要的一步，就是测试一下是否能连接成功，在命令行输入&lt;code class=&quot;highlighter-rouge&quot;&gt;ssh -T git@github.com&lt;/code&gt;, 会让你输入网站登录的密码。显示如下即为正确。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ssh -T git@github.com
-The authenticity of host 'github.com (192.30.255.112)' can't be established.
-RSA key fingerprint is SHA256:nThbg........
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'github.com,192.30.255.112' (RSA) to the list of known hosts.
-Enter passphrase for key 'C:\\Users\\acer\\.ssh\\github-rsa':
-Hi 你github上的用户名! You've successfully authenticated, but GitHub does not provide shell access.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;操作完成后.ssh文件中的&lt;code class=&quot;highlighter-rouge&quot;&gt;known_hosts&lt;/code&gt;文件中会写入一条你刚刚连接网站的记录。&lt;/p&gt;
-
-&lt;p&gt;多sshkey使用时，还有更重要的一步，需要配置.ssh文件中的&lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt;文件，&lt;code class=&quot;highlighter-rouge&quot;&gt;每多一个sshkey就要配置一次&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host github.com              建议输入你的网站名  不建议重复
-HostName github.com			 输入你网站的域名，既你克隆项目时，使用的ssh方式中url里@符号后面的地址
-IdentityFile C:\\Users\\acer\\.ssh\\github-rsa			你的rsa文件地址
-PreferredAuthentications publickey						照抄，意思是已公钥的方式
-User handsameliu			 用户名，可以填你网站的用户名，也可以填网址 不建议重复
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;完成后就可以正常clone了。&lt;/p&gt;
-</description>
-        <pubDate>Wed, 23 Aug 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/08/23/gitIssues/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/08/23/gitIssues/</guid>
-        
-        <category>总结</category>
-        
-        <category>git</category>
-        
-        <category>ssh</category>
-        
-        
-      </item>
-    
-<<<<<<< HEAD
-=======
-      <item>
-        <title>test markdown</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;注意文档格式，建议utf-8&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;可用的标签&quot;&gt;可用的标签&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;粗体&lt;/strong&gt;testtesttesttesttesttesttesttesttesttesttesttesttesttest&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;粗体子集1&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;粗体子集2&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;h2 id=&quot;粗体子集3&quot;&gt;&lt;strong&gt;粗体子集3&lt;/strong&gt;&lt;/h2&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;hexo next （&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt;）一种用于截取一部分文段段落显示&lt;code class=&quot;highlighter-rouge&quot;&gt;查看所有&lt;/code&gt;标签，推荐使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;markdown简介&quot;&gt;Markdown简介&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— &lt;a href=&quot;https://zh.wikipedia.org/wiki/Markdown&quot;&gt;维基百科&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;斜体&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;代码块&quot;&gt;代码块&lt;/h3&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@requires_authorization&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;somefunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;param1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;'''A docstring'''&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# interesting&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Greater'&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;param2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;param1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'''interpreter
-... prompt'''&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;表格&quot;&gt;表格&lt;/h3&gt;
-&lt;p&gt;| Item      |    Value | Qty  |
-| :——– | ——–:| :–: |
-| Computer  | 1600 USD |  5   |
-| Phone     |   12 USD |  12  |
-| Pipe      |    1 USD | 234  |&lt;/p&gt;
-
-&lt;h3 id=&quot;复选框&quot;&gt;复选框&lt;/h3&gt;
-
-&lt;p&gt;使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;- [ ]&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;- [x]&lt;/code&gt; 语法可以创建复选框，实现 todo-list 等功能。例如：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;[x] 已完成事项&lt;/li&gt;
-  &lt;li&gt;[ ] 待办事项1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;  可以使用粗体和斜体&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;反馈与建议&quot;&gt;反馈与建议&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;链接：&lt;a href=&quot;http://www.google.com&quot; title=&quot;网站链接target&quot;&gt;@链接&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 05 Jul 2017 00:00:00 +0800</pubDate>
-        <link>/jekyll_blog/2017/07/05/testing/</link>
-        <guid isPermaLink="true">/jekyll_blog/2017/07/05/testing/</guid>
-        
-        <category>Testing</category>
-        
-        
-      </item>
-    
->>>>>>> 44fbdceec3a7326b309dc92195b9132c0fa4fd24
   </channel>
 </rss>
