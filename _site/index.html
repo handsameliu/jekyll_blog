@@ -12,7 +12,7 @@
 
     <title>我的博客 | handsameliu</title>
 
-    <link rel="canonical" href="/jekyll_blog/">
+    <link rel="canonical" href="http://localhost:4000/jekyll_blog/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/jekyll_blog/css/bootstrap.min.css">
@@ -153,6 +153,35 @@
                 post-container
             ">
     			
+<div class="post-preview">
+    <a href="/jekyll_blog/2018/08/08/React_parent-child-transmission_interaction_invocation/">
+        <h2 class="post-title">
+            react 父子传值，交互，调用方法
+        </h2>
+        
+        <div class="post-content-preview">
+            父子通信
+
+父传子，通过props传递参数
+
+
+
+import React, {Component} from 'react'
+
+export default class Parent extends Component {
+    constructor () {
+        this.state = {
+            name: 'testliu'
+        }
+  ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by handsameliu on August 8, 2018
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/jekyll_blog/2018/03/26/yishijiemianshi/">
         <h2 class="post-title">
@@ -423,44 +452,6 @@ https://mp.weixin.qq.com/s/qdn_13vADwl56wNRXz4m-w  我参考的是这篇，有�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/jekyll_blog/2017/08/23/jqueryAPI/">
-        <h2 class="post-title">
-            jQuery常用API
-        </h2>
-        
-        <h3 class="post-subtitle">
-            jQuery
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  项目要重构了，来复习一下老版的jquery(项目兼容ie8，或者更低)…
-
-
-基本选择器
-
-
-
-$(document);获取文档对象
-
-$('#id');获取某个id元素
-
-$('.className');获取某个class元素
-
-$('input[name=username]');获取name为username的input元素
-
-$('a:first');获取a标签的第一个
-
-$('...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by handsameliu on August 23, 2017
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -497,7 +488,7 @@ $('...
                             
                         
                             
-                                <a href="/jekyll_blog/tags/#总结" title="总结" rel="14">
+                                <a href="/jekyll_blog/tags/#总结" title="总结" rel="15">
                                     总结
                                 </a>
                             
@@ -534,6 +525,10 @@ $('...
                         
                             
                         
+                            
+                                <a href="/jekyll_blog/tags/#react" title="react" rel="2">
+                                    react
+                                </a>
                             
                         
                             
